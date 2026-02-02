@@ -12,7 +12,7 @@ export const useShapValues = () => {
             try {
                 setIsLoading(true);
                 //const response = await fetch('/models/shap_lookup.json');
-                const response = await fetch(getDataUrl('shap_lookup'));
+                const response = await fetch(getDataUrl('shap_lookup.json'));
                 if (!response.ok) {
                     throw new Error('Impossible de charger les SHAP values');
                 }

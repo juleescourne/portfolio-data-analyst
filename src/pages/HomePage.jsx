@@ -2,7 +2,7 @@
 import { Github, Linkedin, Mail } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import ProjectCard from '../components/ProjectCard';
-import { projects, skills, statsData } from '../data/portfolioData';
+import { projects, skills, statsData } from '../data/HomeData';
 
 const HomePage = ({ onShowDashboard, onShowHousing, onShowChurn }) => {
 

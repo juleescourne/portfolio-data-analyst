@@ -1,10 +1,9 @@
 // pages/ChurnPredictionPage.jsx - STRUCTURE STANDARDISÉE
 import React, { useState, useEffect, useRef } from 'react';
 import { Github, Loader, Code, Activity, BarChart2 } from 'lucide-react';
-import * as ort from 'onnxruntime-web';
 import { useShapValues, FEATURE_LABELS } from '../hooks/useShapValues';
 import Navbar from '../components/Navbar';
-import ort, { initONNX, getModelUrl } from './utils/onnxConfig';
+import ort, { initONNX, getDataUrl } from '../utils/onnxConfig';
 
 const ChurnPredictionPage = ({ onBack }) => {
     // États pour les inputs utilisateur
@@ -50,7 +49,7 @@ const ChurnPredictionPage = ({ onBack }) => {
         try {
             setIsLoadingModel(true);
             // Charger depuis jsDelivr CDN
-            const modelUrl = getModelUrl('xgb_churn_model');
+            const modelUrl = getDataUrl('xgb_churn_model.onnx');
             const session = await ort.InferenceSession.create(modelUrl);
             sessionRef.current = session;
             setModelLoaded(true);

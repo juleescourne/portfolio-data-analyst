@@ -31,23 +31,9 @@ class HousingModel {
         };
     }
 
-    /*async loadModel() {
-        if (!this.predictor) {
-            this.predictor = await XGBoostPredictor.load('/models/xgb_trees.json', this.FEATURE_MAP);
-            console.log('✅ Modèle XGBoost chargé');
-        }
-    }
-
-    async loadGeoCache() {
-        if (!this.geoCache) {
-            const response = await fetch('/data/geo_cache.json');
-            this.geoCache = await response.json();
-            console.log(`✅ Cache chargé (${this.geoCache.n_points} points)`);
-        }
-    }*/
     async loadModel() {
         if (!this.predictor) {
-            const modelUrl = getDataUrl('xgb_trees');
+            const modelUrl = getDataUrl('xgb_trees.json');
             this.predictor = await XGBoostPredictor.load(modelUrl, this.FEATURE_MAP);
             console.log('✅ Modèle XGBoost chargé');
         }
@@ -55,7 +41,7 @@ class HousingModel {
 
     async loadGeoCache() {
         if (!this.geoCache) {
-            const geoUrl = getDataUrl('geo_cache');
+            const geoUrl = getDataUrl('geo_cache.json');
             const response = await fetch(geoUrl);
             this.geoCache = await response.json();
             console.log(`✅ Cache chargé (${this.geoCache.n_points} points)`);
