@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import ProjectCard from '../components/ProjectCard';
 import { projects, skills, statsData } from '../data/HomeData';
 
+
 const HomePage = ({ onShowDashboard, onShowHousing, onShowChurn }) => {
 
 
