@@ -31,7 +31,7 @@ const DashboardPage = ({ onBack }) => {
                                     Transformer 10K+ livres et 183M de notes en insights actionnables pour maximiser les ventes
                                 </p>
                                 <div className="flex flex-wrap gap-2">
-                                    {['Power BI', 'Python', 'Pandas', 'SQL', 'DAX', 'Data Analytics'].map((tag) => (
+                                    {["Python", "Pandas", "Matplotlib", "SQL", "Power BI", "Task Scheduler", "Power Query", "Excel", "DAX", "E-commerce"].map((tag) => (
                                         <span key={tag} className="bg-purple-600/20 text-purple-300 px-3 py-1 rounded-lg text-sm border border-purple-500/30">
                                             {tag}
                                         </span>

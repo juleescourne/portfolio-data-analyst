@@ -31,20 +31,6 @@ const ChurnPredictionPage = ({ onBack }) => {
         loadONNXModel();
     }, []);
 
-    /*const loadONNXModel = async () => {
-        try {
-            setIsLoadingModel(true);
-            const session = await ort.InferenceSession.create('/models/xgb_churn_model.onnx');
-            sessionRef.current = session;
-            setModelLoaded(true);
-            setIsLoadingModel(false);
-        } catch (error) {
-            console.error('Erreur lors du chargement du modèle:', error);
-            setModelLoaded(false);
-            setIsLoadingModel(false);
-        }
-    };*/
-
     const loadONNXModel = async () => {
         try {
             setIsLoadingModel(true);
@@ -180,7 +166,7 @@ const ChurnPredictionPage = ({ onBack }) => {
                                     Modèle XGBoost pour prédire le risque de départ client avec une précision de 87% et identifier les facteurs clés via SHAP
                                 </p>
                                 <div className="flex flex-wrap gap-2">
-                                    {['Python', 'XGBoost', 'ONNX', 'React', 'SHAP', 'Feature Engineering'].map((tag) => (
+                                    {["Python", "XGBoost", "Feature Engineering", "Matplotlib", "Seaborn", "Jupyter Notebook", "SHAP", "Banking sector"].map((tag) => (
                                         <span key={tag} className="bg-purple-600/20 text-purple-300 px-3 py-1 rounded-lg text-sm border border-purple-500/30">
                                             {tag}
                                         </span>
@@ -204,8 +190,8 @@ const ChurnPredictionPage = ({ onBack }) => {
                     {/* 2. RÉSULTATS GLOBAUX - Ligne de blocs KPI */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div className="bg-gradient-to-br from-purple-600/20 to-purple-900/20 backdrop-blur-sm rounded-xl p-6 border border-purple-500/30">
-                            <div className="text-3xl font-bold text-purple-400 mb-2">87%</div>
-                            <div className="text-sm text-gray-400">Précision du modèle</div>
+                            <div className="text-3xl font-bold text-purple-400 mb-2">90%</div>
+                            <div className="text-sm text-gray-400">Recall</div>
                         </div>
                         <div className="bg-gradient-to-br from-blue-600/20 to-blue-900/20 backdrop-blur-sm rounded-xl p-6 border border-blue-500/30">
                             <div className="text-3xl font-bold text-blue-400 mb-2">9</div>
@@ -421,10 +407,10 @@ const ChurnPredictionPage = ({ onBack }) => {
                                 </div>
                                 <h3 className="text-lg font-bold text-purple-400 mb-3">Méthodologie</h3>
                                 <ul className="space-y-2 text-gray-300 text-sm">
+                                    <li>Analyse, Nettoyage avancé</li>
                                     <li>Feature Engineering avancé</li>
-                                    <li>Sélection features optimale</li>
+                                    <li>Elaboration solution métier</li>
                                     <li>GridSearchCV hyperparamètres</li>
-                                    <li>SHAP pour interprétabilité</li>
                                 </ul>
                             </div>
                             <div className="text-center">
@@ -434,8 +420,8 @@ const ChurnPredictionPage = ({ onBack }) => {
                                 <h3 className="text-lg font-bold text-purple-400 mb-3">Technologies</h3>
                                 <ul className="space-y-2 text-gray-300 text-sm">
                                     <li>XGBoost (classification)</li>
-                                    <li>ONNX Runtime Web</li>
-                                    <li>React + Tailwind</li>
+                                    <li>Pandas / Numpy</li>
+                                    <li>Matplotlib / Seaborn</li>
                                     <li>SHAP values</li>
                                 </ul>
                             </div>
@@ -445,10 +431,10 @@ const ChurnPredictionPage = ({ onBack }) => {
                                 </div>
                                 <h3 className="text-lg font-bold text-purple-400 mb-3">Résultats Clés</h3>
                                 <ul className="space-y-2 text-gray-300 text-sm">
-                                    <li>87% de précision</li>
+                                    <li>90% de Recall (Détection max)</li>
+                                    <li>39% de précision (Accepté)</li>
                                     <li>9 features optimisées</li>
                                     <li>Inférence temps réel</li>
-                                    <li>Explications SHAP</li>
                                 </ul>
                             </div>
                         </div>

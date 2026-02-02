@@ -27,7 +27,7 @@ const HousingProjectPage = ({ onBack }) => {
                                     Modèle XGBoost pour prédire le prix médian des maisons par quartier en Californie avec une précision de R² = 0.834
                                 </p>
                                 <div className="flex flex-wrap gap-2">
-                                    {['Python', 'XGBoost', 'Pandas', 'Scikit-learn', 'Streamlit', 'Feature Engineering'].map((tag) => (
+                                    {["Python", "XGBoost", "Feature Engineering", "Matplotlib", "Seaborn", "GeoPandas", "Jupyter Notebook", "Real estate"].map((tag) => (
                                         <span key={tag} className="bg-purple-600/20 text-purple-300 px-3 py-1 rounded-lg text-sm border border-purple-500/30">
                                             {tag}
                                         </span>
@@ -87,8 +87,9 @@ const HousingProjectPage = ({ onBack }) => {
                                 </div>
                                 <h3 className="text-lg font-bold text-purple-400 mb-3">Méthodologie</h3>
                                 <ul className="space-y-2 text-gray-300 text-sm">
+                                    <li>Analyse descriptive / exploratoire</li>
                                     <li>Feature Engineering avancé</li>
-                                    <li>Sélection features (37→19)</li>
+                                    <li>Sélection features (37→15)</li>
                                     <li>RandomizedSearchCV</li>
                                     <li>Validation croisée 5-fold</li>
                                 </ul>
@@ -102,7 +103,7 @@ const HousingProjectPage = ({ onBack }) => {
                                     <li>XGBoost (modèle)</li>
                                     <li>Pandas + NumPy (données)</li>
                                     <li>Scikit-learn (ML)</li>
-                                    <li>Matplotlib (visualisation)</li>
+                                    <li>Matplotlib / Seaborn (visualisation)</li>
                                 </ul>
                             </div>
                             <div className="text-center">
@@ -112,7 +113,7 @@ const HousingProjectPage = ({ onBack }) => {
                                 <h3 className="text-lg font-bold text-purple-400 mb-3">Résultats Clés</h3>
                                 <ul className="space-y-2 text-gray-300 text-sm">
                                     <li>+0.8% R² vs baseline</li>
-                                    <li>50% réduction features</li>
+                                    <li>+50% réduction features</li>
                                     <li>Généralisation parfaite</li>
                                     <li>Variance CV = ±0.0149</li>
                                 </ul>
