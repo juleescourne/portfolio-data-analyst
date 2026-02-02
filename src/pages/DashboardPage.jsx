@@ -5,7 +5,6 @@ import DashboardImage from '../components/DashboardImage';
 import ImageModal from '../components/ImageModal';
 import RecommendationsSection from '../components/RecommendationsSection';
 import { dashboardImages, goodreadsRecommendations, recommendationsAuthorPublisher, recommendationsGenresLangues } from '../data/GoodreadData';
-import { getImageUrl } from '../utils/onnxConfig';
 
 const DashboardPage = ({ onBack }) => {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -80,7 +79,7 @@ const DashboardPage = ({ onBack }) => {
                         {/* Analyse 1 : Livres */}
                         <div className="mb-8">
                             <DashboardImage
-                                dashboard={getImageUrl(dashboardImages[0])}
+                                dashboard={dashboardImages[0]}
                                 onImageClick={setSelectedImage}
                             />
                             <div className="mt-4">
@@ -91,7 +90,7 @@ const DashboardPage = ({ onBack }) => {
                         {/* Analyse 2 : Auteurs & Éditeurs */}
                         <div className="mb-8">
                             <DashboardImage
-                                dashboard={getImageUrl(dashboardImages[1])}
+                                dashboard={dashboardImages[1]}
                                 onImageClick={setSelectedImage}
                             />
                             <div className="mt-4">
@@ -102,7 +101,7 @@ const DashboardPage = ({ onBack }) => {
                         {/* Analyse 3 : Genres & Langues */}
                         <div>
                             <DashboardImage
-                                dashboard={getImageUrl(dashboardImages[2])}
+                                dashboard={dashboardImages[2]}
                                 onImageClick={setSelectedImage}
                             />
                             <div className="mt-4">

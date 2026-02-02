@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Info, ZoomIn } from 'lucide-react';
+import { getImageUrl } from '../utils/onnxConfig';
 
 const DashboardImage = ({ dashboard, onImageClick }) => {
     const [activeTooltip, setActiveTooltip] = useState(null);
@@ -12,7 +13,7 @@ const DashboardImage = ({ dashboard, onImageClick }) => {
 
             <div className="relative group">
                 <img
-                    src={dashboard.path}
+                    src={getImageUrl(dashboard.path)}
                     alt={dashboard.title}
                     className={`w-full rounded-lg cursor-pointer hover:opacity-90 transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
                     onClick={() => onImageClick(dashboard.path)}
@@ -28,7 +29,7 @@ const DashboardImage = ({ dashboard, onImageClick }) => {
                 )}
 
                 <button
-                    onClick={() => onImageClick(dashboard.path)}
+                    onClick={() => onImageClick(getImageUrl(dashboard.path))}
                     className="absolute top-4 right-4 bg-slate-900/80 p-2 rounded-lg opacity-0 group-hover:opacity-100 transition z-10">
                     <ZoomIn className="text-white" size={20} />
                 </button>
