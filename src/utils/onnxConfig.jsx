@@ -14,13 +14,7 @@ export const initONNX = () => {
 
 export const getDataUrl = (filename) => {
 
-    // Déterminer le dossier selon le nom du fichier
-    let folder = 'models';
-    if (filename.includes('geo_cache.json')) {
-        folder = 'data';
-    }
-
-    return `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@assets/${folder}/${filename}`;
+    return `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@assets/models/${filename}`;
 };
 
 export const getImageUrl = (filename) => {
