@@ -80,8 +80,8 @@ export const skills = {
 };
 
 export const statsData = [
-    { label: "Projets", value: "5" },
+    { label: "Projets", value: "5+" },
     { label: "Technologies", value: "10+" },
-    { label: "Ans d'expérience", value: "<1" },
-    { label: "Dashboards & notebook", value: "5" }
+    { label: "Ans d'expérience", value: "2" },
+    { label: "Dashboards & notebook", value: "5+" }
 ];

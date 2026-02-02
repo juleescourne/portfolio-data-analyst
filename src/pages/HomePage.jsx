@@ -115,13 +115,13 @@ const HomePage = ({ onShowDashboard, onShowHousing, onShowChurn }) => {
                     <h2 className="text-4xl font-bold text-white mb-8 text-center">À propos</h2>
                     <div className="bg-slate-800/50 p-8 rounded-xl">
                         <p className="text-gray-300 text-lg mb-4">
-                            Passionné par l'analyse de données avec plus de 3 ans d'expérience dans la transformation de données complexes en insights actionnables.
+                            Passionné par la transformation de données complexes en insights actionnables.
                         </p>
                         <p className="text-gray-300 text-lg mb-4">
-                            Spécialisé dans l'analyse exploratoire, la visualisation de données et le machine learning, j'aide les entreprises à prendre des décisions basées sur les données.
+                            Spécialisé dans l'analyse exploratoire, la visualisation de données et la compréhension métier, j'aide à prendre des décisions basées sur les données.
                         </p>
                         <p className="text-gray-300 text-lg">
-                            Diplômé en Data Science, je maîtrise Python, SQL, et les outils de BI comme Tableau et Power BI.
+                            Ingénieur diplômé en science de l'information, je maîtrise Python, SQL, Power Apps et Machine Learning.
                         </p>
                     </div>
                 </div>
@@ -132,11 +132,11 @@ const HomePage = ({ onShowDashboard, onShowHousing, onShowChurn }) => {
                 <div className="max-w-4xl mx-auto text-center">
                     <h2 className="text-4xl font-bold text-white mb-8">Contact</h2>
                     <p className="text-gray-300 text-lg mb-8">
-                        Intéressé par une collaboration ? N'hésitez pas à me contacter !
+                        N'hésitez pas à me contacter !
                     </p>
                     <div className="flex gap-6 justify-center">
                         <a
-                            href="mailto:votre.email@example.com"
+                            href="mailto:jules.courne@gmail.com"
                             className="flex items-center gap-2 bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
                             <Mail size={20} />
                             Email
@@ -150,7 +150,7 @@ const HomePage = ({ onShowDashboard, onShowHousing, onShowChurn }) => {
                             LinkedIn
                         </a>
                         <a
-                            href="https://github.com/votre-username"
+                            href="https://github.com/juleescourne"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center gap-2 bg-slate-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-slate-600 transition">
@@ -164,7 +164,7 @@ const HomePage = ({ onShowDashboard, onShowHousing, onShowChurn }) => {
             {/* Footer */}
             < footer className="py-8 px-6 border-t border-slate-700" >
                 <div className="max-w-6xl mx-auto text-center text-gray-400">
-                    <p>© 2026 Votre Nom. Tous droits réservés.</p>
+                    <p>2026 Jules Courné.</p>
                 </div>
             </footer >
         </div >
