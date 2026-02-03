@@ -67,7 +67,7 @@ export const projects = [
         id: 5,
         title: "Analyse des données du Massachusetts General Hospital",
         description: "Analyse SQL des données de santé incluant la démographie des patients, la couverture d'assurance, les consultations et procédures médicales.",
-        image: "",
+        image: "health.jpg",
         tags: ["SQL", "MySQL", "Window functions", "CTE", "JOINS", "Sub Queries", "Aggregations", "Complex Cases", "Healthcare"],
         github: "https://github.com/juleescourne/Hospital-Analysis",
         demo: false,
