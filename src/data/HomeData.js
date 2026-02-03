@@ -49,7 +49,7 @@ export const projects = [
     },
     {
         id: 4,
-        title: "Meilleur choix d'un outil coupant",
+        title: "Choix de l'outil coupant optimal",
         description: "Application dédiée à l’optimisation du choix des outils de coupe à partir de données issues d’expériences d’usinage.",
         image: "machining.webp",
         tags: ["Python", "TKinter", "Plotly", "MySQL", "Excel", "Pandas", "Scikit-learn", "Machining industry"],
@@ -61,6 +61,22 @@ export const projects = [
             "Graphiques dynamiques avec application de fonctions mathématiques",
             "Calcul de transfert de forces complexe",
             "Décision d'un outil coupant optimal pour des conditions de coupe"
+        ]
+    },
+    {
+        id: 5,
+        title: "Analyse des données du Massachusetts General Hospital",
+        description: "Analyse SQL des données de santé incluant la démographie des patients, la couverture d'assurance, les consultations et procédures médicales.",
+        image: "",
+        tags: ["SQL", "MySQL", "Window functions", "CTE", "JOINS", "Sub Queries", "Aggregations", "Complex Cases", "Healthcare"],
+        github: "https://github.com/juleescourne/Hospital-Analysis",
+        demo: false,
+        highlights: [
+            "Analyse de 76,000+ enregistrements",
+            "Fonctions fenêtres avancées (ROW_NUMBER, LAG) pour analyser les parcours de soins",
+            "CTEs et self-joins pour calculer les taux de réadmission à 30 jours",
+            "Requêtes multi-niveaux avec sous-requêtes corrélées et non-corrélées",
+            "Analyses temporelles complexes (TIMESTAMPDIFF, DATE_FORMAT) sur 11 ans de données"
         ]
     }
 ];

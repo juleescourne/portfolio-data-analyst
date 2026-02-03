@@ -1,9 +1,8 @@
 // pages/HomePage.jsx
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, Phone, MapPin, User } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import ProjectCard from '../components/ProjectCard';
 import { projects, skills, statsData } from '../data/HomeData';
-
 
 const HomePage = ({ onShowDashboard, onShowHousing, onShowChurn }) => {
 
@@ -129,36 +128,63 @@ const HomePage = ({ onShowDashboard, onShowHousing, onShowChurn }) => {
 
             {/* Contact Section */}
             <section id="contact" className="py-20 px-6 bg-slate-800/30">
-                <div className="max-w-4xl mx-auto text-center">
-                    <h2 className="text-4xl font-bold text-white mb-8">Contact</h2>
-                    <p className="text-gray-300 text-lg mb-8">
+                <div className="max-w-4xl mx-auto">
+                    <h2 className="text-4xl font-bold text-white mb-8 text-center">Contact</h2>
+                    <p className="text-gray-300 text-lg mb-12 text-center">
                         N'hésitez pas à me contacter !
                     </p>
-                    <div className="flex gap-6 justify-center">
-                        <a
-                            href="mailto:jules.courne@gmail.com"
-                            className="flex items-center gap-2 bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
-                            <Mail size={20} />
-                            Email
-                        </a>
-                        <a
-                            href="https://linkedin.com/in/votre-profil"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
-                            <Linkedin size={20} />
-                            LinkedIn
-                        </a>
-                        <a
-                            href="https://github.com/juleescourne"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2 bg-slate-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-slate-600 transition">
-                            <Github size={20} />
-                            GitHub
-                        </a>
+
+                    {/* Coordonnées directes */}
+                    <div className="bg-slate-800/50 rounded-xl p-8 mb-8 border border-slate-700">
+                        <div className="grid md:grid-cols-2 gap-6">
+                            <div className="flex items-center gap-4">
+                                <div className="bg-purple-600/20 p-3 rounded-lg">
+                                    <Mail className="text-purple-400" size={24} />
+                                </div>
+                                <div>
+                                    <p className="text-gray-400 text-sm">Email</p>
+                                    <a href="mailto:jules.courne@gmail.com"
+                                        className="text-white hover:text-purple-400 transition">
+                                        jules.courne@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center gap-4">
+                                <div className="bg-purple-600/20 p-3 rounded-lg">
+                                    <Phone className="text-purple-400" size={24} />
+                                </div>
+                                <div>
+                                    <p className="text-gray-400 text-sm">Téléphone</p>
+                                    <a href="tel:+33760066526"
+                                        className="text-white hover:text-purple-400 transition">
+                                        07.60.06.65.26
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center gap-4">
+                                <div className="bg-purple-600/20 p-3 rounded-lg">
+                                    <MapPin className="text-purple-400" size={24} />
+                                </div>
+                                <div>
+                                    <p className="text-gray-400 text-sm">Localisation</p>
+                                    <p className="text-white">Rouen, Normandie</p>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center gap-4">
+                                <div className="bg-purple-600/20 p-3 rounded-lg">
+                                    <User className="text-purple-400" size={24} />
+                                </div>
+                                <div>
+                                    <p className="text-gray-400 text-sm">Nom</p>
+                                    <p className="text-white">Jules Courné</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div >
+                </div>
             </section >
 
             {/* Footer */}
