@@ -1,5 +1,5 @@
 // pages/ChurnPredictionPage.jsx - STRUCTURE STANDARDISÉE
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Github, Loader, Code, Activity, BarChart2 } from 'lucide-react';
 import { useShapValues, FEATURE_LABELS } from '../hooks/useShapValues';
 import Navbar from '../components/Navbar';
@@ -16,11 +16,8 @@ const ChurnPredictionPage = ({ onBack }) => {
         is_active_member: 1
     });
 
-    const [churnPrediction, setChurnPrediction] = useState(0);
     const [churnProbability, setChurnProbability] = useState(null);
-    const [isAnimating, setIsAnimating] = useState(false);
     const [modelLoaded, setModelLoaded] = useState(false);
-    const [isLoadingModel, setIsLoadingModel] = useState(false);
     const sessionRef = useRef(null);
 
     const { getShapForInputs, isLoading: shapLoading, error: shapError } = useShapValues();
@@ -29,21 +26,19 @@ const ChurnPredictionPage = ({ onBack }) => {
     useEffect(() => {
         initONNX();
         loadONNXModel();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const loadONNXModel = async () => {
         try {
-            setIsLoadingModel(true);
             // Charger depuis jsDelivr CDN
             const modelUrl = getDataUrl('xgb_churn_model.onnx');
             const session = await ort.InferenceSession.create(modelUrl);
             sessionRef.current = session;
             setModelLoaded(true);
-            setIsLoadingModel(false);
         } catch (error) {
             console.error('Erreur lors du chargement du modèle:', error);
             setModelLoaded(false);
-            setIsLoadingModel(false);
         }
     };
 
@@ -108,7 +103,6 @@ const ChurnPredictionPage = ({ onBack }) => {
 
     useEffect(() => {
         const updatePrediction = async () => {
-            setIsAnimating(true);
             const features = calculateFeatures(userInputs);
 
             let result = { prediction: 0, probabilities: null };
@@ -117,13 +111,12 @@ const ChurnPredictionPage = ({ onBack }) => {
             }
 
             setTimeout(() => {
-                setChurnPrediction(result.prediction);
                 setChurnProbability(result.probabilities);
-                setIsAnimating(false);
             }, 400);
         };
 
         updatePrediction();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userInputs, modelLoaded]);
 
     const handleInputChange = (field, value) => {
@@ -142,7 +135,6 @@ const ChurnPredictionPage = ({ onBack }) => {
     };
 
     const featureContributions = getFeatureContributions();
-    const currentFeatures = calculateFeatures(userInputs);
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
@@ -163,7 +155,7 @@ const ChurnPredictionPage = ({ onBack }) => {
                                     Prédiction du Churn Client
                                 </h1>
                                 <p className="text-gray-300 text-lg mb-6">
-                                    Modèle XGBoost pour prédire le risque de départ client avec une précision de 87% et identifier les facteurs clés via SHAP
+                                    Modèle XGBoost orienté détection du churn, avec analyse du compromis recall / précision et interprétation SHAP
                                 </p>
                                 <div className="flex flex-wrap gap-2">
                                     {["Python", "XGBoost", "Feature Engineering", "Matplotlib", "Seaborn", "Jupyter Notebook", "SHAP", "Banking sector"].map((tag) => (
@@ -175,7 +167,7 @@ const ChurnPredictionPage = ({ onBack }) => {
                             </div>
                             <div className="flex gap-3">
                                 <a
-                                    href="https://github.com/juleescourne/Churn_analysis"
+                                    href="https://github.com/juleescourne/customer-churn-prediction"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg transition whitespace-nowrap"
@@ -189,24 +181,14 @@ const ChurnPredictionPage = ({ onBack }) => {
 
                     {/* 2. RÉSULTATS GLOBAUX - Ligne de blocs KPI */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div className="bg-gradient-to-br from-purple-600/20 to-purple-900/20 backdrop-blur-sm rounded-xl p-6 border border-purple-500/30">
-                            <div className="text-3xl font-bold text-purple-400 mb-2">90%</div>
-                            <div className="text-sm text-gray-400">Recall</div>
-                        </div>
-                        <div className="bg-gradient-to-br from-blue-600/20 to-blue-900/20 backdrop-blur-sm rounded-xl p-6 border border-blue-500/30">
-                            <div className="text-3xl font-bold text-blue-400 mb-2">9</div>
-                            <div className="text-sm text-gray-400">Features optimisées</div>
-                        </div>
-                        <div className="bg-gradient-to-br from-green-600/20 to-green-900/20 backdrop-blur-sm rounded-xl p-6 border border-green-500/30">
-                            <div className="text-3xl font-bold text-green-400 mb-2">
-                                {modelLoaded ? 'ONNX' : 'OFF'}
-                            </div>
-                            <div className="text-sm text-gray-400">Modèle temps réel</div>
-                        </div>
-                        <div className="bg-gradient-to-br from-amber-600/20 to-amber-900/20 backdrop-blur-sm rounded-xl p-6 border border-amber-500/30">
-                            <div className="text-3xl font-bold text-amber-400 mb-2">10K+</div>
-                            <div className="text-sm text-gray-400">Clients analysés</div>
-                        </div>
+                        <div className="bg-gradient-to-br from-purple-600/20 to-purple-900/20 backdrop-blur-sm rounded-xl p-6 border border-purple-500/30"><div className="text-3xl font-bold text-purple-400 mb-2">≈90%</div><div className="text-sm text-gray-400">Recall churn</div></div>
+                        <div className="bg-gradient-to-br from-blue-600/20 to-blue-900/20 backdrop-blur-sm rounded-xl p-6 border border-blue-500/30"><div className="text-3xl font-bold text-blue-400 mb-2">0,866</div><div className="text-sm text-gray-400">ROC-AUC</div></div>
+                        <div className="bg-gradient-to-br from-green-600/20 to-green-900/20 backdrop-blur-sm rounded-xl p-6 border border-green-500/30"><div className="text-3xl font-bold text-green-400 mb-2">≈36%</div><div className="text-sm text-gray-400">Précision au seuil exploré</div></div>
+                        <div className="bg-gradient-to-br from-amber-600/20 to-amber-900/20 backdrop-blur-sm rounded-xl p-6 border border-amber-500/30"><div className="text-3xl font-bold text-amber-400 mb-2">{modelLoaded ? 'ONNX' : '…'}</div><div className="text-sm text-gray-400">Démo navigateur</div></div>
+                    </div>
+
+                    <div className="bg-amber-950/30 border border-amber-500/30 rounded-xl p-5 text-amber-100/90 text-sm leading-relaxed">
+                        Le seuil de classification a été exploré sur un échantillon d’évaluation afin de privilégier le recall. Pour une évaluation production-grade, le seuil doit être choisi sur validation / cross-validation puis évalué une seule fois sur un jeu de test final intact.
                     </div>
 
                     {/* 3. BLOC DÉMO */}
@@ -366,6 +348,8 @@ const ChurnPredictionPage = ({ onBack }) => {
                                             <Loader className="animate-spin mx-auto mb-2 text-purple-400" size={24} />
                                             <p className="text-gray-400 text-sm">Chargement...</p>
                                         </div>
+                                    ) : shapError ? (
+                                        <div className="text-center py-4 text-amber-400 text-sm">{shapError}</div>
                                     ) : featureContributions.length > 0 ? (
                                         <div className="space-y-3">
                                             {featureContributions.slice(0, 5).map((feature, idx) => (
@@ -432,8 +416,8 @@ const ChurnPredictionPage = ({ onBack }) => {
                                 <h3 className="text-lg font-bold text-purple-400 mb-3">Résultats Clés</h3>
                                 <ul className="space-y-2 text-gray-300 text-sm">
                                     <li>90% de Recall (Détection max)</li>
-                                    <li>39% de précision (Accepté)</li>
-                                    <li>9 features optimisées</li>
+                                    <li>≈36% de précision au seuil exploré</li>
+                                    <li>9 variables utilisées dans la démo</li>
                                     <li>Inférence temps réel</li>
                                 </ul>
                             </div>

@@ -1,70 +1,118 @@
-# Getting Started with Create React App
+# Jules Courné — Data Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Personal portfolio built with React and Tailwind CSS to present selected **Data Analytics, Data Engineering, BI and Applied Machine Learning** projects.
 
-## Available Scripts
+**Live site:** https://juleescourne.github.io/portfolio-data-analyst/
 
-In the project directory, you can run:
+## Positioning
 
-### `npm start`
+The portfolio is intentionally centered on a coherent Data profile rather than a broad list of technologies:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Data Analysis & BI** — SQL, data quality, KPI design, Power BI, analytical storytelling
+- **Data Engineering** — Python, ETL/ELT, relational databases, dimensional modeling, validation and automation
+- **Applied Machine Learning** — XGBoost, feature engineering, classification/regression and model evaluation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Featured projects
 
-### `npm test`
+| Project | Focus | Repository |
+| --- | --- | --- |
+| Goodreads Analytics ETL | ETL, star schema, incremental loading, testing, BI | [goodreads-analytics-etl](https://github.com/juleescourne/goodreads-analytics-etl) |
+| Hospital SQL Analytics | MySQL, CTEs, window functions, data quality | [hospital-sql-analytics](https://github.com/juleescourne/hospital-sql-analytics) |
+| Cutting Tool Decision Support | Industrial data, MySQL, SQLAlchemy, PCA, Plotly | [cutting-tool-recommender](https://github.com/juleescourne/cutting-tool-recommender) |
+| Customer Churn Prediction | Classification, XGBoost, threshold tuning, SHAP | [customer-churn-prediction](https://github.com/juleescourne/customer-churn-prediction) |
+| California Housing | Regression, geographic features, XGBoost | [california-housing-price-prediction](https://github.com/juleescourne/california-housing-price-prediction) |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Portfolio features
 
-### `npm run build`
+- Responsive recruiter-oriented landing page
+- Mobile navigation and accessible focus states
+- Hash-based project routes that work on GitHub Pages and support browser back/forward
+- Lazy-loaded heavy project demos to keep the landing page lighter
+- Interactive ONNX churn inference demo
+- Interactive California scenario visualization
+- Goodreads dashboard walkthrough with contextual insights
+- SEO and social metadata
+- GitHub Actions CI for tests and production build
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Important demo notes
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### California Housing browser demo
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The browser visualization displays a **relative scenario score**, not a calibrated dollar prediction. The project repository contains the actual modeling methodology and reported evaluation metrics. This distinction avoids presenting a normalized browser visualization as a production-grade monetary estimate.
 
-### `npm run eject`
+### Goodreads recommendations
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The Goodreads dataset describes catalogue, ratings and engagement signals. The portfolio therefore presents strategic recommendations as **hypotheses to test**, not causal or revenue claims.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Customer churn threshold
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The recorded churn project explores the classification threshold on an evaluation sample. A production-grade experiment would select the threshold on validation data / cross-validation and keep a final test set untouched.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Tech stack
 
-## Learn More
+- React
+- Tailwind CSS
+- Lucide React
+- Plotly
+- ONNX Runtime Web
+- GitHub Pages
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The large demo assets (dashboard images and browser model files) are served from the repository's `assets` branch through jsDelivr.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Local development
 
-### Code Splitting
+```bash
+npm install
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The application is then available at `http://localhost:3000`.
 
-### Analyzing the Bundle Size
+## Tests
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+npm test -- --watchAll=false
+```
 
-### Making a Progressive Web App
+## Production build
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+npm run build
+```
 
-### Advanced Configuration
+## Deploy to GitHub Pages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+The repository includes `.github/workflows/deploy-pages.yml`. Once GitHub Pages is configured to use **GitHub Actions**, every push to `main` runs the tests, builds the React app and deploys the `build/` artifact automatically.
 
-### Deployment
+The legacy `npm run deploy` command can still publish a `gh-pages` branch, but it is not needed when Pages is configured to use GitHub Actions.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+The `homepage` field in `package.json` is configured for:
 
-### `npm run build` fails to minify
+```text
+https://juleescourne.github.io/portfolio-data-analyst/
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Repository structure
+
+```text
+src/
+├── components/       Reusable UI components
+├── data/             Portfolio copy and project metadata
+├── hooks/            Browser model / SHAP logic
+├── pages/            Landing and project pages
+└── utils/            Shared asset / ONNX configuration
+
+public/
+├── index.html        SEO and social metadata
+├── manifest.json
+├── robots.txt
+└── sitemap.xml
+```
+
+## Author
+
+**Jules Courné**  
+Data Analyst & Data Engineer — Rouen, France
+
+- GitHub: https://github.com/juleescourne
+- LinkedIn: https://www.linkedin.com/in/jules-courn%C3%A9/

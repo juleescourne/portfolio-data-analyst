@@ -19,7 +19,7 @@ export const dashboardImages = [
 
                     "• Valeur des classiques : La popularité des livres ne décroît pas nécessairement avec le temps. Des œuvres anciennes comme Of Mice and Men (1939) ou Romeo and Juliet (1597) restent parmi les titres les plus engageants, ce qui montre la valeur durable des classiques.",
 
-                    "• Impact des adaptations : Une grande partie des livres les plus populaires ont bénéficié d'adaptations cinématographiques. Cette exposition médiatique amplifie fortement leur visibilité et leur volume de notes."
+                    "• Adaptations et popularité : plusieurs titres très notés ont aussi connu une adaptation. Cette association est intéressante à investiguer, mais le dataset ne permet pas d’attribuer causalement la visibilité à l’adaptation."
                 ],
                 position: { top: "15%", left: "2%", width: '40rem' }
             },
@@ -46,11 +46,11 @@ export const dashboardImages = [
             {
                 title: "Analyse des corrélations entre variables clés",
                 content: [
-                    "• Dynamique sociale : Le nombre de notes est fortement corrélé au nombre de commentaires (0.87) : un livre gagne en popularité parce qu'il génère des discussions, illustrant un mécanisme de dynamique sociale proche des réseaux sociaux.",
+                    "• Engagement : le nombre de notes est fortement corrélé au nombre de commentaires (0,87). Cela décrit une association forte entre les deux signaux d’engagement, sans établir lequel cause l’autre.",
 
                     "• Qualité vs Popularité : Ni le nombre de notes ni l'engagement ne sont corrélés à la note moyenne : des ouvrages polémiques peuvent être très visibles malgré une qualité perçue faible, tandis que des œuvres de grande qualité restent confidentielles (phénomène similaire à YouTube ou Netflix).",
 
-                    "• Boucle de rétroaction : La popularité d'un livre n'est pas principalement guidée par sa qualité perçue, sa longueur ou son année de publication, mais par une boucle de rétroaction sociale : plus un livre suscite de réactions, plus il est visible, ce qui génère encore plus de réactions."
+                    "• Hypothèse de boucle sociale : les variables de visibilité et d’engagement évoluent ensemble davantage que la note moyenne, la longueur ou l’année. Une expérimentation serait nécessaire pour tester un mécanisme causal de rétroaction."
                 ],
                 position: { top: "58%", left: "2%", width: '40rem' }
             },
@@ -65,7 +65,7 @@ export const dashboardImages = [
 
                     "• Livres survalorisés : Les œuvres du canon littéraire bénéficient d’une forte visibilité et génèrent beaucoup d’engagement, mais affichent des niveaux de satisfaction plus faibles que la moyenne. Un fort engagement peut refléter la controverse, la discussion ou la complexité, plutôt qu’une adhésion positive.",
 
-                    "• Pépites cachées : Les pépites cachées révèlent une lecture souvent choisie par le lecteur. Elles reflètent une adhésion sincère plutôt qu’un effet de médiatisation. Fort potentiel de croissance si elles bénéficiaient d’une meilleure exposition."
+                    "• Pépites cachées : certains titres combinent une bonne appréciation et une faible visibilité. Ils constituent des candidats intéressants pour tester l’effet d’une meilleure exposition."
                 ],
                 position: { top: "40%", left: "98%", width: '40rem' }
             },
@@ -129,22 +129,22 @@ export const dashboardImages = [
             {
                 title: "Analyse des profils d'auteurs",
                 content: [
-                    "• Auteurs de best sellers : Ces auteurs cumulent trois atouts simultanés - une base de fans très engagée, une forte présence médiatique/marketing, ET une qualité narrative validée par le grand public. Aucun auteur de niche ou expérimental n'apparaît dans ce classement, suggérant que l'excellence \"triple A\" nécessite un large consensus populaire plutôt qu'une reconnaissance critique élitiste.",
+                    "• Auteurs très visibles : ce groupe combine un volume d’interactions élevé et de bonnes notes moyennes. Le dataset ne mesure pas directement la présence marketing, la taille d’une base de fans ou la qualité narrative.",
 
-                    "• Auteurs à forte fidelisation mais faible rayonnement : Ces auteurs obtiennent d'excellentes notes et un engagement fort de leurs lecteurs, mais restent invisibles du grand public et des circuits marketing traditionnels. Ils prospèrent grâce au bouche-à-oreille, aux communautés en ligne spécialisées, et à la recommandation algorithmique plutôt qu'aux campagnes promotionnelles coûteuses.",
+                    "• Auteurs bien notés mais moins visibles : certains auteurs ont une appréciation élevée malgré un volume d'interactions plus faible. La fidélisation et l'origine de leur audience ne sont pas observées dans ces données.",
 
-                    "• Auteurs \"Buzz Marketing\" : Ces auteurs bénéficient d'une forte visibilité (campagnes promotionnelles, présence médiatique, adaptations potentielles) qui crée des attentes élevées, mais la qualité perçue de leurs œuvres ne suit pas. Résultat : faible engagement des lecteurs (peu de recommandations, pas de réachat, communauté inexistante) malgré la notoriété du nom."
+                    "• Auteurs à visibilité élevée et note plus modérée : ce profil peut être décrit statistiquement, mais les causes possibles (marketing, notoriété, adaptations) ne sont pas observées dans le dataset."
                 ],
                 position: { top: "28%", left: "50%", width: '40rem' }
             },
             {
                 title: "Analyse des profils d'éditeurs",
                 content: [
-                    "• Editeurs à succès : Contrairement aux auteurs où la fiction commerciale domine, côté éditeurs, ce sont les producteurs de livres audio qui raflent tous les lauriers. Ils cumulent trois avantages décisifs : une audience ultra-engagée (l'audiobook crée une intimité forte), une visibilité maximale (croissance explosive du marché), et une qualité technique/narrative irréprochable (narration professionnelle, production soignée).",
+                    "• Éditeurs audio : certains éditeurs audio apparaissent avec des niveaux d'engagement et de note élevés dans l'échantillon. Le dataset ne permet pas d'attribuer ce profil au format audio ou à la qualité de production.",
 
-                    "• Editeurs de niche premium :  Contrairement aux mastodontes, ces éditeurs choisissent délibérément la confidentialité pour maintenir leur niveau d'exigence. Ils misent sur le bouche-à-oreille, les prescripteurs qualifiés (bibliothécaires, enseignants, passionnés) et la recommandation organique plutôt que sur les campagnes publicitaires coûteuses.",
+                    "• Éditeurs de niche : certains petits catalogues présentent des notes élevées et relativement stables. Leur stratégie commerciale ou leur mode d'acquisition n'est pas observé.",
 
-                    "• Editeurs \"grand public\" à faible satisfaction : Ces éditeurs bénéficient d'une visibilité maximale grâce à leurs réseaux de distribution puissants (grandes surfaces, chaînes, plateformes), mais leur stratégie de volume avant qualité se retourne contre eux. Résultat : notes médiocres, aucune fidélisation, et une réputation éditoriale dégradée malgré l'omniprésence en librairie."
+                    "• Grands catalogues à note moyenne plus modérée : le volume publié et la note moyenne ne progressent pas ensemble dans cet échantillon. Cela ne permet pas de conclure sur la fidélisation, la réputation ou la stratégie de distribution."
                 ],
                 position: { top: "28%", left: "98%", width: '40rem' }
             },
@@ -164,9 +164,9 @@ export const dashboardImages = [
             {
                 title: "Analyse des languages des livres",
                 content: [
-                    "• Biais anglo-américain du catalogue Goodreads : 94,90% des livres anglophones viennent des États-Unis, ce qui reflète probablement un biais d'échantillonnage : les utilisateurs américains (qui dominent la plateforme) cataloguent massivement leurs lectures locales, créant une surreprésentation US.",
+                    "• Surreprésentation anglo-américaine : 94,90 % des livres anglophones de cet échantillon sont associés aux États-Unis. Cela peut refléter la collecte, le catalogue ou les usages ; le dataset seul ne permet pas d'en déterminer la cause.",
 
-                    "• Le reste du monde littéraire est invisible : La plateforme souffre d'un désalignement massif entre sa base d'utilisateurs mondiale et son catalogue ultra-anglophone. Les lecteurs non-anglophones ou multilingues sont largement sous-servis.",
+                    "• Langues minoritaires : elles sont peu représentées dans l'échantillon. On ne peut pas en déduire le niveau de service ou la demande des lecteurs sans données d'usage complémentaires.",
 
                     "• Distribution \"winner-takes-all\" révèle un effet réseau linguistique : Goodreads est devenu une plateforme d'agrégation anglophone avec quelques éditions traduites, plutôt qu'un vrai catalogue multilingue."
                 ],
@@ -175,18 +175,18 @@ export const dashboardImages = [
             {
                 title: "Analyse des genres des livres",
                 content: [
-                    "• Top 4 genres = ~70% du catalogue : La structure de Goodreads favorise naturellement les catégories mainstream au détriment des niches, que ce soit en langue ou en genre. C'est un effet de réseau classique : plus un genre est populaire, plus il attire de catalogage, plus il devient visible.",
+                    "• Top 4 genres ≈ 70 % du catalogue observé : la distribution est fortement concentrée, sans que le dataset permette d'identifier le mécanisme qui l'explique.",
 
-                    "• Absence visible de genres émergents ou numériques : Goodreads utilise probablement une taxonomie héritée des années 2000-2010, avant l'explosion de certains formats et audiences. La structure de catalogage n'a pas évolué avec les nouvelles habitudes de consommation."
+                    "• Taxonomie : certains genres ou formats récents sont peu visibles dans cet échantillon. Il faudrait vérifier la taxonomie source avant d'interpréter ce constat."
                 ],
                 position: { top: "30%", left: "35%", width: '40rem' }
             },
             {
                 title: "Analyse de la distribution des genres par variances et notes moyenne",
                 content: [
-                    "• Investir massivement dans le cluster \"Valeurs sûres\" : Ces genres ont un product-market fit validé à grande échelle : Audience massive, attentes prévisibles, taux de conversion élevé.",
+                    "• Cluster à note élevée / variance faible : ces genres peuvent constituer un groupe candidat pour une expérimentation de recommandation, sans supposer un taux de conversion ou un product-market fit.",
 
-                    "• Éviter les genres à haute variance : Audiences fragmentées = difficile à marketer.",
+                    "• Genres à variance élevée : ils peuvent refléter des préférences plus polarisées ; ce point mérite une segmentation plutôt qu'une exclusion a priori.",
 
                     "• Exploiter la \"longue traîne inversée\" : Concentrer sur le Top 5 genres = Loi de Pareto commerciale.",
                 ],
@@ -230,7 +230,7 @@ export const dashboardImages = [
                 content: [
                     "• Literature & Fiction est LE genre phare de la plateforme. Notes proche de la moyenne pour un volume qui représente environ 30% des livres. C'est un genre populaire qui, si le contenu est bon, se vendera à coup sûr.",
 
-                    "• History & Politic et Mystery & Thriller sont groupés avec des volumes similaires mais des qualités légèrement différentes, suggérant des opportunités de consolidation marketing.",
+                    "• History & Politics et Mystery & Thriller présentent des volumes proches et des notes légèrement différentes ; cette proximité peut servir de point de départ à une analyse segmentée.",
                 ],
                 position: { top: "73%", left: "98%", width: '40rem' }
             },
@@ -247,126 +247,123 @@ export const kpiMetrics = [
 
 
 export const goodreadsRecommendations = {
-    title: "Comment maximiser les ventes de Goodreads ?",
-    subtitle: "Recommandations stratégiques basées sur l'analyse approfondie des données de la plateforme",
-    summary: "L'analyse du dashboard révèle que la popularité d'un livre n'est pas guidée par sa qualité intrinsèque, mais par une boucle de rétroaction sociale. Les livres qui génèrent des discussions (commentaires) deviennent plus visibles, ce qui amplifie encore leur popularité. Cette dynamique crée une concentration extrême du succès sur quelques titres, laissant de nombreuses \"pépites cachées\" sous-exploitées.",
+    title: "Hypothèses produit à tester — Livres",
+    subtitle: "Pistes exploratoires issues des associations observées",
+    summary: "Le catalogue présente une forte concentration des interactions sur quelques titres et une corrélation élevée entre nombre de notes et nombre de commentaires. Ces résultats décrivent des associations : ils ne permettent pas d'établir que la discussion cause la visibilité ni qu'une action donnée augmenterait les ventes.",
     items: [
         {
             icon: Lightbulb,
-            title: "1. EXPLOITER LES PÉPITES CACHÉES",
-            problem: "Des livres à forte satisfaction restent invisibles faute de masse critique initiale.",
-            objective: "Déclencher la boucle de rétroaction sociale",
+            title: "1. TESTER LA DÉCOUVERTE DE TITRES PEU VISIBLES",
+            problem: "Certains titres combinent une bonne note moyenne avec un volume d'interactions relativement faible.",
+            objective: "Mesurer si une exposition contrôlée augmente l'engagement sur ces titres.",
             actions: [
-                "Programme \"Découvertes du mois\" : identifier les livres avec satisfaction élevée (>4.2/5) et faible visibilité.",
-                "Créer une section \"Vous aimerez aussi ces livres moins connus\"",
-                "Early access : Donner un accès anticipé à des membres sélectionnés pour nouveautés prometteuses"
+                "Construire une cohorte de titres à bonne appréciation et faible visibilité",
+                "A/B tester une mise en avant limitée auprès de segments pertinents",
+                "Mesurer clics, ajouts aux listes et interactions avant/après"
             ]
         },
         {
             icon: Users,
-            title: "2. VALORISER LES NICHES PERFORMANTES",
-            problem: "Des communautés très engagées existent mais restent isolées.",
-            objective: "Permettre aux utilisateurs de découvrir de nouvelles niches de qualité",
+            title: "2. TESTER DES PARCOURS DE NICHE",
+            problem: "Des groupes de livres présentent des profils d'engagement distincts malgré une audience plus réduite.",
+            objective: "Vérifier si des recommandations thématiques améliorent la découverte sans dégrader la pertinence.",
             actions: [
-                "Création de \"hubs\" thématiques : Créer des pages dédiées, des événements.",
-                "Algorithme de recommandation par niche : Recommander ces livres aux utilisateurs partageant des patterns de lecture similaires"
+                "Créer des collections thématiques basées sur des critères reproductibles",
+                "Comparer recommandation globale vs recommandation par niche",
+                "Suivre engagement, diversité consommée et taux de retour"
             ]
         },
         {
             icon: Film,
-            title: "3. EXPLOITER L'EFFET \"ADAPTATION\"",
-            problem: "Les adaptations cinématographiques amplifient massivement la visibilité.",
-            objective: "Profiter de l'engouement massif dû à une adaptation cinématographique, théâtrale, ou autre.",
+            title: "3. MESURER L'ASSOCIATION AVEC LES ADAPTATIONS",
+            problem: "Plusieurs titres très visibles ont aussi fait l'objet d'adaptations, mais le dataset ne démontre aucun effet causal.",
+            objective: "Quantifier l'évolution d'engagement autour des dates d'adaptation lorsque ces dates sont disponibles.",
             actions: [
-                "Veille des adaptations : Créer une section \"Prochaines adaptations\" 6-12 mois avant sortie",
-                "Créer des packages : Promotion avant sortie d'une adaptation. Contenu exclusif",
-                "Capitaliser sur les classiques adaptés : Rééditions spéciales lors de nouvelles adaptations"
+                "Enrichir les données avec les dates d'annonce et de sortie",
+                "Comparer des trajectoires avant/après avec un groupe témoin",
+                "Éviter de conclure à un effet marketing sans contrôle temporel"
             ]
         }
     ]
 };
 
 export const recommendationsAuthorPublisher = {
-    title: "Comment maximiser les ventes de Goodreads ?",
-    subtitle: "Recommandations stratégiques basées sur l'analyse approfondie des données de la plateforme",
-    summary: "L'analyse révèle que le succès ne dépend pas uniquement de la qualité intrinsèque, mais d'une combinaison stratégique entre auteurs, éditeurs et dynamique sociale. La structure du marché montre une forte concentration côté éditeurs (14% de la production par 10 éditeurs) vs une longue traîne côté auteurs (5% seulement). Cette asymétrie crée des opportunités majeures pour valoriser les talents cachés et optimiser les partenariats éditoriaux.",
+    title: "Hypothèses produit à tester — Auteurs & éditeurs",
+    subtitle: "Segmentation exploratoire, à valider par expérimentation",
+    summary: "Les distributions montrent une production plus concentrée chez les éditeurs que chez les auteurs et des différences de note moyenne / variance selon les groupes. Ces profils peuvent guider des tests de recommandation, mais ne mesurent ni fidélisation réelle, ni réputation, ni rentabilité.",
     items: [
         {
             icon: Target,
-            title: "1. CIBLER LES AUTEURS & ÉDITEURS SOUS-VALORISÉS",
-            problem: "Des auteurs à forte fidélisation et des éditeurs de niche premium restent invisibles malgré une qualité exceptionnelle.",
-            objective: "Amplifier la visibilité des talents confidentiels à fort potentiel",
+            title: "1. TESTER LA MISE EN AVANT DE CATALOGUES COHÉRENTS",
+            problem: "Certains petits catalogues présentent une note moyenne élevée et une variance relativement faible.",
+            objective: "Tester si cette cohérence est utile pour la recommandation utilisateur.",
             actions: [
-                "Programme \"Éditeurs d'excellence\" : Mettre en avant les petits catalogues ultra-sélectifs (variance faible, note >4) via des collections dédiées",
-                "Badges \"Auteur culte\" : Identifier les auteurs à engagement fort et visibilité faible, et leur donner une exposition algorithmique prioritaire",
-                "Partenariats ciblés : Créer des deals préférentiels avec éditeurs de niche (Atheneum, Bristol Classical Press) pour du contenu exclusif",
-                "Section \"Découvertes éditoriales\" : Recommander les catalogues cohérents des éditeurs académiques/spécialisés aux lecteurs exigeants"
+                "Construire un score transparent note moyenne + variance + volume minimal",
+                "A/B tester une collection dédiée",
+                "Mesurer engagement et diversité plutôt que supposer une valeur commerciale"
             ]
         },
         {
             icon: TrendingDown,
-            title: "2. CONTRER LA DILUTION QUALITATIVE DES GROS CATALOGUES",
-            problem: "Les éditeurs prolifiques bénéficient d'une visibilité maximale mais déçoivent généralement. Les auteurs sur-exposés créent du désengagement.",
-            objective: "Réorienter l'attention vers la qualité plutôt que le volume",
+            title: "2. CONTRÔLER L'EFFET DU VOLUME",
+            problem: "Le volume de publications n'est pas systématiquement associé à une meilleure note moyenne.",
+            objective: "Évaluer si le volume apporte réellement un signal utile dans un système de recommandation.",
             actions: [
-                "Algorithme anti-saturation : Limiter la surexposition des auteurs/éditeurs prolifiques à faible satisfaction dans les recommandations",
-                "Scoring éditorial composite : Pondérer les recommandations par (note moyenne × cohérence du catalogue) plutôt que par visibilité seule",
-                "Alertes qualité : Signaler aux utilisateurs les livres d'éditeurs \"grand public\" avec historique de déception (ex: McGraw-Hill, Penguin Limited)"
+                "Comparer des modèles avec et sans variable de prolificité",
+                "Contrôler le biais lié au nombre d'observations par auteur / éditeur",
+                "Rapporter les intervalles d'incertitude sur les petits catalogues"
             ]
         },
         {
             icon: GitBranch,
-            title: "3. EXPLOITER LES PROFILS STRATÉGIQUES COMPLÉMENTAIRES",
-            problem: "Les bestsellers captent l'attention mais les \"talents clivants\" (note élevée + forte variance) offrent un potentiel de différenciation inexploité.",
-            objective: "Créer des parcours de découverte progressifs : du consensuel au clivant",
+            title: "3. TESTER DES PROFILS DE DÉCOUVERTE",
+            problem: "La combinaison note moyenne / variance fait apparaître des profils consensuels ou plus polarisés.",
+            objective: "Vérifier si ces profils améliorent la pertinence pour différents types de lecteurs.",
             actions: [
-                "Funnel de recommandation : Bestsellers → Niches performantes → Talents clivants → Pépites cachées (parcours d'exploration guidé)",
-                "Labels \"Audiobook Premium\" : Capitaliser sur la domination absolue des éditeurs audio (AudioGO, Brilliance) en créant des abonnements premium dédiés",
-                "Section \"Lectures polarisantes\" : Valoriser les auteurs/livres à forte variance comme expériences distinctives pour lecteurs aventureux"
+                "Créer des segments descriptifs sans les présenter comme des catégories universelles",
+                "Tester leur usage comme feature de recommandation",
+                "Évaluer précision, diversité et satisfaction utilisateur"
             ]
         }
     ]
 };
 
 export const recommendationsGenresLangues = {
-    title: "Comment maximiser les ventes de Goodreads ?",
-    subtitle: "Recommandations stratégiques basées sur l'analyse approfondie des données de la plateforme",
-    summary: "L'analyse révèle une hyper-concentration linguistique (71% d'anglais) et générique (Top 4 genres = 70% du catalogue) créant une structure \"winner-takes-all\". Cette concentration masque des opportunités majeures dans les niches premium (Other × Japanese), les opportunités multilingues (Literature & Fiction), et l'exploitation de la saisonnalité (Q3 boost universel de +20-30%).",
+    title: "Hypothèses produit à tester — Genres & langues",
+    subtitle: "Pistes issues de la composition du dataset",
+    summary: "Le jeu de données est très concentré sur l'anglais et sur quelques genres. Cette composition peut refléter autant les usages de la plateforme que des biais d'échantillonnage ; elle ne permet pas d'inférer une demande latente ou un potentiel de revenu.",
     items: [
         {
             icon: Globe,
-            title: "1. BRISER L'HÉGÉMONIE ANGLOPHONE PAR DES NICHES MULTILINGUES",
-            problem: "94,90% des livres anglophones viennent des USA. Le reste du monde littéraire (99% de langues sous-représentées) reste invisible malgré une demande latente.",
-            objective: "Désengager du biais anglo-américain et créer des ponts linguistiques rentables",
+            title: "1. MESURER LE BIAIS LINGUISTIQUE",
+            problem: "L'anglais est fortement surreprésenté dans l'échantillon.",
+            objective: "Distinguer biais de collecte, structure du catalogue et préférences réelles des utilisateurs.",
             actions: [
-                "Programme \"Littérature mondiale\" : Identifier les best-sellers locaux (Japan, France, Germany) et créer des éditions traduites avec promotion ciblée",
-                "Section \"Literature & Fiction × Multi Language\" : Capitaliser sur le genre phare (#1 en volume) en proposant les meilleurs titres traduits",
-                "Partenariat avec éditeurs non-anglophones : Créer des deals avec éditeurs japonais (niche \"Other × Japanese\" = excellence + volume) pour exclusivités manga/light novels",
-                "Algorithme de découverte linguistique : Recommander aux utilisateurs bilingues/multilingues des contenus hors-anglais alignés avec leurs préférences"
+                "Comparer la distribution à une source externe de référence",
+                "Analyser les taux d'engagement par langue à taille d'échantillon comparable",
+                "Tester des recommandations multilingues sur des utilisateurs explicitement concernés"
             ]
         },
         {
             icon: TrendingUp,
-            title: "2. EXPLOITER LA SAISONNALITÉ ET LES \"VALEURS SÛRES\" GÉNÉRIQUES",
-            problem: "La concentration sur Top 4 genres (70% du catalogue) crée une saturation concurrentielle. Q3 génère un boost universel de +20-30% inexploité. Q1 est une période creuse critique (-15 à -20%).",
-            objective: "Maximiser les revenus via timing optimal et focus sur genres à faible variance",
+            title: "2. VALIDER LES PATTERNS TEMPORELS",
+            problem: "Des variations par trimestre apparaissent dans les agrégats exploratoires.",
+            objective: "Vérifier qu'elles persistent après contrôle de l'année, du genre et du volume publié.",
             actions: [
-                "Stratégie Q3 agressive : Lancer les nouveautés des \"valeurs sûres\" (Literature & Fiction, Science-Fiction & Fantasy, Mystery & Thriller) en juillet-août pour capitaliser sur le pic pré-fêtes",
-                "Programme de liquidation Q1 : Créer des bundles promotionnels sur livres Q4 invendus pour déstocker et maintenir le cash-flow en période creuse",
-                "Focus \"Philosophy & Religion\" Q2 : Exploiter l'anomalie saisonnière (faible volume = moins de concurrence) en lançant du contenu premium dans cette niche sous-servie",
-                "Scoring prédictif genre × trimestre : Ajuster l'inventaire et les campagnes marketing selon les patterns saisonniers validés par l'analyse"
+                "Normaliser les métriques par volume disponible",
+                "Comparer plusieurs années plutôt qu'un seul agrégat",
+                "Tester la robustesse statistique avant toute décision de campagne"
             ]
         },
         {
             icon: Target,
-            title: "3. VALORISER LES OPPORTUNITÉS CROISÉES GENRE × LANGUE",
-            problem: "Les combinaisons stratégiques (niches premium, équilibre volume/qualité, masse critique) restent sous-exploitées malgré leur potentiel validé.",
-            objective: "Créer des segments rentables via ciblage multicritères",
+            title: "3. EXPLORER GENRE × LANGUE",
+            problem: "Certaines combinaisons genre × langue présentent des profils d'engagement différents dans l'échantillon.",
+            objective: "Identifier des segments assez volumineux pour être testés proprement.",
             actions: [
-                "Segment \"Self-help & Wellness × English\" : Forte demande (volume élevé pour une niche) mais légèrement sous-performant en qualité → Lancer une collection premium avec auteurs/éditeurs \"valeurs sûres\" pour élever la perception",
-                "Segment \"Science-Fiction & Fantasy × English\" : Volume maximal (intérêt lecteur fort) mais concurrence intense → Différenciation via auteurs clivants (forte variance) et partenariats exclusifs avec éditeurs de niche",
-                "Segment \"History & Politics\" + \"Mystery & Thriller\" : Volumes similaires, qualités légèrement différentes → Créer des bundles thématiques croisés (\"Thrillers historiques\", \"Politique noir\") pour consolidation marketing",
-                "Test \"Other × Japanese\" : Niche d'excellence validée (qualité + volume) → Investissement prioritaire pour capter la croissance du marché manga/anime global"
+                "Fixer un seuil minimum d'observations par segment",
+                "Comparer des métriques normalisées et leurs incertitudes",
+                "Transformer les segments prometteurs en hypothèses A/B testables"
             ]
         }
     ]

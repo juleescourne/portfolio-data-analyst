@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Info, ZoomIn } from 'lucide-react';
-import { getImageUrl } from '../utils/onnxConfig';
+import { getImageUrl } from '../utils/assetsConfig';
 
 const DashboardImage = ({ dashboard, onImageClick }) => {
     const [activeTooltip, setActiveTooltip] = useState(null);
@@ -16,8 +16,10 @@ const DashboardImage = ({ dashboard, onImageClick }) => {
                     src={getImageUrl(dashboard.path)}
                     alt={dashboard.title}
                     className={`w-full rounded-lg cursor-pointer hover:opacity-90 transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-                    onClick={() => onImageClick(dashboard.path)}
+                    onClick={() => onImageClick(getImageUrl(dashboard.path))}
                     onLoad={() => setImageLoaded(true)}
+                    loading="lazy"
+                    decoding="async"
                     style={{ display: 'block' }}
                 />
 

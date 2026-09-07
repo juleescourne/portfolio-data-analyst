@@ -1,6 +1,6 @@
 // utils/housingModel.js - VERSION AVEC WEB WORKER (OPTIONNEL)
 import XGBoostPredictor from './xgboostPredictor';
-import { getDataUrl } from '../utils/onnxConfig';
+import { getDataUrl } from '../utils/assetsConfig';
 
 class HousingModel {
     constructor() {
@@ -35,7 +35,6 @@ class HousingModel {
         if (!this.predictor) {
             const modelUrl = getDataUrl('xgb_trees.json');
             this.predictor = await XGBoostPredictor.load(modelUrl, this.FEATURE_MAP);
-            console.log('✅ Modèle XGBoost chargé');
         }
     }
 
@@ -44,7 +43,6 @@ class HousingModel {
             const geoUrl = getDataUrl('geo_cache.json');
             const response = await fetch(geoUrl);
             this.geoCache = await response.json();
-            console.log(`✅ Cache chargé (${this.geoCache.n_points} points)`);
         }
     }
 
@@ -67,7 +65,6 @@ class HousingModel {
         const {
             housing_median_age,
             total_rooms,
-            total_bedrooms,
             population,
             households,
             median_income
@@ -75,7 +72,6 @@ class HousingModel {
 
         const householdsMax = Math.max(households, 1);
         const rooms_per_household = total_rooms / householdsMax;
-        const bedrooms_per_household = total_bedrooms / householdsMax;
         const population_per_household = population / householdsMax;
         const income_per_person = median_income / Math.max(population_per_household, 0.1);
 
@@ -158,15 +154,12 @@ class HousingModel {
             }
         }
 
-        // Normalisation
+        // The exported browser model is used here for spatial comparison only.
+        // Convert raw outputs to a 0–100 relative score instead of inventing a dollar calibration.
         const min_raw = Math.min(...all_predictions);
         const max_raw = Math.max(...all_predictions);
-
-        const predictions = all_predictions.map(p => {
-            const normalized = (p - min_raw) / (max_raw - min_raw);
-            const price = 50000 + normalized * 450000;
-            return Math.round(price);
-        });
+        const range = Math.max(max_raw - min_raw, Number.EPSILON);
+        const predictions = all_predictions.map(p => Math.round(((p - min_raw) / range) * 100));
 
         return {
             predictions,

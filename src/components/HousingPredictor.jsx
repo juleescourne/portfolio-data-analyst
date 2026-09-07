@@ -7,7 +7,6 @@ import housingModel from '../hooks/housingModel';
 const FEATURE_BOUNDS = {
     housing_median_age: { min: 1, max: 52, median: 29 },
     total_rooms: { min: 2, max: 39320, median: 2127 },
-    total_bedrooms: { min: 1, max: 6445, median: 435 },
     population: { min: 3, max: 35682, median: 1166 },
     households: { min: 1, max: 6082, median: 409 },
     median_income: { min: 0.5, max: 15.0, median: 3.87 }
@@ -17,7 +16,6 @@ const HousingPredictor = () => {
     const [params, setParams] = useState({
         housing_median_age: FEATURE_BOUNDS.housing_median_age.median,
         total_rooms: FEATURE_BOUNDS.total_rooms.median,
-        total_bedrooms: FEATURE_BOUNDS.total_bedrooms.median,
         population: FEATURE_BOUNDS.population.median,
         households: FEATURE_BOUNDS.households.median,
         median_income: FEATURE_BOUNDS.median_income.median
@@ -41,7 +39,6 @@ const HousingPredictor = () => {
             };
 
             const predictionResults = await housingModel.predict(params, onProgress);
-            console.log('Prédictions reçues:', predictionResults);
 
             setResults(predictionResults);
         } catch (error) {
@@ -112,25 +109,6 @@ const HousingPredictor = () => {
                         />
                         <div className="text-purple-400 font-semibold mt-1">
                             {params.total_rooms.toLocaleString()}
-                        </div>
-                    </div>
-
-                    {/* Total chambres */}
-                    <div>
-                        <label className="block text-gray-300 mb-2 font-medium">
-                            Total chambres (quartier)
-                        </label>
-                        <input
-                            type="range"
-                            min={FEATURE_BOUNDS.total_bedrooms.min}
-                            max={FEATURE_BOUNDS.total_bedrooms.max}
-                            step={50}
-                            value={params.total_bedrooms}
-                            onChange={(e) => handleParamChange('total_bedrooms', e.target.value)}
-                            className="w-full h-2 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
-                        />
-                        <div className="text-purple-400 font-semibold mt-1">
-                            {params.total_bedrooms.toLocaleString()}
                         </div>
                     </div>
 
@@ -278,27 +256,27 @@ const ResultsSection = React.memo(({ results }) => {
             {/* Statistics */}
             <div className="grid md:grid-cols-4 gap-4">
                 <div className="bg-gradient-to-br from-green-600/20 to-green-900/20 backdrop-blur-sm rounded-xl p-6 border border-green-500/30">
-                    <div className="text-gray-300 text-sm mb-1">Prix Min</div>
+                    <div className="text-gray-300 text-sm mb-1">Score min</div>
                     <div className="text-2xl font-bold text-green-400">
-                        ${results.stats.min.toLocaleString()}
+                        {results.stats.min.toLocaleString()}
                     </div>
                 </div>
                 <div className="bg-gradient-to-br from-blue-600/20 to-blue-900/20 backdrop-blur-sm rounded-xl p-6 border border-blue-500/30">
-                    <div className="text-gray-300 text-sm mb-1">Prix Moyen</div>
+                    <div className="text-gray-300 text-sm mb-1">Score moyen</div>
                     <div className="text-2xl font-bold text-blue-400">
-                        ${results.stats.mean.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                        {results.stats.mean.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                     </div>
                 </div>
                 <div className="bg-gradient-to-br from-purple-600/20 to-purple-900/20 backdrop-blur-sm rounded-xl p-6 border border-purple-500/30">
-                    <div className="text-gray-300 text-sm mb-1">Prix Max</div>
+                    <div className="text-gray-300 text-sm mb-1">Score max</div>
                     <div className="text-2xl font-bold text-purple-400">
-                        ${results.stats.max.toLocaleString()}
+                        {results.stats.max.toLocaleString()}
                     </div>
                 </div>
                 <div className="bg-gradient-to-br from-orange-600/20 to-orange-900/20 backdrop-blur-sm rounded-xl p-6 border border-orange-500/30">
-                    <div className="text-gray-300 text-sm mb-1">Écart-type</div>
+                    <div className="text-gray-300 text-sm mb-1">Écart-type du score</div>
                     <div className="text-2xl font-bold text-orange-400">
-                        ${results.stats.std.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                        {results.stats.std.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                     </div>
                 </div>
             </div>
@@ -307,7 +285,7 @@ const ResultsSection = React.memo(({ results }) => {
             <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700">
                 <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                     <Map className="text-purple-400" />
-                    Carte Thermique des Prix
+                    Carte du score relatif
                 </h3>
                 <HeatmapPlot results={results} />
             </div>
@@ -319,18 +297,10 @@ const ResultsSection = React.memo(({ results }) => {
 
 // Composant Heatmap avec Plotly - Scatter géographique simple
 const HeatmapPlot = React.memo(({ results }) => {
-    console.log('🗺️ HeatmapPlot rendering...', results);
-
     // Vérifications de sécurité
     if (!results || !results.latitudes || !results.longitudes || !results.predictions) {
-        console.error('❌ Données manquantes');
         return <div className="text-red-400 p-4">Erreur: Données géographiques manquantes</div>;
     }
-
-    console.log('✅ Données OK:', {
-        points: results.latitudes.length,
-        priceRange: [Math.min(...results.predictions), Math.max(...results.predictions)]
-    });
 
     // Utiliser un scatter plot classique qui fonctionne toujours
     const data = [{
@@ -351,9 +321,8 @@ const HeatmapPlot = React.memo(({ results }) => {
             ],
             showscale: true,
             colorbar: {
-                title: 'Prix ($)',
-                tickformat: '$,.0f',
-                thickness: 20,
+                title: 'Score relatif',
+                                thickness: 20,
                 len: 0.7
             },
             opacity: 0.8,
@@ -363,7 +332,7 @@ const HeatmapPlot = React.memo(({ results }) => {
             }
         },
         text: results.predictions.map((p, i) =>
-            `Prix: $${Math.round(p).toLocaleString()}<br>` +
+            `Score relatif: ${Math.round(p)}/100<br>` +
             `Lat: ${results.latitudes[i].toFixed(2)}°<br>` +
             `Lon: ${results.longitudes[i].toFixed(2)}°`
         ),
@@ -372,7 +341,7 @@ const HeatmapPlot = React.memo(({ results }) => {
 
     const layout = {
         title: {
-            text: 'Californie - Distribution des Prix Immobiliers',
+            text: 'Californie — score relatif du scénario',
             font: { color: '#e2e8f0', size: 16 },
             x: 0.5,
             xanchor: 'center'
@@ -409,7 +378,7 @@ const HeatmapPlot = React.memo(({ results }) => {
         <div className="w-full">
             <div className="mb-3 text-sm text-gray-400 flex items-center gap-2">
                 <Map size={16} />
-                Chaque point représente un quartier en Californie
+                Chaque point représente une localisation ; la couleur compare un score relatif 0–100, pas un prix en dollars
             </div>
 
             <Plot
