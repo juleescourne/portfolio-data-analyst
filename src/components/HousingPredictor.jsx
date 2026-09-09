@@ -302,7 +302,19 @@ const HeatmapPlot = React.memo(({ results }) => {
         return <div className="text-red-400 p-4">Erreur: Données géographiques manquantes</div>;
     }
 
-    // Utiliser un scatter plot classique qui fonctionne toujours
+    // Le score brut est très asymétrique (moyenne ≈ 17 sur 100) : une échelle de couleur
+    // linéaire écraserait la quasi-totalité des points dans le bas du dégradé. On colore
+    // donc par rang centile, ce qui répartit les couleurs uniformément et rend les écarts
+    // géographiques lisibles. Le score réel reste affiché au survol.
+    const order = results.predictions
+        .map((value, index) => [value, index])
+        .sort((a, b) => a[0] - b[0]);
+    const percentiles = new Array(results.predictions.length);
+    const lastRank = Math.max(1, order.length - 1);
+    order.forEach(([, index], rank) => {
+        percentiles[index] = (rank / lastRank) * 100;
+    });
+
     const data = [{
         type: 'scatter',
         x: results.longitudes,
@@ -310,7 +322,9 @@ const HeatmapPlot = React.memo(({ results }) => {
         mode: 'markers',
         marker: {
             size: 8,
-            color: results.predictions,
+            color: percentiles,
+            cmin: 0,
+            cmax: 100,
             colorscale: [
                 [0, '#00FF00'],      // Vert - Prix bas
                 [0.2, '#7FFF00'],    // Vert clair
@@ -321,8 +335,8 @@ const HeatmapPlot = React.memo(({ results }) => {
             ],
             showscale: true,
             colorbar: {
-                title: 'Score relatif',
-                                thickness: 20,
+                title: 'Rang centile',
+                thickness: 20,
                 len: 0.7
             },
             opacity: 0.8,
@@ -333,6 +347,7 @@ const HeatmapPlot = React.memo(({ results }) => {
         },
         text: results.predictions.map((p, i) =>
             `Score relatif: ${Math.round(p)}/100<br>` +
+            `Rang: ${Math.round(percentiles[i])}ᵉ centile<br>` +
             `Lat: ${results.latitudes[i].toFixed(2)}°<br>` +
             `Lon: ${results.longitudes[i].toFixed(2)}°`
         ),
@@ -378,7 +393,9 @@ const HeatmapPlot = React.memo(({ results }) => {
         <div className="w-full">
             <div className="mb-3 text-sm text-gray-400 flex items-center gap-2">
                 <Map size={16} />
-                Chaque point représente une localisation ; la couleur compare un score relatif 0–100, pas un prix en dollars
+                Chaque point représente une localisation. La couleur indique le rang centile de la zone
+                dans ce scénario — le score brut étant très asymétrique, une échelle linéaire rendrait la
+                carte illisible. Il s’agit d’une comparaison relative, jamais d’un prix en dollars.
             </div>
 
             <Plot
