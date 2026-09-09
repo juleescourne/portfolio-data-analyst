@@ -126,9 +126,13 @@ const ChurnPredictionPage = ({ onBack }) => {
     const getFeatureContributions = () => {
         const shapValues = getShapForInputs(userInputs);
         if (!shapValues) return [];
+        // Les valeurs SHAP sont exprimées en log-odds : les afficher telles quelles suivies
+        // d'un « % » serait faux. On affiche donc la part de chaque variable dans le total
+        // des contributions absolues, qui somme bien à 100 %.
+        const totalAbs = shapValues.reduce((sum, shap) => sum + Math.abs(shap.shap_value), 0);
         return shapValues.map(shap => ({
             name: FEATURE_LABELS[shap.feature] || shap.feature,
-            value: Math.round(shap.abs_value * 100),
+            value: totalAbs > 0 ? Math.round((Math.abs(shap.shap_value) / totalAbs) * 100) : 0,
             impact: shap.shap_value > 0 ? 'negative' : 'positive',
             shap_value: shap.shap_value
         }));
@@ -342,7 +346,13 @@ const ChurnPredictionPage = ({ onBack }) => {
 
                                 {/* Facteurs SHAP */}
                                 <div className="bg-slate-700/50 rounded-xl p-6 border border-slate-600">
-                                    <h3 className="text-lg font-bold text-white mb-4">Facteurs Clés (SHAP)</h3>
+                                    <h3 className="text-lg font-bold text-white mb-1">Facteurs clés (SHAP)</h3>
+                                    <p className="text-xs text-gray-400 mb-4 leading-relaxed">
+                                        Part de chaque variable dans l’explication de cette prédiction. Valeurs SHAP
+                                        pré-calculées sur une grille de scénarios&nbsp;: la combinaison saisie est arrondie
+                                        au point de grille le plus proche. <span className="text-red-400">Rouge</span> = pousse
+                                        vers le départ, <span className="text-green-400">vert</span> = retient le client.
+                                    </p>
                                     {shapLoading ? (
                                         <div className="text-center py-4">
                                             <Loader className="animate-spin mx-auto mb-2 text-purple-400" size={24} />
@@ -365,7 +375,7 @@ const ChurnPredictionPage = ({ onBack }) => {
                                                         <div
                                                             className={`h-full transition-all duration-500 ${feature.impact === 'negative' ? 'bg-red-500' : 'bg-green-500'
                                                                 }`}
-                                                            style={{ width: `${Math.min(feature.value * 2, 100)}%` }}
+                                                            style={{ width: `${featureContributions[0].value > 0 ? Math.max(4, Math.round((feature.value / featureContributions[0].value) * 100)) : 4}%` }}
                                                         />
                                                     </div>
                                                 </div>
@@ -391,10 +401,10 @@ const ChurnPredictionPage = ({ onBack }) => {
                                 </div>
                                 <h3 className="text-lg font-bold text-purple-400 mb-3">Méthodologie</h3>
                                 <ul className="space-y-2 text-gray-300 text-sm">
-                                    <li>Analyse, Nettoyage avancé</li>
-                                    <li>Feature Engineering avancé</li>
-                                    <li>Elaboration solution métier</li>
-                                    <li>GridSearchCV hyperparamètres</li>
+                                    <li>Détection d’une variable en fuite (r = 1,00)</li>
+                                    <li>Nettoyage et feature engineering métier</li>
+                                    <li>Réduction à 9 variables par importance</li>
+                                    <li>Pondération des classes et choix du seuil</li>
                                 </ul>
                             </div>
                             <div className="text-center">
@@ -404,9 +414,9 @@ const ChurnPredictionPage = ({ onBack }) => {
                                 <h3 className="text-lg font-bold text-purple-400 mb-3">Technologies</h3>
                                 <ul className="space-y-2 text-gray-300 text-sm">
                                     <li>XGBoost (classification)</li>
-                                    <li>Pandas / Numpy</li>
+                                    <li>Pandas / NumPy</li>
                                     <li>Matplotlib / Seaborn</li>
-                                    <li>SHAP values</li>
+                                    <li>SHAP · export ONNX pour la démo</li>
                                 </ul>
                             </div>
                             <div className="text-center">
@@ -415,10 +425,10 @@ const ChurnPredictionPage = ({ onBack }) => {
                                 </div>
                                 <h3 className="text-lg font-bold text-purple-400 mb-3">Résultats Clés</h3>
                                 <ul className="space-y-2 text-gray-300 text-sm">
-                                    <li>90% de Recall (Détection max)</li>
-                                    <li>≈36% de précision au seuil exploré</li>
+                                    <li>ROC-AUC 0,866 (indépendant du seuil)</li>
+                                    <li>Recall 90 % / précision ≈36 % au seuil retenu</li>
                                     <li>9 variables utilisées dans la démo</li>
-                                    <li>Inférence temps réel</li>
+                                    <li>Inférence temps réel dans le navigateur</li>
                                 </ul>
                             </div>
                         </div>
