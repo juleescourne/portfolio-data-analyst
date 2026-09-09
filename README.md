@@ -31,7 +31,7 @@ The portfolio is intentionally centered on a coherent Data profile rather than a
 - Interactive ONNX churn inference demo
 - Interactive California scenario visualization
 - Goodreads dashboard walkthrough with contextual insights
-- SEO and social metadata
+- SEO and social metadata, including an OpenGraph share image
 - GitHub Actions CI for tests and production build
 
 ## Important demo notes
@@ -48,6 +48,15 @@ The Goodreads dataset describes catalogue, ratings and engagement signals. The p
 
 The recorded churn project explores the classification threshold on an evaluation sample. A production-grade experiment would select the threshold on validation data / cross-validation and keep a final test set untouched.
 
+### SHAP contributions
+
+The explanation panel reads SHAP values pre-computed offline over the 21 216 scenarios the
+demo's controls can produce, since SHAP cannot run in the browser. The panel shows each
+variable's **share of the total absolute contribution** — SHAP values are expressed in
+log-odds, so displaying them directly followed by a percent sign would be wrong. Inputs are
+rounded to the nearest grid point. The export script lives in the churn repository, at
+`scripts/export_demo_artifacts.py`.
+
 ## Tech stack
 
 - React
@@ -57,7 +66,10 @@ The recorded churn project explores the classification threshold on an evaluatio
 - ONNX Runtime Web
 - GitHub Pages
 
-The large demo assets (dashboard images and browser model files) are served from the repository's `assets` branch through jsDelivr.
+Images are served by the site itself, from `public/images/` — the dashboards are WebP
+exports capped at 1600 px (under 500 KB for the whole set, down from 14.4 MB of PNG). Only
+the browser model files remain on the `assets` branch through jsDelivr, where their size
+justifies an external host.
 
 ## Local development
 
