@@ -19,7 +19,8 @@ const Navbar = ({ title = 'Data Portfolio', showBackButton = false, onBackClick 
                     <div className="min-w-[88px]">
                         {showBackButton && <button onClick={onBackClick} className="flex items-center gap-2 text-gray-300 hover:text-white transition focus:outline-none focus:ring-2 focus:ring-purple-400 rounded"><ArrowLeft className="w-5 h-5"/><span className="hidden sm:inline">Retour</span></button>}
                     </div>
-                    <h1 className="text-base sm:text-xl font-bold text-white text-center truncate">{title}</h1>
+                    {/* Volontairement pas un <h1> : le seul h1 de la page est le titre du héros. */}
+                    <p className="text-base sm:text-xl font-bold text-white text-center truncate">{title}</p>
                     <div className="min-w-[88px] flex justify-end">
                         {!showBackButton && <button className="md:hidden text-gray-200 p-2 rounded focus:outline-none focus:ring-2 focus:ring-purple-400" aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X/> : <Menu/>}</button>}
                         {!showBackButton && <div className="hidden md:flex gap-5">{links.map(([label, href]) => <a key={href} href={href} onClick={(e) => handleScrollTo(e, href)} className="text-gray-300 hover:text-white transition text-sm">{label}</a>)}</div>}

@@ -1,9 +1,22 @@
 {
   "short_name": "Jules Data",
   "name": "Jules Courné — Data Portfolio",
-  "icons": [],
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#0f172a",
-  "background_color": "#0f172a"
+  "background_color": "#0f172a",
+  "description": "Portfolio Data de Jules Courné — SQL, Python, ETL, BI et Machine Learning appliqué.",
+  "lang": "fr"
 }
