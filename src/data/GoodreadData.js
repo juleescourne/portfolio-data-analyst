@@ -4,7 +4,7 @@ export const dashboardImages = [
     {
         id: 1,
         title: "Dashboard 1 : Vue d'ensemble du dashboard d'analyse des livres",
-        path: "dashboard.png",
+        path: "dashboard.webp", width: 1600, height: 1053,
         description: "Dashboard complet avec KPIs, distributions et top livres",
         insights: [
             {
@@ -74,7 +74,7 @@ export const dashboardImages = [
     {
         id: 2,
         title: "Dashboard 2 : Vue d'ensemble du dashboard d'analyse des auteurs et éditeurs",
-        path: "dashboard2.png",
+        path: "dashboard2.webp", width: 1600, height: 1053,
         description: "Dashboard complet avec KPIs",
         insights: [
             {
@@ -153,7 +153,7 @@ export const dashboardImages = [
     {
         id: 3,
         title: "Dashboard 3 : Vue d'ensemble du dashboard d'analyse des genres et langues",
-        path: "dashboard3.png",
+        path: "dashboard3.webp", width: 1600, height: 1053,
         description: "Dashboard complet avec KPIs",
         insights: [
             {

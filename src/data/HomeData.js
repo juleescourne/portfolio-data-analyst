@@ -19,7 +19,7 @@ export const projects = [
         id: 'hospital',
         title: 'Hospital SQL Analytics',
         description: 'Étude analytique SQL sur des données hospitalières synthétiques : qualité des données, parcours patients, fenêtres analytiques et analyse financière.',
-        image: 'health.jpg',
+        image: 'health.webp',
         tags: ['SQL', 'MySQL', 'Window Functions', 'CTE', 'Data Quality', 'BI'],
         github: 'https://github.com/juleescourne/hospital-sql-analytics',
         demo: false,
@@ -49,7 +49,7 @@ export const projects = [
         id: 'churn',
         title: 'Customer Churn Prediction',
         description: 'Cas d’usage de classification orienté rétention client : préparation des données, feature engineering, XGBoost, choix de seuil et interprétation SHAP.',
-        image: 'churn.jfif',
+        image: 'churn.webp',
         tags: ['Python', 'XGBoost', 'Classification', 'SHAP', 'Feature Engineering'],
         github: 'https://github.com/juleescourne/customer-churn-prediction',
         demo: true,
@@ -65,7 +65,7 @@ export const projects = [
         id: 'housing',
         title: 'California Housing Price Prediction',
         description: 'Projet de régression XGBoost avec exploration, feature engineering géographique, validation croisée et étude de la sélection de variables.',
-        image: 'housing.jpg',
+        image: 'housing.webp',
         tags: ['Python', 'XGBoost', 'Regression', 'GeoPandas', 'Cross-validation'],
         github: 'https://github.com/juleescourne/california-housing-price-prediction',
         demo: true,
@@ -83,9 +83,10 @@ export const skills = {
     'Data & SQL': ['SQL', 'PostgreSQL', 'MySQL', 'SQLite', 'Data Quality', 'Window Functions'],
     'Data Engineering': ['Python', 'Pandas', 'ETL / ELT', 'Data Validation', 'Data Warehousing', 'Star / Snowflake Schema'],
     'BI & Visualisation': ['Power BI', 'Power Query', 'Plotly', 'Matplotlib', 'Vega-Lite'],
-    'Machine Learning': ['Scikit-learn', 'XGBoost', 'LightGBM', 'Classification', 'Regression', 'Clustering', 'PCA'],
+    'Machine Learning': ['Scikit-learn', 'XGBoost', 'Classification', 'Regression', 'Clustering', 'PCA'],
     'Engineering': ['Git / GitHub', 'Docker', 'SQLAlchemy', 'Pytest', 'GitHub Actions'],
-    'Langages': ['Python', 'SQL', 'Java', 'Anglais B2']
+    'Langages': ['Python', 'SQL', 'Java'],
+    'Langues': ['Français — natif', 'Anglais — B2']
 };
 
 export const focusData = [
