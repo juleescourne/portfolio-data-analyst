@@ -3,7 +3,10 @@ export { getDataUrl, getImageUrl } from './assetsConfig';
 
 export const initONNX = () => {
     ort.env.wasm.wasmPaths = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.0/dist/';
-    ort.env.wasm.numThreads = Math.min(4, navigator.hardwareConcurrency || 1);
+    // GitHub Pages ne peut pas envoyer les en-têtes COOP/COEP requis par crossOriginIsolated :
+    // le multi-threading WASM n'est donc jamais disponible. Le forcer à 1 évite deux
+    // avertissements console à chaque chargement, sans changer le résultat.
+    ort.env.wasm.numThreads = 1;
     ort.env.wasm.simd = true;
 };
 
