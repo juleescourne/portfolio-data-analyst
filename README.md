@@ -1,76 +1,89 @@
-# Jules Courné — Data Portfolio
+# Jules Courné — Portfolio Data
 
-Personal portfolio built with React and Tailwind CSS to present selected **Data Analytics, Data Engineering, BI and Applied Machine Learning** projects.
+Portfolio personnel développé avec React et Tailwind CSS, qui présente une sélection de
+projets **Data Analytics, Data Engineering, BI et Machine Learning appliqué**.
 
-**Live site:** https://juleescourne.github.io/portfolio-data-analyst/
+**Site en ligne :** https://juleescourne.github.io/portfolio-data-analyst/
 
-## Positioning
+## Positionnement
 
-The portfolio is intentionally centered on a coherent Data profile rather than a broad list of technologies:
+Le portfolio est volontairement centré sur un profil Data cohérent plutôt que sur une
+liste large de technologies :
 
-- **Data Analysis & BI** — SQL, data quality, KPI design, Power BI, analytical storytelling
-- **Data Engineering** — Python, ETL/ELT, relational databases, dimensional modeling, validation and automation
-- **Applied Machine Learning** — XGBoost, feature engineering, classification/regression and model evaluation
+- **Analyse de données & BI** — SQL, qualité des données, conception de KPI, Power BI, restitution analytique
+- **Data Engineering** — Python, ETL/ELT, bases relationnelles, modélisation dimensionnelle, validation et automatisation
+- **Machine Learning appliqué** — XGBoost, feature engineering, classification/régression, évaluation de modèles
 
-## Featured projects
+## Projets présentés
 
-| Project | Focus | Repository |
+| Projet | Axe | Dépôt |
 | --- | --- | --- |
-| Goodreads Analytics ETL | ETL, star schema, incremental loading, testing, BI | [goodreads-analytics-etl](https://github.com/juleescourne/goodreads-analytics-etl) |
-| Hospital SQL Analytics | MySQL, CTEs, window functions, data quality | [hospital-sql-analytics](https://github.com/juleescourne/hospital-sql-analytics) |
-| Cutting Tool Decision Support | Industrial data, MySQL, SQLAlchemy, PCA, Plotly | [cutting-tool-recommender](https://github.com/juleescourne/cutting-tool-recommender) |
-| Customer Churn Prediction | Classification, XGBoost, threshold tuning, SHAP | [customer-churn-prediction](https://github.com/juleescourne/customer-churn-prediction) |
-| California Housing | Regression, geographic features, XGBoost | [california-housing-price-prediction](https://github.com/juleescourne/california-housing-price-prediction) |
+| Goodreads Analytics ETL | ETL, schéma en étoile, chargement incrémental, tests, BI | [goodreads-analytics-etl](https://github.com/juleescourne/goodreads-analytics-etl) |
+| Hospital SQL Analytics | MySQL, CTE, fonctions de fenêtrage, qualité des données | [hospital-sql-analytics](https://github.com/juleescourne/hospital-sql-analytics) |
+| Aide au choix d'outil coupant | Données industrielles, MySQL, SQLAlchemy, ACP, Plotly | [cutting-tool-recommender](https://github.com/juleescourne/cutting-tool-recommender) |
+| Prédiction de résiliation client | Classification, XGBoost, réglage du seuil, SHAP | [customer-churn-prediction](https://github.com/juleescourne/customer-churn-prediction) |
+| Prix de l'immobilier californien | Régression, variables géographiques, XGBoost | [california-housing-price-prediction](https://github.com/juleescourne/california-housing-price-prediction) |
 
-## Portfolio features
+## Ce que fait le portfolio
 
-- Recruiter-oriented landing page: availability, mobility, downloadable CV in the hero
-- Proof band of verifiable figures, each traceable to a repository
-- Skills mapped to the project that demonstrates them — nothing listed without evidence
-- Five runnable demos: ONNX churn inference, California scenario map, Goodreads
-  dashboards, and two embedded applications (cutting-tool PCA, QVTi survey explorer)
-- Hash-based routes that work on GitHub Pages and support browser back/forward
-- Lazy-loaded heavy demos to keep the landing page light
-- SEO and social metadata, including an OpenGraph share image
-- GitHub Actions CI: six tests plus a production build
+- Page d'accueil orientée recruteur : disponibilité, mobilité, CV téléchargeable dès l'en-tête
+- Bandeau de chiffres vérifiables, chacun traçable jusqu'à un dépôt
+- Compétences reliées au projet qui les démontre — rien n'est listé sans preuve
+- Cinq démonstrations exécutables : inférence ONNX sur la résiliation, carte de scénarios
+  californiens, tableaux de bord Goodreads, et deux applications embarquées (ACP outil
+  coupant, explorateur d'enquête QVTi)
+- Routes en `#` qui fonctionnent sur GitHub Pages et respectent les boutons précédent/suivant du navigateur
+- Démos lourdes chargées à la demande, pour garder la page d'accueil légère
+- Métadonnées SEO et réseaux sociaux, dont une image de partage OpenGraph
+- Intégration continue GitHub Actions : six tests puis un build de production
 
-## Generating the CV
+## Génération du CV
 
-The PDF served by the hero is composed in HTML and rendered by Chromium, so screen
-and print share a single source:
+Le PDF proposé en haut de page est composé en HTML et rendu par Chromium : l'écran et
+l'impression partagent ainsi une source unique.
 
 ```bash
 npm install --no-save playwright && npx playwright install chromium
 node scripts/build-cv.js --preview
 ```
 
-Output: `public/cv-jules-courne.pdf`. Three fields at the top of the script still
-need filling — school name, graduation year, and contract type per role.
+Sortie : `public/cv-jules-courne.pdf`. Trois champs en tête du script restent à compléter —
+nom de l'école, année de diplôme, et type de contrat pour chaque expérience.
 
-## Important demo notes
+## Précisions importantes sur les démonstrations
 
-### California Housing browser demo
+Ces réserves sont volontairement affichées : une démo de navigateur est une simplification,
+et la présenter comme un résultat de production serait trompeur.
 
-The browser visualization displays a **relative scenario score**, not a calibrated dollar prediction. The project repository contains the actual modeling methodology and reported evaluation metrics. This distinction avoids presenting a normalized browser visualization as a production-grade monetary estimate.
+### Démonstration California Housing
 
-### Goodreads recommendations
+La visualisation affiche un **score de scénario relatif**, pas une prédiction calibrée en
+dollars. Le dépôt du projet contient la méthodologie de modélisation réelle et les métriques
+d'évaluation rapportées. Cette distinction évite de faire passer une visualisation normalisée
+pour une estimation monétaire fiable.
 
-The Goodreads dataset describes catalogue, ratings and engagement signals. The portfolio therefore presents strategic recommendations as **hypotheses to test**, not causal or revenue claims.
+### Recommandations Goodreads
 
-### Customer churn threshold
+Le jeu de données Goodreads décrit un catalogue, des notes et des signaux d'engagement. Le
+portfolio présente donc les recommandations stratégiques comme des **hypothèses à tester**,
+et non comme des affirmations causales ou des promesses de chiffre d'affaires.
 
-The recorded churn project explores the classification threshold on an evaluation sample. A production-grade experiment would select the threshold on validation data / cross-validation and keep a final test set untouched.
+### Seuil de résiliation client
 
-### SHAP contributions
+Le projet explore le seuil de classification sur un échantillon d'évaluation. Une
+expérimentation rigoureuse choisirait ce seuil sur des données de validation ou par
+validation croisée, en gardant un jeu de test final intact.
 
-The explanation panel reads SHAP values pre-computed offline over the 21 216 scenarios the
-demo's controls can produce, since SHAP cannot run in the browser. The panel shows each
-variable's **share of the total absolute contribution** — SHAP values are expressed in
-log-odds, so displaying them directly followed by a percent sign would be wrong. Inputs are
-rounded to the nearest grid point. The export script lives in the churn repository, at
-`scripts/export_demo_artifacts.py`.
+### Contributions SHAP
 
-## Tech stack
+Le panneau d'explication lit des valeurs SHAP pré-calculées hors ligne sur les 21 216
+scénarios que les curseurs de la démo peuvent produire, SHAP ne pouvant pas s'exécuter dans
+le navigateur. Le panneau affiche la **part de chaque variable dans la contribution absolue
+totale** — les valeurs SHAP sont exprimées en log-odds, les afficher telles quelles suivies
+d'un signe pourcent serait faux. Les entrées sont arrondies au point de grille le plus proche.
+Le script d'export se trouve dans le dépôt churn, à `scripts/export_demo_artifacts.py`.
+
+## Stack technique
 
 - React
 - Tailwind CSS
@@ -79,19 +92,19 @@ rounded to the nearest grid point. The export script lives in the churn reposito
 - ONNX Runtime Web
 - GitHub Pages
 
-Images are served by the site itself, from `public/images/` — the dashboards are WebP
-exports capped at 1600 px (under 500 KB for the whole set, down from 14.4 MB of PNG). Only
-the browser model files remain on the `assets` branch through jsDelivr, where their size
-justifies an external host.
+Les images sont servies par le site lui-même, depuis `public/images/` — les tableaux de bord
+sont des exports WebP plafonnés à 1600 px (moins de 500 Ko pour l'ensemble, contre 14,4 Mo de
+PNG auparavant). Seuls les fichiers de modèle destinés au navigateur restent sur la branche
+`assets` via jsDelivr, où leur taille justifie un hébergement externe.
 
-## Local development
+## Développement local
 
 ```bash
 npm install
 npm start
 ```
 
-The application is then available at `http://localhost:3000`.
+L'application est alors disponible sur `http://localhost:3000`.
 
 ## Tests
 
@@ -99,45 +112,48 @@ The application is then available at `http://localhost:3000`.
 npm test -- --watchAll=false
 ```
 
-## Production build
+## Build de production
 
 ```bash
 npm run build
 ```
 
-## Deploy to GitHub Pages
+## Déploiement sur GitHub Pages
 
-The repository includes `.github/workflows/deploy-pages.yml`. Once GitHub Pages is configured to use **GitHub Actions**, every push to `main` runs the tests, builds the React app and deploys the `build/` artifact automatically.
+Le dépôt contient `.github/workflows/deploy-pages.yml`. Une fois GitHub Pages configuré sur
+**GitHub Actions**, chaque push sur `main` lance les tests, construit l'application React et
+déploie automatiquement l'artefact `build/`.
 
-The legacy `npm run deploy` command can still publish a `gh-pages` branch, but it is not needed when Pages is configured to use GitHub Actions.
+L'ancienne commande `npm run deploy` peut toujours publier une branche `gh-pages`, mais elle
+devient inutile dès que Pages est configuré sur GitHub Actions.
 
-The `homepage` field in `package.json` is configured for:
+Le champ `homepage` de `package.json` pointe vers :
 
 ```text
 https://juleescourne.github.io/portfolio-data-analyst/
 ```
 
-## Repository structure
+## Structure du dépôt
 
 ```text
 src/
-├── components/       Reusable UI components
-├── data/             Portfolio copy and project metadata
-├── hooks/            Browser model / SHAP logic
-├── pages/            Landing and project pages
-└── utils/            Shared asset / ONNX configuration
+├── components/       Composants d'interface réutilisables
+├── data/             Textes du portfolio et métadonnées des projets
+├── hooks/            Logique du modèle navigateur et de SHAP
+├── pages/            Page d'accueil et pages projet
+└── utils/            Configuration partagée des ressources et d'ONNX
 
 public/
-├── index.html        SEO and social metadata
+├── index.html        Métadonnées SEO et réseaux sociaux
 ├── manifest.json
 ├── robots.txt
 └── sitemap.xml
 ```
 
-## Author
+## Auteur
 
 **Jules Courné**  
 Data Analyst & Data Engineer — Rouen, France
 
-- GitHub: https://github.com/juleescourne
-- LinkedIn: https://www.linkedin.com/in/jules-courn%C3%A9/
+- GitHub : https://github.com/juleescourne
+- LinkedIn : https://www.linkedin.com/in/jules-courn%C3%A9/
