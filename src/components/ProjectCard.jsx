@@ -1,26 +1,90 @@
-import { Github, ExternalLink, ChevronRight } from 'lucide-react';
+import { useState } from 'react';
+import { Github, ArrowRight, Check } from 'lucide-react';
 import { getImageUrl } from '../utils/assetsConfig';
 
-const ProjectCard = ({ project, onDemoClick }) => (
-    <article className="bg-slate-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-slate-700 hover:border-purple-500/50 transition-all duration-300">
-        <div className="flex flex-col md:flex-row">
-            <div className="md:w-2/5 lg:w-1/3 h-64 md:h-auto overflow-hidden flex-shrink-0 bg-slate-900">
-                <img src={getImageUrl(project.image)} alt={`Aperçu — ${project.title}`} loading="lazy" decoding="async" className="w-full h-full object-cover" />
-            </div>
-            <div className="p-7 md:p-8 md:w-3/5 lg:w-2/3 flex flex-col justify-between">
-                <div>
-                    <h3 className="text-2xl font-bold text-white mb-3">{project.title}</h3>
-                    <p className="text-gray-300 mb-4 leading-relaxed">{project.description}</p>
-                    <div className="flex flex-wrap gap-2 mb-5">{project.tags.map((tag) => <span key={tag} className="bg-purple-600/20 text-purple-300 px-3 py-1.5 rounded-lg text-sm border border-purple-500/30">{tag}</span>)}</div>
-                    <ul className="mb-6 space-y-2">{project.highlights.map((highlight) => <li key={highlight} className="text-gray-300 text-sm flex items-start gap-2"><ChevronRight className="text-purple-400 flex-shrink-0 mt-0.5" size={16}/><span>{highlight}</span></li>)}</ul>
+const ProjectCard = ({ project, onDemoClick }) => {
+    const [imageFailed, setImageFailed] = useState(false);
+
+    return (
+        <article className="bg-surface border border-line rounded-lg overflow-hidden">
+            <div className="grid md:grid-cols-[minmax(0,320px)_minmax(0,1fr)]">
+                {/* Visuel — ratio fixe sur mobile, remplit la hauteur de la fiche sur
+                    grand écran. Sans le positionnement absolu, une image carrée serait
+                    étirée sur toute la hauteur de la colonne. */}
+                <div className="relative bg-raised border-b md:border-b-0 md:border-r border-line-soft aspect-[16/10] md:aspect-auto md:min-h-[240px]">
+                    {imageFailed ? (
+                        <div className="absolute inset-0 flex items-center justify-center p-6 text-center">
+                            <span className="text-muted text-sm">Aperçu indisponible</span>
+                        </div>
+                    ) : (
+                        <img
+                            src={getImageUrl(project.image)}
+                            alt={`Aperçu — ${project.title}`}
+                            loading="lazy"
+                            decoding="async"
+                            onError={() => setImageFailed(true)}
+                            className="absolute inset-0 w-full h-full object-cover"
+                        />
+                    )}
                 </div>
-                <div className="flex flex-wrap gap-4 mt-2">
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-5 py-2.5 rounded-lg transition font-medium focus:outline-none focus:ring-2 focus:ring-purple-400"><Github size={18}/> Code</a>
-                    {project.demo && <button onClick={onDemoClick} className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-5 py-2.5 rounded-lg transition font-medium focus:outline-none focus:ring-2 focus:ring-purple-300"><ExternalLink size={18}/> Démo</button>}
+
+                {/* Contenu */}
+                <div className="p-5 sm:p-7">
+                    <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-accent mb-2">
+                        {project.role}
+                    </p>
+                    <h3 className="font-display text-2xl font-semibold text-ink mb-2.5 leading-tight">
+                        {project.title}
+                    </h3>
+                    <p className="text-ink-2 text-[15px] leading-relaxed mb-5 max-w-prose">
+                        {project.description}
+                    </p>
+
+                    <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2 mb-6">
+                        {project.highlights.map((highlight) => (
+                            <li key={highlight} className="flex gap-2.5 text-sm text-ink-2 leading-snug">
+                                <Check className="w-4 h-4 text-accent shrink-0 mt-0.5" aria-hidden="true" />
+                                <span>{highlight}</span>
+                            </li>
+                        ))}
+                    </ul>
+
+                    <div className="flex flex-wrap gap-1.5 mb-6">
+                        {project.tags.map((tag) => (
+                            <span
+                                key={tag}
+                                className="font-mono text-[11px] text-muted bg-raised border border-line-soft px-2 py-1 rounded"
+                            >
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+
+                    <div className="flex flex-wrap gap-3">
+                        {project.demo && (
+                            <button
+                                type="button"
+                                onClick={onDemoClick}
+                                className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white px-4 py-2.5 rounded-md text-sm font-medium transition"
+                            >
+                                {project.demoLabel || 'Voir la démo'}
+                                <ArrowRight className="w-4 h-4" />
+                            </button>
+                        )}
+                        <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 border border-line hover:border-accent hover:text-accent text-ink-2 px-4 py-2.5 rounded-md text-sm font-medium transition"
+                        >
+                            <Github className="w-4 h-4" />
+                            Code source
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </article>
-);
+        </article>
+    );
+};
 
 export default ProjectCard;

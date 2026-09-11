@@ -1,9 +1,16 @@
 import { useState } from 'react';
 import { ArrowLeft, Menu, X } from 'lucide-react';
 
-const Navbar = ({ title = 'Data Portfolio', showBackButton = false, onBackClick }) => {
+const LINKS = [
+    ['Projets', '#projects'],
+    ['Démos', '#demos'],
+    ['Parcours', '#experience'],
+    ['Compétences', '#skills'],
+    ['Contact', '#contact'],
+];
+
+const Navbar = ({ title = 'Jules Courné', showBackButton = false, onBackClick }) => {
     const [open, setOpen] = useState(false);
-    const links = [['Accueil', '#home'], ['Projets', '#projects'], ['Parcours', '#experience'], ['Compétences', '#skills'], ['À propos', '#about'], ['Contact', '#contact']];
 
     const handleScrollTo = (event, targetId) => {
         event.preventDefault();
@@ -13,20 +20,74 @@ const Navbar = ({ title = 'Data Portfolio', showBackButton = false, onBackClick 
     };
 
     return (
-        <nav className="fixed top-0 w-full bg-slate-900/95 backdrop-blur-sm border-b border-slate-700 z-50" aria-label="Navigation principale">
-            <div className="max-w-7xl mx-auto px-4 py-4">
-                <div className="flex items-center justify-between gap-4">
-                    <div className="min-w-[88px]">
-                        {showBackButton && <button onClick={onBackClick} className="flex items-center gap-2 text-gray-300 hover:text-white transition focus:outline-none focus:ring-2 focus:ring-purple-400 rounded"><ArrowLeft className="w-5 h-5"/><span className="hidden sm:inline">Retour</span></button>}
-                    </div>
-                    {/* Volontairement pas un <h1> : le seul h1 de la page est le titre du héros. */}
-                    <p className="text-base sm:text-xl font-bold text-white text-center truncate">{title}</p>
-                    <div className="min-w-[88px] flex justify-end">
-                        {!showBackButton && <button className="md:hidden text-gray-200 p-2 rounded focus:outline-none focus:ring-2 focus:ring-purple-400" aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X/> : <Menu/>}</button>}
-                        {!showBackButton && <div className="hidden md:flex gap-5">{links.map(([label, href]) => <a key={href} href={href} onClick={(e) => handleScrollTo(e, href)} className="text-gray-300 hover:text-white transition text-sm">{label}</a>)}</div>}
-                    </div>
+        <nav
+            className="fixed top-0 w-full bg-paper/95 backdrop-blur-sm border-b border-line z-50"
+            aria-label="Navigation principale"
+        >
+            <div className="max-w-6xl mx-auto px-5 sm:px-6">
+                <div className="flex items-center justify-between gap-4 h-16">
+                    {showBackButton ? (
+                        <button
+                            onClick={onBackClick}
+                            className="flex items-center gap-2 text-ink-2 hover:text-accent transition text-sm font-medium"
+                        >
+                            <ArrowLeft className="w-4 h-4" />
+                            Retour au portfolio
+                        </button>
+                    ) : (
+                        <a href="#home" onClick={(e) => handleScrollTo(e, '#home')} className="group">
+                            {/* Volontairement pas un <h1> : le seul h1 de la page est le titre du héros. */}
+                            <span className="font-display text-lg font-semibold text-ink group-hover:text-accent transition">
+                                Jules Courné
+                            </span>
+                            <span className="hidden sm:inline text-muted text-sm ml-2.5 pl-2.5 border-l border-line">
+                                Ingénieur Data
+                            </span>
+                        </a>
+                    )}
+
+                    {showBackButton ? (
+                        <span className="text-sm text-muted truncate max-w-[55%] text-right">{title}</span>
+                    ) : (
+                        <>
+                            <div className="hidden md:flex items-center gap-7">
+                                {LINKS.map(([label, href]) => (
+                                    <a
+                                        key={href}
+                                        href={href}
+                                        onClick={(e) => handleScrollTo(e, href)}
+                                        className="text-sm text-ink-2 hover:text-accent transition"
+                                    >
+                                        {label}
+                                    </a>
+                                ))}
+                            </div>
+                            <button
+                                className="md:hidden text-ink p-2 -mr-2 rounded"
+                                aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
+                                aria-expanded={open}
+                                onClick={() => setOpen(!open)}
+                            >
+                                {open ? <X size={22} /> : <Menu size={22} />}
+                            </button>
+                        </>
+                    )}
                 </div>
-                {!showBackButton && open && <div className="md:hidden pt-4 pb-2 grid grid-cols-2 gap-2">{links.map(([label, href]) => <a key={href} href={href} onClick={(e) => handleScrollTo(e, href)} className="text-gray-200 bg-slate-800 px-3 py-2 rounded-lg">{label}</a>)}</div>}
+
+                {!showBackButton && open && (
+                    <div className="md:hidden pb-4 grid gap-1.5">
+                        {LINKS.map(([label, href]) => (
+                            <a
+                                key={href}
+                                href={href}
+                                onClick={(e) => handleScrollTo(e, href)}
+                                className="text-ink-2 bg-surface border border-line px-4 py-2.5 rounded-md text-sm"
+                            >
+                                {label}
+                            </a>
+                        ))}
+                    </div>
+                )}
             </div>
         </nav>
     );
