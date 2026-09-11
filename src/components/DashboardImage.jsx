@@ -11,9 +11,9 @@ const DashboardImage = ({ dashboard, onImageClick }) => {
     // aussitôt l'infobulle. On ouvre donc explicitement, et on ferme par le bouton dédié.
     const openTooltip = (id) => setActiveTooltip(id);
     return (
-        <div className="bg-slate-800/50 p-6 rounded-xl border border-purple-500/20">
+        <div className="bg-surface p-4 sm:p-6 rounded-lg border border-line">
             <div className="mb-4">
-                <h2 className="text-2xl font-bold text-white mb-2">{dashboard.title}</h2>
+                <h2 className="font-display text-2xl font-semibold text-ink mb-2 leading-tight">{dashboard.title}</h2>
             </div>
 
             <div className="relative group">
@@ -34,25 +34,25 @@ const DashboardImage = ({ dashboard, onImageClick }) => {
 
                 {/* État de chargement, puis message d'échec explicite plutôt qu'un squelette infini */}
                 {!imageLoaded && (
-                    <div className="absolute inset-0 bg-slate-700/50 rounded-lg flex items-center justify-center p-6 text-center">
+                    <div className="absolute inset-0 bg-raised rounded-lg flex items-center justify-center p-4 sm:p-6 text-center">
                         {imageError ? (
-                            <div className="text-sm text-amber-300">
+                            <div className="text-sm text-accent">
                                 <p className="font-semibold mb-1">Capture indisponible</p>
-                                <p className="text-amber-200/80">
+                                <p className="text-ink-2">
                                     Le CDN qui héberge les captures est peut-être bloqué sur ce réseau.
                                     Les analyses de cette page restent lisibles ci-dessous.
                                 </p>
                             </div>
                         ) : (
-                            <div className="text-gray-400 animate-pulse">Chargement…</div>
+                            <div className="text-muted animate-pulse">Chargement…</div>
                         )}
                     </div>
                 )}
 
                 <button
                     onClick={() => onImageClick(getImageUrl(dashboard.path))}
-                    className="absolute top-4 right-4 bg-slate-900/80 p-2 rounded-lg opacity-0 group-hover:opacity-100 transition z-10">
-                    <ZoomIn className="text-white" size={20} />
+                    className="absolute top-4 right-4 bg-surface/95 p-2 rounded-lg opacity-0 group-hover:opacity-100 transition z-10">
+                    <ZoomIn className="text-ink" size={20} />
                 </button>
 
                 {/* Boutons Info */}
@@ -73,7 +73,7 @@ const DashboardImage = ({ dashboard, onImageClick }) => {
                             onClick={() => openTooltip(`${dashboard.id}-${idx}`)}
                             aria-expanded={activeTooltip === `${dashboard.id}-${idx}`}
                             aria-label={`Analyse : ${insight.title}`}
-                            className="bg-purple-600 hover:bg-purple-500 text-white rounded-full p-3 shadow-lg transition animate-pulse focus:outline-none focus:ring-2 focus:ring-white">
+                            className="bg-accent hover:bg-accent-dark text-white rounded-full p-3 shadow-lg transition animate-pulse focus:outline-none focus:ring-2 focus:ring-accent">
                             <Info size={20} />
                         </button>
                     </div>
@@ -96,7 +96,7 @@ const DashboardImage = ({ dashboard, onImageClick }) => {
                                 pointerEvents: 'none'
                             }}>
                             <div
-                                className="absolute max-h-96 overflow-y-auto bg-slate-900 border border-purple-500 rounded-lg p-5 shadow-2xl"
+                                className="absolute max-h-96 overflow-y-auto bg-surface border border-accent rounded-lg p-5 shadow-2xl"
                                 style={{
                                     width: tooltipWidth,
                                     top: 'calc(100% + 20px)',
@@ -106,17 +106,17 @@ const DashboardImage = ({ dashboard, onImageClick }) => {
                                 }}
                                 onMouseEnter={() => setActiveTooltip(`${dashboard.id}-${idx}`)}
                                 onMouseLeave={() => setActiveTooltip(null)}>
-                                <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-slate-900 border-l border-t border-purple-500 rotate-45"></div>
+                                <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-surface border-l border-t border-accent rotate-45"></div>
 
                                 <div className="flex items-start justify-between gap-3 mb-4">
-                                    <h4 className="text-purple-400 font-bold text-base">
+                                    <h4 className="text-accent font-bold text-base">
                                         {insight.title}
                                     </h4>
                                     <button
                                         type="button"
                                         onClick={() => setActiveTooltip(null)}
                                         aria-label="Fermer l’analyse"
-                                        className="shrink-0 text-gray-400 hover:text-white transition p-1 -m-1 focus:outline-none focus:ring-2 focus:ring-purple-400 rounded">
+                                        className="shrink-0 text-muted hover:text-accent transition p-1 -m-1 focus:outline-none focus:ring-2 focus:ring-accent rounded">
                                         <X size={18} />
                                     </button>
                                 </div>
@@ -127,15 +127,15 @@ const DashboardImage = ({ dashboard, onImageClick }) => {
                                         {insight.content.map((item, i) => (
                                             <div
                                                 key={i}
-                                                className={`${i !== 0 ? 'pt-4 border-t border-purple-500/20' : ''}`}>
-                                                <p className="text-gray-300 text-sm leading-relaxed">
+                                                className={`${i !== 0 ? 'pt-4 border-t border-line' : ''}`}>
+                                                <p className="text-ink-2 text-sm leading-relaxed">
                                                     {item}
                                                 </p>
                                             </div>
                                         ))}
                                     </div>
                                 ) : (
-                                    <p className="text-gray-300 text-sm leading-relaxed">
+                                    <p className="text-ink-2 text-sm leading-relaxed">
                                         {insight.content}
                                     </p>
                                 )}

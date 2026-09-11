@@ -141,29 +141,29 @@ const ChurnPredictionPage = ({ onBack }) => {
     const featureContributions = getFeatureContributions();
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+        <div className="min-h-screen bg-paper text-ink">
             <Navbar
                 title="Prédiction du Churn Client"
                 showBackButton={true}
                 onBackClick={onBack}
             />
 
-            <div className="pt-24 px-6 pb-12">
-                <div className="max-w-7xl mx-auto space-y-8">
+            <div className="pt-24 px-5 sm:px-6 pb-16">
+                <div className="max-w-6xl mx-auto space-y-8">
 
                     {/* 1. BLOC PRINCIPAL - Titre, Objectif, Technologies, Github */}
-                    <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-slate-700">
+                    <div className="bg-surface rounded-lg p-5 sm:p-8 border border-line">
                         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                             <div className="flex-1">
-                                <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                                <h1 className="font-display text-3xl sm:text-4xl font-semibold text-ink mb-4 leading-tight">
                                     Prédiction du Churn Client
                                 </h1>
-                                <p className="text-gray-300 text-lg mb-6">
+                                <p className="text-ink-2 text-lg mb-6">
                                     Modèle XGBoost orienté détection du churn, avec analyse du compromis recall / précision et interprétation SHAP
                                 </p>
                                 <div className="flex flex-wrap gap-2">
                                     {["Python", "XGBoost", "Feature Engineering", "Matplotlib", "Seaborn", "Jupyter Notebook", "SHAP", "Banking sector"].map((tag) => (
-                                        <span key={tag} className="bg-purple-600/20 text-purple-300 px-3 py-1 rounded-lg text-sm border border-purple-500/30">
+                                        <span key={tag} className="font-mono bg-raised text-muted px-2 py-1 rounded text-sm border border-line-soft">
                                             {tag}
                                         </span>
                                     ))}
@@ -174,7 +174,7 @@ const ChurnPredictionPage = ({ onBack }) => {
                                     href="https://github.com/juleescourne/customer-churn-prediction"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg transition whitespace-nowrap"
+                                    className="flex items-center gap-2 bg-surface border border-line hover:border-accent hover:text-accent text-ink-2 px-4 py-2.5 rounded-md font-medium transition whitespace-nowrap"
                                 >
                                     <Github size={18} />
                                     Code Source
@@ -185,20 +185,20 @@ const ChurnPredictionPage = ({ onBack }) => {
 
                     {/* 2. RÉSULTATS GLOBAUX - Ligne de blocs KPI */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div className="bg-gradient-to-br from-purple-600/20 to-purple-900/20 backdrop-blur-sm rounded-xl p-6 border border-purple-500/30"><div className="text-3xl font-bold text-purple-400 mb-2">≈90%</div><div className="text-sm text-gray-400">Recall churn</div></div>
-                        <div className="bg-gradient-to-br from-blue-600/20 to-blue-900/20 backdrop-blur-sm rounded-xl p-6 border border-blue-500/30"><div className="text-3xl font-bold text-blue-400 mb-2">0,866</div><div className="text-sm text-gray-400">ROC-AUC</div></div>
-                        <div className="bg-gradient-to-br from-green-600/20 to-green-900/20 backdrop-blur-sm rounded-xl p-6 border border-green-500/30"><div className="text-3xl font-bold text-green-400 mb-2">≈36%</div><div className="text-sm text-gray-400">Précision au seuil exploré</div></div>
-                        <div className="bg-gradient-to-br from-amber-600/20 to-amber-900/20 backdrop-blur-sm rounded-xl p-6 border border-amber-500/30"><div className="text-3xl font-bold text-amber-400 mb-2">{modelLoaded ? 'ONNX' : '…'}</div><div className="text-sm text-gray-400">Démo navigateur</div></div>
+                        <div className="bg-surface rounded-lg p-4 sm:p-6 border border-line"><div className="font-mono tabular text-2xl sm:text-3xl font-semibold text-ink mb-2">≈90%</div><div className="text-sm text-muted">Recall churn</div></div>
+                        <div className="bg-surface rounded-lg p-4 sm:p-6 border border-line"><div className="font-mono tabular text-2xl sm:text-3xl font-semibold text-ink mb-2">0,866</div><div className="text-sm text-muted">ROC-AUC</div></div>
+                        <div className="bg-surface rounded-lg p-4 sm:p-6 border border-line"><div className="font-mono tabular text-2xl sm:text-3xl font-semibold text-ink mb-2">≈36%</div><div className="text-sm text-muted">Précision au seuil exploré</div></div>
+                        <div className="bg-surface rounded-lg p-4 sm:p-6 border border-line"><div className="font-mono tabular text-2xl sm:text-3xl font-semibold text-ink mb-2">{modelLoaded ? 'ONNX' : '…'}</div><div className="text-sm text-muted">Démo navigateur</div></div>
                     </div>
 
-                    <div className="bg-amber-950/30 border border-amber-500/30 rounded-xl p-5 text-amber-100/90 text-sm leading-relaxed">
+                    <div className="bg-accent-soft border border-line rounded-lg p-5 text-ink-2 text-sm leading-relaxed">
                         Le seuil de classification a été exploré sur un échantillon d’évaluation afin de privilégier le recall. Pour une évaluation production-grade, le seuil doit être choisi sur validation / cross-validation puis évalué une seule fois sur un jeu de test final intact.
                     </div>
 
                     {/* 3. BLOC DÉMO */}
-                    <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-slate-700">
-                        <h2 className="text-2xl font-bold text-white mb-6">Démo Interactive</h2>
-                        <p className="text-gray-400 mb-6">
+                    <div className="bg-surface rounded-lg p-5 sm:p-8 border border-line">
+                        <h2 className="font-display text-2xl font-semibold text-ink mb-6 leading-tight">Démo Interactive</h2>
+                        <p className="text-muted mb-6">
                             Ajustez les paramètres client pour voir la prédiction en temps réel et les facteurs d'influence (SHAP)
                         </p>
 
@@ -207,7 +207,7 @@ const ChurnPredictionPage = ({ onBack }) => {
                             <div className="space-y-4">
                                 {/* Âge */}
                                 <div>
-                                    <label className="block text-sm font-semibold text-gray-300 mb-2">
+                                    <label className="block text-sm font-semibold text-ink-2 mb-2">
                                         Âge: {userInputs.age} ans
                                     </label>
                                     <input
@@ -216,21 +216,21 @@ const ChurnPredictionPage = ({ onBack }) => {
                                         max="100"
                                         value={userInputs.age}
                                         onChange={(e) => handleInputChange('age', parseInt(e.target.value))}
-                                        className="w-full accent-purple-500"
+                                        className="w-full accent-accent"
                                     />
                                 </div>
 
                                 {/* Genre */}
                                 <div>
-                                    <label className="block text-sm font-semibold text-gray-300 mb-2">Genre</label>
+                                    <label className="block text-sm font-semibold text-ink-2 mb-2">Genre</label>
                                     <div className="grid grid-cols-2 gap-2">
                                         {['Homme', 'Femme'].map(genre => (
                                             <button
                                                 key={genre}
                                                 onClick={() => handleInputChange('gender', genre)}
                                                 className={`p-3 rounded-lg border transition ${userInputs.gender === genre
-                                                    ? 'bg-purple-600/20 border-purple-500 text-purple-300'
-                                                    : 'bg-slate-700/50 border-slate-600 text-gray-400'
+                                                    ? 'bg-accent-soft border-accent text-accent'
+                                                    : 'bg-raised border-line text-muted'
                                                     }`}
                                             >
                                                 {genre}
@@ -241,15 +241,15 @@ const ChurnPredictionPage = ({ onBack }) => {
 
                                 {/* Localisation */}
                                 <div>
-                                    <label className="block text-sm font-semibold text-gray-300 mb-2">Localisation</label>
-                                    <div className="grid grid-cols-3 gap-2">
+                                    <label className="block text-sm font-semibold text-ink-2 mb-2">Localisation</label>
+                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                                         {['France', 'Allemagne', 'Espagne'].map(country => (
                                             <button
                                                 key={country}
                                                 onClick={() => handleInputChange('geography', country)}
                                                 className={`p-3 rounded-lg border transition ${userInputs.geography === country
-                                                    ? 'bg-purple-600/20 border-purple-500 text-purple-300'
-                                                    : 'bg-slate-700/50 border-slate-600 text-gray-400'
+                                                    ? 'bg-accent-soft border-accent text-accent'
+                                                    : 'bg-raised border-line text-muted'
                                                     }`}
                                             >
                                                 {country}
@@ -260,15 +260,15 @@ const ChurnPredictionPage = ({ onBack }) => {
 
                                 {/* Nombre de produits */}
                                 <div>
-                                    <label className="block text-sm font-semibold text-gray-300 mb-2">Produits détenus</label>
+                                    <label className="block text-sm font-semibold text-ink-2 mb-2">Produits détenus</label>
                                     <div className="grid grid-cols-4 gap-2">
                                         {[1, 2, 3, 4].map(num => (
                                             <button
                                                 key={num}
                                                 onClick={() => handleInputChange('num_of_products', num)}
                                                 className={`p-3 rounded-lg border transition font-bold ${userInputs.num_of_products === num
-                                                    ? 'bg-blue-600/20 border-blue-500 text-blue-300'
-                                                    : 'bg-slate-700/50 border-slate-600 text-gray-400'
+                                                    ? 'bg-accent-soft border-accent text-accent'
+                                                    : 'bg-raised border-line text-muted'
                                                     }`}
                                             >
                                                 {num}
@@ -279,7 +279,7 @@ const ChurnPredictionPage = ({ onBack }) => {
 
                                 {/* Épargne */}
                                 <div>
-                                    <label className="block text-sm font-semibold text-gray-300 mb-2">
+                                    <label className="block text-sm font-semibold text-ink-2 mb-2">
                                         Épargne: {userInputs.balance.toLocaleString('fr-FR')} €
                                     </label>
                                     <input
@@ -289,19 +289,19 @@ const ChurnPredictionPage = ({ onBack }) => {
                                         step="1000"
                                         value={userInputs.balance}
                                         onChange={(e) => handleInputChange('balance', parseInt(e.target.value))}
-                                        className="w-full accent-blue-500"
+                                        className="w-full accent-accent"
                                     />
                                 </div>
 
                                 {/* Actif */}
                                 <div>
-                                    <label className="block text-sm font-semibold text-gray-300 mb-2">Actif dernière année ?</label>
+                                    <label className="block text-sm font-semibold text-ink-2 mb-2">Actif dernière année ?</label>
                                     <div className="grid grid-cols-2 gap-2">
                                         <button
                                             onClick={() => handleInputChange('is_active_member', 1)}
                                             className={`p-3 rounded-lg border transition ${userInputs.is_active_member === 1
-                                                ? 'bg-green-600/20 border-green-500 text-green-300'
-                                                : 'bg-slate-700/50 border-slate-600 text-gray-400'
+                                                ? 'bg-ok-soft border-ok text-ok'
+                                                : 'bg-raised border-line text-muted'
                                                 }`}
                                         >
                                             ✅ Oui
@@ -309,8 +309,8 @@ const ChurnPredictionPage = ({ onBack }) => {
                                         <button
                                             onClick={() => handleInputChange('is_active_member', 0)}
                                             className={`p-3 rounded-lg border transition ${userInputs.is_active_member === 0
-                                                ? 'bg-red-600/20 border-red-500 text-red-300'
-                                                : 'bg-slate-700/50 border-slate-600 text-gray-400'
+                                                ? 'bg-signal-soft border-signal text-signal'
+                                                : 'bg-raised border-line text-muted'
                                                 }`}
                                         >
                                             ❌ Non
@@ -323,20 +323,20 @@ const ChurnPredictionPage = ({ onBack }) => {
                             <div className="space-y-4">
                                 {/* Probabilité de Churn */}
                                 {churnProbability && (
-                                    <div className="bg-slate-700/50 rounded-xl p-6 border border-slate-600">
-                                        <h3 className="text-lg font-bold text-white mb-4 text-center">Probabilité de Churn</h3>
+                                    <div className="bg-raised rounded-lg p-4 sm:p-6 border border-line">
+                                        <h3 className="font-display text-lg font-semibold text-ink mb-4 text-center leading-tight">Probabilité de Churn</h3>
                                         <div className="text-center mb-4">
-                                            <div className={`text-6xl font-black mb-2 ${churnProbability.churn > 0.7 ? 'text-red-400' :
-                                                churnProbability.churn > 0.4 ? 'text-amber-400' : 'text-green-400'
+                                            <div className={`font-mono tabular text-5xl sm:text-6xl font-semibold mb-2 ${churnProbability.churn > 0.7 ? 'text-signal' :
+                                                churnProbability.churn > 0.4 ? 'text-amber-700' : 'text-ok'
                                                 }`}>
                                                 {(churnProbability.churn * 100).toFixed(1)}%
                                             </div>
-                                            <div className="text-sm text-gray-400">Risque de départ</div>
+                                            <div className="text-sm text-muted">Risque de départ</div>
                                         </div>
-                                        <div className="w-full h-4 bg-slate-600 rounded-full overflow-hidden">
+                                        <div className="w-full h-4 bg-line rounded-full overflow-hidden">
                                             <div
-                                                className={`h-full transition-all duration-500 ${churnProbability.churn > 0.7 ? 'bg-red-500' :
-                                                    churnProbability.churn > 0.4 ? 'bg-amber-500' : 'bg-green-500'
+                                                className={`h-full transition-all duration-500 ${churnProbability.churn > 0.7 ? 'bg-signal' :
+                                                    churnProbability.churn > 0.4 ? 'bg-amber-500' : 'bg-ok'
                                                     }`}
                                                 style={{ width: `${churnProbability.churn * 100}%` }}
                                             />
@@ -345,35 +345,35 @@ const ChurnPredictionPage = ({ onBack }) => {
                                 )}
 
                                 {/* Facteurs SHAP */}
-                                <div className="bg-slate-700/50 rounded-xl p-6 border border-slate-600">
-                                    <h3 className="text-lg font-bold text-white mb-1">Facteurs clés (SHAP)</h3>
-                                    <p className="text-xs text-gray-400 mb-4 leading-relaxed">
+                                <div className="bg-raised rounded-lg p-4 sm:p-6 border border-line">
+                                    <h3 className="font-display text-lg font-semibold text-ink mb-1 leading-tight">Facteurs clés (SHAP)</h3>
+                                    <p className="text-xs text-muted mb-4 leading-relaxed">
                                         Part de chaque variable dans l’explication de cette prédiction. Valeurs SHAP
                                         pré-calculées sur une grille de scénarios&nbsp;: la combinaison saisie est arrondie
-                                        au point de grille le plus proche. <span className="text-red-400">Rouge</span> = pousse
-                                        vers le départ, <span className="text-green-400">vert</span> = retient le client.
+                                        au point de grille le plus proche. <span className="text-signal">Rouge</span> = pousse
+                                        vers le départ, <span className="text-ok">vert</span> = retient le client.
                                     </p>
                                     {shapLoading ? (
                                         <div className="text-center py-4">
-                                            <Loader className="animate-spin mx-auto mb-2 text-purple-400" size={24} />
-                                            <p className="text-gray-400 text-sm">Chargement...</p>
+                                            <Loader className="animate-spin mx-auto mb-2 text-accent" size={24} />
+                                            <p className="text-muted text-sm">Chargement...</p>
                                         </div>
                                     ) : shapError ? (
-                                        <div className="text-center py-4 text-amber-400 text-sm">{shapError}</div>
+                                        <div className="text-center py-4 text-amber-700 text-sm">{shapError}</div>
                                     ) : featureContributions.length > 0 ? (
                                         <div className="space-y-3">
                                             {featureContributions.slice(0, 5).map((feature, idx) => (
                                                 <div key={idx}>
                                                     <div className="flex justify-between items-center mb-1">
-                                                        <span className="text-sm text-gray-300">{feature.name}</span>
-                                                        <span className={`text-sm font-bold ${feature.impact === 'negative' ? 'text-red-400' : 'text-green-400'
+                                                        <span className="text-sm text-ink-2">{feature.name}</span>
+                                                        <span className={`text-sm font-bold ${feature.impact === 'negative' ? 'text-signal' : 'text-ok'
                                                             }`}>
                                                             {feature.value}%
                                                         </span>
                                                     </div>
-                                                    <div className="w-full h-2 bg-slate-600 rounded-full overflow-hidden">
+                                                    <div className="w-full h-2 bg-line rounded-full overflow-hidden">
                                                         <div
-                                                            className={`h-full transition-all duration-500 ${feature.impact === 'negative' ? 'bg-red-500' : 'bg-green-500'
+                                                            className={`h-full transition-all duration-500 ${feature.impact === 'negative' ? 'bg-signal' : 'bg-ok'
                                                                 }`}
                                                             style={{ width: `${featureContributions[0].value > 0 ? Math.max(4, Math.round((feature.value / featureContributions[0].value) * 100)) : 4}%` }}
                                                         />
@@ -382,7 +382,7 @@ const ChurnPredictionPage = ({ onBack }) => {
                                             ))}
                                         </div>
                                     ) : (
-                                        <div className="text-center py-4 text-amber-400 text-sm">
+                                        <div className="text-center py-4 text-amber-700 text-sm">
                                             ⚠️ Combinaison non trouvée dans les SHAP
                                         </div>
                                     )}
@@ -392,15 +392,15 @@ const ChurnPredictionPage = ({ onBack }) => {
                     </div>
 
                     {/* 4. MÉTHODOLOGIE & STACK TECHNIQUE */}
-                    <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-slate-700">
-                        <h2 className="text-2xl font-bold text-white mb-8 text-center">Méthodologie & Stack Technique</h2>
+                    <div className="bg-surface rounded-lg p-5 sm:p-8 border border-line">
+                        <h2 className="font-display text-2xl font-semibold text-ink mb-8 text-center leading-tight">Méthodologie & Stack Technique</h2>
                         <div className="grid md:grid-cols-3 gap-8">
                             <div className="text-center">
-                                <div className="bg-purple-600/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <div className="bg-accent-soft w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                                     <span className="text-3xl"><Activity size={18} /></span>
                                 </div>
-                                <h3 className="text-lg font-bold text-purple-400 mb-3">Méthodologie</h3>
-                                <ul className="space-y-2 text-gray-300 text-sm">
+                                <h3 className="font-display text-lg font-semibold text-accent mb-3 leading-tight">Méthodologie</h3>
+                                <ul className="space-y-2 text-ink-2 text-sm">
                                     <li>Détection d’une variable en fuite (r = 1,00)</li>
                                     <li>Nettoyage et feature engineering métier</li>
                                     <li>Réduction à 9 variables par importance</li>
@@ -408,11 +408,11 @@ const ChurnPredictionPage = ({ onBack }) => {
                                 </ul>
                             </div>
                             <div className="text-center">
-                                <div className="bg-purple-600/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <div className="bg-accent-soft w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                                     <span className="text-3xl"><Code size={18} /></span>
                                 </div>
-                                <h3 className="text-lg font-bold text-purple-400 mb-3">Technologies</h3>
-                                <ul className="space-y-2 text-gray-300 text-sm">
+                                <h3 className="font-display text-lg font-semibold text-accent mb-3 leading-tight">Technologies</h3>
+                                <ul className="space-y-2 text-ink-2 text-sm">
                                     <li>XGBoost (classification)</li>
                                     <li>Pandas / NumPy</li>
                                     <li>Matplotlib / Seaborn</li>
@@ -420,11 +420,11 @@ const ChurnPredictionPage = ({ onBack }) => {
                                 </ul>
                             </div>
                             <div className="text-center">
-                                <div className="bg-purple-600/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <div className="bg-accent-soft w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                                     <span className="text-3xl"><BarChart2 size={18} /></span>
                                 </div>
-                                <h3 className="text-lg font-bold text-purple-400 mb-3">Résultats Clés</h3>
-                                <ul className="space-y-2 text-gray-300 text-sm">
+                                <h3 className="font-display text-lg font-semibold text-accent mb-3 leading-tight">Résultats Clés</h3>
+                                <ul className="space-y-2 text-ink-2 text-sm">
                                     <li>ROC-AUC 0,866 (indépendant du seuil)</li>
                                     <li>Recall 90 % / précision ≈36 % au seuil retenu</li>
                                     <li>9 variables utilisées dans la démo</li>

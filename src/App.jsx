@@ -53,7 +53,7 @@ const App = () => {
   };
 
   return (
-    <Suspense fallback={<div className="min-h-screen bg-slate-950 text-white flex items-center justify-center">Chargement du projet…</div>}>
+    <Suspense fallback={<div className="min-h-screen bg-paper text-ink flex items-center justify-center">Chargement du projet…</div>}>
       {renderPage()}
     </Suspense>
   );
