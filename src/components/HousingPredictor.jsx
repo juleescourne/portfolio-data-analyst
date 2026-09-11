@@ -68,16 +68,16 @@ const HousingPredictor = () => {
     return (
         <div className="space-y-8">
             {/* Controls Panel */}
-            <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700">
-                <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-                    <TrendingUp className="text-purple-400" />
+            <div className="bg-surface rounded-lg p-4 sm:p-6 border border-line">
+                <h2 className="font-display text-2xl font-semibold text-ink mb-6 flex items-center gap-2 leading-tight">
+                    <TrendingUp className="text-accent" />
                     Paramètres du Quartier
                 </h2>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {/* Âge médian */}
                     <div>
-                        <label className="block text-gray-300 mb-2 font-medium">
+                        <label className="block text-ink-2 mb-2 font-medium">
                             Âge médian des maisons (années)
                         </label>
                         <input
@@ -86,16 +86,16 @@ const HousingPredictor = () => {
                             max={FEATURE_BOUNDS.housing_median_age.max}
                             value={params.housing_median_age}
                             onChange={(e) => handleParamChange('housing_median_age', e.target.value)}
-                            className="w-full h-2 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                            className="w-full h-2 bg-line rounded-lg appearance-none cursor-pointer accent-accent"
                         />
-                        <div className="text-purple-400 font-semibold mt-1">
+                        <div className="text-accent font-semibold mt-1">
                             {params.housing_median_age} ans
                         </div>
                     </div>
 
                     {/* Total pièces */}
                     <div>
-                        <label className="block text-gray-300 mb-2 font-medium">
+                        <label className="block text-ink-2 mb-2 font-medium">
                             Total pièces (quartier)
                         </label>
                         <input
@@ -105,16 +105,16 @@ const HousingPredictor = () => {
                             step={100}
                             value={params.total_rooms}
                             onChange={(e) => handleParamChange('total_rooms', e.target.value)}
-                            className="w-full h-2 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                            className="w-full h-2 bg-line rounded-lg appearance-none cursor-pointer accent-accent"
                         />
-                        <div className="text-purple-400 font-semibold mt-1">
+                        <div className="text-accent font-semibold mt-1">
                             {params.total_rooms.toLocaleString()}
                         </div>
                     </div>
 
                     {/* Population */}
                     <div>
-                        <label className="block text-gray-300 mb-2 font-medium">
+                        <label className="block text-ink-2 mb-2 font-medium">
                             Population (quartier)
                         </label>
                         <input
@@ -124,16 +124,16 @@ const HousingPredictor = () => {
                             step={100}
                             value={params.population}
                             onChange={(e) => handleParamChange('population', e.target.value)}
-                            className="w-full h-2 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                            className="w-full h-2 bg-line rounded-lg appearance-none cursor-pointer accent-accent"
                         />
-                        <div className="text-purple-400 font-semibold mt-1">
+                        <div className="text-accent font-semibold mt-1">
                             {params.population.toLocaleString()}
                         </div>
                     </div>
 
                     {/* Households */}
                     <div>
-                        <label className="block text-gray-300 mb-2 font-medium">
+                        <label className="block text-ink-2 mb-2 font-medium">
                             Nombre de foyers
                         </label>
                         <input
@@ -143,16 +143,16 @@ const HousingPredictor = () => {
                             step={10}
                             value={params.households}
                             onChange={(e) => handleParamChange('households', e.target.value)}
-                            className="w-full h-2 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                            className="w-full h-2 bg-line rounded-lg appearance-none cursor-pointer accent-accent"
                         />
-                        <div className="text-purple-400 font-semibold mt-1">
+                        <div className="text-accent font-semibold mt-1">
                             {params.households.toLocaleString()}
                         </div>
                     </div>
 
                     {/* Revenu médian */}
                     <div>
-                        <label className="block text-gray-300 mb-2 font-medium">
+                        <label className="block text-ink-2 mb-2 font-medium">
                             Revenu médian (×10k$)
                         </label>
                         <input
@@ -162,31 +162,31 @@ const HousingPredictor = () => {
                             step={0.1}
                             value={params.median_income}
                             onChange={(e) => handleParamChange('median_income', e.target.value)}
-                            className="w-full h-2 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                            className="w-full h-2 bg-line rounded-lg appearance-none cursor-pointer accent-accent"
                         />
-                        <div className="text-purple-400 font-semibold mt-1">
+                        <div className="text-accent font-semibold mt-1">
                             ${(params.median_income * 10000).toLocaleString()}/an
                         </div>
                     </div>
                 </div>
 
                 {/* Métriques dérivées */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-slate-600">
-                    <div className="bg-slate-700/50 p-3 rounded-lg">
-                        <div className="text-gray-400 text-sm">Âge Médian</div>
-                        <div className="text-white font-bold text-lg">{params.housing_median_age} ans</div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-line">
+                    <div className="bg-raised p-3 rounded-lg">
+                        <div className="text-muted text-sm">Âge Médian</div>
+                        <div className="text-ink font-bold text-lg">{params.housing_median_age} ans</div>
                     </div>
-                    <div className="bg-slate-700/50 p-3 rounded-lg">
-                        <div className="text-gray-400 text-sm">Revenu Médian</div>
-                        <div className="text-white font-bold text-lg">${(params.median_income * 10000).toLocaleString()}</div>
+                    <div className="bg-raised p-3 rounded-lg">
+                        <div className="text-muted text-sm">Revenu Médian</div>
+                        <div className="text-ink font-bold text-lg">${(params.median_income * 10000).toLocaleString()}</div>
                     </div>
-                    <div className="bg-slate-700/50 p-3 rounded-lg">
-                        <div className="text-gray-400 text-sm">Pièces/Foyer</div>
-                        <div className="text-white font-bold text-lg">{derivedMetrics.roomsPerHH.toFixed(1)}</div>
+                    <div className="bg-raised p-3 rounded-lg">
+                        <div className="text-muted text-sm">Pièces/Foyer</div>
+                        <div className="text-ink font-bold text-lg">{derivedMetrics.roomsPerHH.toFixed(1)}</div>
                     </div>
-                    <div className="bg-slate-700/50 p-3 rounded-lg">
-                        <div className="text-gray-400 text-sm">Pop/Foyer</div>
-                        <div className="text-white font-bold text-lg">{derivedMetrics.popPerHH.toFixed(1)}</div>
+                    <div className="bg-raised p-3 rounded-lg">
+                        <div className="text-muted text-sm">Pop/Foyer</div>
+                        <div className="text-ink font-bold text-lg">{derivedMetrics.popPerHH.toFixed(1)}</div>
                     </div>
                 </div>
 
@@ -194,7 +194,7 @@ const HousingPredictor = () => {
                 <button
                     onClick={handleGenerate}
                     disabled={loading}
-                    className="w-full mt-6 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 disabled:from-gray-600 disabled:to-gray-700 text-white font-semibold py-3 px-6 rounded-lg transition flex items-center justify-center gap-2"
+                    className="w-full mt-6 bg-accent hover:bg-accent-dark disabled:bg-muted disabled:cursor-wait text-white font-semibold py-3 px-6 rounded-lg transition flex items-center justify-center gap-2"
                 >
                     {loading ? (
                         <>
@@ -212,31 +212,31 @@ const HousingPredictor = () => {
 
             {/* Results */}
             {isCalculating && (
-                <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-12 border border-slate-700">
+                <div className="bg-surface rounded-lg p-4 sm:p-12 border border-line">
                     <div className="flex flex-col items-center justify-center h-[600px]">
                         <div className="relative">
-                            <div className="animate-spin rounded-full h-20 w-20 border-4 border-purple-500 border-t-transparent"></div>
+                            <div className="animate-spin rounded-full h-20 w-20 border-4 border-accent border-t-transparent"></div>
                             <div className="absolute inset-0 flex items-center justify-center">
-                                <span className="text-purple-400 font-bold text-sm">{progress}%</span>
+                                <span className="text-accent font-bold text-sm">{progress}%</span>
                             </div>
                         </div>
-                        <div className="text-white mt-6 text-xl font-semibold">Calcul en cours...</div>
-                        <div className="text-gray-400 mt-2 text-sm">Génération des prédictions pour la Californie</div>
+                        <div className="text-ink mt-6 text-xl font-semibold">Calcul en cours...</div>
+                        <div className="text-muted mt-2 text-sm">Génération des prédictions pour la Californie</div>
 
                         {/* Barre de progression */}
                         <div className="w-full max-w-md mt-6">
-                            <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
+                            <div className="h-2 bg-raised rounded-full overflow-hidden">
                                 <div
-                                    className="h-full bg-gradient-to-r from-purple-500 to-purple-600 transition-all duration-300 ease-out"
+                                    className="h-full bg-accent transition-all duration-300 ease-out"
                                     style={{ width: `${progress}%` }}
                                 ></div>
                             </div>
                         </div>
 
                         <div className="mt-4 flex gap-2">
-                            <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                            <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                            <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                            <div className="w-2 h-2 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                            <div className="w-2 h-2 bg-accent rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                            <div className="w-2 h-2 bg-accent rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
                         </div>
                     </div>
                 </div>
@@ -255,36 +255,36 @@ const ResultsSection = React.memo(({ results }) => {
         <>
             {/* Statistics */}
             <div className="grid md:grid-cols-4 gap-4">
-                <div className="bg-gradient-to-br from-green-600/20 to-green-900/20 backdrop-blur-sm rounded-xl p-6 border border-green-500/30">
-                    <div className="text-gray-300 text-sm mb-1">Score min</div>
-                    <div className="text-2xl font-bold text-green-400">
+                <div className="bg-surface rounded-lg p-4 sm:p-6 border border-line">
+                    <div className="text-ink-2 text-sm mb-1">Score min</div>
+                    <div className="font-mono tabular text-2xl font-semibold text-ink">
                         {results.stats.min.toLocaleString()}
                     </div>
                 </div>
-                <div className="bg-gradient-to-br from-blue-600/20 to-blue-900/20 backdrop-blur-sm rounded-xl p-6 border border-blue-500/30">
-                    <div className="text-gray-300 text-sm mb-1">Score moyen</div>
-                    <div className="text-2xl font-bold text-blue-400">
+                <div className="bg-surface rounded-lg p-4 sm:p-6 border border-line">
+                    <div className="text-ink-2 text-sm mb-1">Score moyen</div>
+                    <div className="font-mono tabular text-2xl font-semibold text-ink">
                         {results.stats.mean.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                     </div>
                 </div>
-                <div className="bg-gradient-to-br from-purple-600/20 to-purple-900/20 backdrop-blur-sm rounded-xl p-6 border border-purple-500/30">
-                    <div className="text-gray-300 text-sm mb-1">Score max</div>
-                    <div className="text-2xl font-bold text-purple-400">
+                <div className="bg-surface rounded-lg p-4 sm:p-6 border border-line">
+                    <div className="text-ink-2 text-sm mb-1">Score max</div>
+                    <div className="font-mono tabular text-2xl font-semibold text-ink">
                         {results.stats.max.toLocaleString()}
                     </div>
                 </div>
-                <div className="bg-gradient-to-br from-orange-600/20 to-orange-900/20 backdrop-blur-sm rounded-xl p-6 border border-orange-500/30">
-                    <div className="text-gray-300 text-sm mb-1">Écart-type du score</div>
-                    <div className="text-2xl font-bold text-orange-400">
+                <div className="bg-surface rounded-lg p-4 sm:p-6 border border-line">
+                    <div className="text-ink-2 text-sm mb-1">Écart-type du score</div>
+                    <div className="font-mono tabular text-2xl font-semibold text-ink">
                         {results.stats.std.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                     </div>
                 </div>
             </div>
 
             {/* Heatmap */}
-            <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700">
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                    <Map className="text-purple-400" />
+            <div className="bg-surface rounded-lg p-4 sm:p-6 border border-line">
+                <h3 className="font-display text-xl font-semibold text-ink mb-4 flex items-center gap-2 leading-tight">
+                    <Map className="text-accent" />
                     Carte du score relatif
                 </h3>
                 <HeatmapPlot results={results} />
@@ -299,7 +299,7 @@ const ResultsSection = React.memo(({ results }) => {
 const HeatmapPlot = React.memo(({ results }) => {
     // Vérifications de sécurité
     if (!results || !results.latitudes || !results.longitudes || !results.predictions) {
-        return <div className="text-red-400 p-4">Erreur: Données géographiques manquantes</div>;
+        return <div className="text-signal p-4">Erreur: Données géographiques manquantes</div>;
     }
 
     // Le score brut est très asymétrique (moyenne ≈ 17 sur 100) : une échelle de couleur
@@ -326,18 +326,20 @@ const HeatmapPlot = React.memo(({ results }) => {
             cmin: 0,
             cmax: 100,
             colorscale: [
-                [0, '#00FF00'],      // Vert - Prix bas
-                [0.2, '#7FFF00'],    // Vert clair
-                [0.4, '#FFD700'],    // Jaune
-                [0.6, '#FF8C00'],    // Orange
-                [0.8, '#FF4500'],    // Rouge orange
-                [1, '#8B0000']       // Rouge foncé - Prix haut
+                [0, '#e2eeed'],
+                [0.2, '#bdd7d5'],
+                [0.4, '#89b5b4'],
+                [0.6, '#528e90'],
+                [0.8, '#0d5e63'],
+                [1, '#0a4a4e']
             ],
             showscale: true,
             colorbar: {
-                title: 'Rang centile',
-                thickness: 20,
-                len: 0.7
+                title: { text: 'Rang centile', side: 'top' },
+                orientation: 'h',
+                y: -0.18,
+                thickness: 14,
+                len: 0.8
             },
             opacity: 0.8,
             line: {
@@ -356,29 +358,30 @@ const HeatmapPlot = React.memo(({ results }) => {
 
     const layout = {
         title: {
-            text: 'Californie — score relatif du scénario',
-            font: { color: '#e2e8f0', size: 16 },
+            text: 'Californie — score relatif',
+            font: { color: '#141a19', family: 'IBM Plex Sans, sans-serif', size: 16 },
             x: 0.5,
             xanchor: 'center'
         },
         xaxis: {
             title: 'Longitude',
-            gridcolor: 'rgba(148, 163, 184, 0.2)',
-            color: '#94a3b8',
+            gridcolor: '#e9eee9',
+            color: '#626d6a',
             zeroline: false
         },
         yaxis: {
             title: 'Latitude',
-            gridcolor: 'rgba(148, 163, 184, 0.2)',
-            color: '#94a3b8',
+            gridcolor: '#e9eee9',
+            color: '#626d6a',
             zeroline: false,
             scaleanchor: 'x',
             scaleratio: 1.3  // Ajuster le ratio pour mieux représenter la forme de la Californie
         },
         height: 600,
-        margin: { t: 50, b: 50, l: 60, r: 100 },
-        paper_bgcolor: 'rgba(30, 41, 59, 0.5)',
-        plot_bgcolor: 'rgba(15, 23, 42, 0.8)',
+        margin: { t: 60, b: 100, l: 45, r: 20 },
+        paper_bgcolor: '#ffffff',
+        font: { family: 'IBM Plex Sans, sans-serif', color: '#3b4644', size: 14 },
+        plot_bgcolor: '#f6f8f6',
         hovermode: 'closest'
     };
 
@@ -391,7 +394,7 @@ const HeatmapPlot = React.memo(({ results }) => {
 
     return (
         <div className="w-full">
-            <div className="mb-3 text-sm text-gray-400 flex items-center gap-2">
+            <div className="mb-3 text-sm text-muted flex items-center gap-2">
                 <Map size={16} />
                 Chaque point représente une localisation. La couleur indique le rang centile de la zone
                 dans ce scénario — le score brut étant très asymétrique, une échelle linéaire rendrait la
