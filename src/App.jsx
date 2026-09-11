@@ -4,6 +4,8 @@ import HomePage from './pages/HomePage';
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
 const HousingProjectPage = lazy(() => import('./pages/HousingProjectPage'));
 const ChurnPredictionPage = lazy(() => import('./pages/ChurnPredictionPage'));
+const CuttingToolsPage = lazy(() => import('./pages/CuttingToolsPage'));
+const QvtPage = lazy(() => import('./pages/QvtPage'));
 
 const getRouteFromHash = () => {
   const hash = window.location.hash || '';
@@ -41,6 +43,10 @@ const App = () => {
         return <HousingProjectPage onBack={() => navigate('home')} />;
       case 'churn':
         return <ChurnPredictionPage onBack={() => navigate('home')} />;
+      case 'cutting-tools':
+        return <CuttingToolsPage onBack={() => navigate('home')} />;
+      case 'qvt':
+        return <QvtPage onBack={() => navigate('home')} />;
       default:
         return <HomePage onShowProject={navigate} />;
     }
