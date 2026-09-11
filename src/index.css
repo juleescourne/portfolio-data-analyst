@@ -1,9 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-html { scroll-behavior: smooth; }
-body { margin: 0; background: #0f172a; }
-:focus-visible { outline: 2px solid #c084fc; outline-offset: 3px; }
+
+html {
+  scroll-behavior: smooth;
+  /* Compense la barre de navigation fixe lors d'une navigation par ancre :
+     sans cela, le titre de section se retrouve caché derrière elle. */
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  background: #f6f8f6;
+  color: #141a19;
+  font-family: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:focus-visible {
+  outline: 2px solid #0d5e63;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Les titres respirent mieux quand les retours à la ligne sont équilibrés. */
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+/* Chiffres alignés en colonne dans les tableaux et les compteurs. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
