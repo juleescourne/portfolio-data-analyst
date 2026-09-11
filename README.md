@@ -24,15 +24,28 @@ The portfolio is intentionally centered on a coherent Data profile rather than a
 
 ## Portfolio features
 
-- Responsive recruiter-oriented landing page
-- Mobile navigation and accessible focus states
-- Hash-based project routes that work on GitHub Pages and support browser back/forward
-- Lazy-loaded heavy project demos to keep the landing page lighter
-- Interactive ONNX churn inference demo
-- Interactive California scenario visualization
-- Goodreads dashboard walkthrough with contextual insights
+- Recruiter-oriented landing page: availability, mobility, downloadable CV in the hero
+- Proof band of verifiable figures, each traceable to a repository
+- Skills mapped to the project that demonstrates them — nothing listed without evidence
+- Five runnable demos: ONNX churn inference, California scenario map, Goodreads
+  dashboards, and two embedded applications (cutting-tool PCA, QVTi survey explorer)
+- Hash-based routes that work on GitHub Pages and support browser back/forward
+- Lazy-loaded heavy demos to keep the landing page light
 - SEO and social metadata, including an OpenGraph share image
-- GitHub Actions CI for tests and production build
+- GitHub Actions CI: six tests plus a production build
+
+## Generating the CV
+
+The PDF served by the hero is composed in HTML and rendered by Chromium, so screen
+and print share a single source:
+
+```bash
+npm install --no-save playwright && npx playwright install chromium
+node scripts/build-cv.js --preview
+```
+
+Output: `public/cv-jules-courne.pdf`. Three fields at the top of the script still
+need filling — school name, graduation year, and contract type per role.
 
 ## Important demo notes
 
