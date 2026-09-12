@@ -111,7 +111,7 @@ const EmbeddedDemo = ({
                 </div>
 
                 <p className="text-xs text-muted mt-3">
-                    Le cadre ci-dessus exécute l’application réelle. Si rien ne s’affiche — certains réseaux
+                    Le cadre ci-dessus présente la démo interactive du projet. Si rien ne s’affiche — certains réseaux
                     d’entreprise bloquent les cadres externes — utilisez le bouton{' '}
                     <span className="text-ink-2">Ouvrir en plein écran</span>.
                 </p>

@@ -23,11 +23,13 @@ const HousingPredictor = () => {
 
     const [results, setResults] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
     const [isCalculating, setIsCalculating] = useState(false);
     const [progress, setProgress] = useState(0);
 
     const handleGenerate = async () => {
         setLoading(true);
+        setError('');
         setIsCalculating(true);
         setResults(null);
         setProgress(0);
@@ -43,7 +45,7 @@ const HousingPredictor = () => {
             setResults(predictionResults);
         } catch (error) {
             console.error('Erreur de prédiction:', error);
-            alert('Erreur lors de la génération de la heatmap');
+            setError('La carte ne peut pas être calculée. Vérifiez la connexion puis relancez la génération.');
         } finally {
             setLoading(false);
             setIsCalculating(false);
@@ -52,6 +54,7 @@ const HousingPredictor = () => {
     };
 
     const handleParamChange = (key, value) => {
+        setResults(null);
         setParams(prev => ({
             ...prev,
             [key]: parseFloat(value)
@@ -67,6 +70,17 @@ const HousingPredictor = () => {
 
     return (
         <div className="space-y-8">
+            <div className="bg-accent-soft border border-line rounded-lg p-4 space-y-3">
+                <h3 className="font-display text-2xl font-semibold">Comparer les localisations dans un scénario</h3>
+                <p>Les caractéristiques du quartier sont appliquées à toutes les localisations. La carte permet d’examiner la sensibilité spatiale du modèle, pas de fixer un prix de vente.</p>
+                <div className="flex flex-wrap gap-3">{[
+                    ['Référence', {housing_median_age:29,total_rooms:2127,population:1166,households:409,median_income:3.87}],
+                    ['Revenu plus élevé', {housing_median_age:29,total_rooms:2127,population:1166,households:409,median_income:6}],
+                    ['Habitat plus ancien', {housing_median_age:45,total_rooms:2127,population:1166,households:409,median_income:3.87}],
+                ].map(([name, values])=><button disabled={loading} key={name} className="bg-surface border border-line rounded px-3 py-2" onClick={()=>{setParams(values);setResults(null);}}>{name}</button>)}</div>
+                <p className="text-sm text-ink-2">Chaque carte est normalisée séparément entre 0 et 100. Un score de 80 sur deux scénarios ne représente donc pas le même niveau brut. Une différence de scénario ne démontre pas un effet causal du revenu ou de l’âge.</p>
+            </div>
+            {error && <p role="alert" className="bg-signal-soft text-signal p-4 rounded">{error}</p>}
             {/* Controls Panel */}
             <div className="bg-surface rounded-lg p-4 sm:p-6 border border-line">
                 <h2 className="font-display text-2xl font-semibold text-ink mb-6 flex items-center gap-2 leading-tight">
@@ -82,6 +96,8 @@ const HousingPredictor = () => {
                         </label>
                         <input
                             type="range"
+                            disabled={loading}
+                            aria-label="housing_median_age"
                             min={FEATURE_BOUNDS.housing_median_age.min}
                             max={FEATURE_BOUNDS.housing_median_age.max}
                             value={params.housing_median_age}
@@ -100,6 +116,8 @@ const HousingPredictor = () => {
                         </label>
                         <input
                             type="range"
+                            disabled={loading}
+                            aria-label="total_rooms"
                             min={FEATURE_BOUNDS.total_rooms.min}
                             max={FEATURE_BOUNDS.total_rooms.max}
                             step={100}
@@ -119,6 +137,8 @@ const HousingPredictor = () => {
                         </label>
                         <input
                             type="range"
+                            disabled={loading}
+                            aria-label="population"
                             min={FEATURE_BOUNDS.population.min}
                             max={FEATURE_BOUNDS.population.max}
                             step={100}
@@ -138,6 +158,8 @@ const HousingPredictor = () => {
                         </label>
                         <input
                             type="range"
+                            disabled={loading}
+                            aria-label="households"
                             min={FEATURE_BOUNDS.households.min}
                             max={FEATURE_BOUNDS.households.max}
                             step={10}
@@ -157,6 +179,8 @@ const HousingPredictor = () => {
                         </label>
                         <input
                             type="range"
+                            disabled={loading}
+                            aria-label="median_income"
                             min={FEATURE_BOUNDS.median_income.min}
                             max={FEATURE_BOUNDS.median_income.max}
                             step={0.1}
@@ -256,9 +280,9 @@ const ResultsSection = React.memo(({ results }) => {
             {/* Statistics */}
             <div className="grid md:grid-cols-4 gap-4">
                 <div className="bg-surface rounded-lg p-4 sm:p-6 border border-line">
-                    <div className="text-ink-2 text-sm mb-1">Score min</div>
+                    <div className="text-ink-2 text-sm mb-1">Localisations évaluées</div>
                     <div className="font-mono tabular text-2xl font-semibold text-ink">
-                        {results.stats.min.toLocaleString()}
+                        {results.predictions.length.toLocaleString()}
                     </div>
                 </div>
                 <div className="bg-surface rounded-lg p-4 sm:p-6 border border-line">
@@ -268,9 +292,9 @@ const ResultsSection = React.memo(({ results }) => {
                     </div>
                 </div>
                 <div className="bg-surface rounded-lg p-4 sm:p-6 border border-line">
-                    <div className="text-ink-2 text-sm mb-1">Score max</div>
+                    <div className="text-ink-2 text-sm mb-1">Score médian</div>
                     <div className="font-mono tabular text-2xl font-semibold text-ink">
-                        {results.stats.max.toLocaleString()}
+                        {[...results.predictions].sort((a,b)=>a-b)[Math.floor(results.predictions.length/2)].toLocaleString()}
                     </div>
                 </div>
                 <div className="bg-surface rounded-lg p-4 sm:p-6 border border-line">
@@ -311,9 +335,13 @@ const HeatmapPlot = React.memo(({ results }) => {
         .sort((a, b) => a[0] - b[0]);
     const percentiles = new Array(results.predictions.length);
     const lastRank = Math.max(1, order.length - 1);
-    order.forEach(([, index], rank) => {
-        percentiles[index] = (rank / lastRank) * 100;
-    });
+    for (let start = 0; start < order.length;) {
+        let end = start;
+        while (end + 1 < order.length && order[end + 1][0] === order[start][0]) end++;
+        const rank = ((start + end) / 2 / lastRank) * 100;
+        for (let i = start; i <= end; i++) percentiles[order[i][1]] = rank;
+        start = end + 1;
+    }
 
     const data = [{
         type: 'scatter',

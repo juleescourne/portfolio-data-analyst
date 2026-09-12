@@ -29,7 +29,7 @@ export const useShapValues = () => {
         const ageStep = 5;
         const roundedAge = userInputs.age < 18
             ? 18
-            : 18 + Math.floor((userInputs.age - 18) / ageStep) * ageStep;
+            : Math.min(98, 18 + Math.round((userInputs.age - 18) / ageStep) * ageStep);
         const roundedBalance = Math.round(userInputs.balance / balanceStep) * balanceStep;
         const key = `${userInputs.num_of_products}|${userInputs.geography}|${roundedAge}|${userInputs.gender}|${roundedBalance}|${userInputs.is_active_member}`;
         return shapLookup[key] || null;

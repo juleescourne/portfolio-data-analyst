@@ -8,14 +8,14 @@ const CuttingToolsPage = ({ onBack }) => (
         tags={['Python', 'MySQL', 'SQLAlchemy', 'ACP', 'Plotly', 'scikit-learn']}
         repository="https://github.com/juleescourne/cutting-tool-recommender"
         src={`${process.env.PUBLIC_URL}/demos/cutting-tools.html`}
-        height={1180}
+        height={1850}
         facts={[
             { value: '12', label: 'entités modélisées en MySQL' },
-            { value: '60', label: 'essais synthétiques' },
-            { value: '61,6 %', label: 'variance sur 2 axes' },
+            { value: '360', label: 'essais synthétiques' },
+            { value: '2D / 3D', label: 'vues ACP interactives' },
             { value: '6', label: 'grandeurs physiques' },
         ]}
-        disclaimer="Démonstration sur données synthétiques : les mesures du partenariat de recherche ne sont pas redistribuables. Les essais sont générés selon les lois physiques de la coupe — Kienzle pour l'effort, Taylor pour l'usure, rugosité théorique — et non aléatoirement. L'algorithme est celui de l'application réelle, un logiciel de bureau Python/Tkinter adossé à MySQL."
+        disclaimer="Démonstration sur données synthétiques : les mesures du partenariat de recherche ne sont pas redistribuables. Les essais proviennent d’un modèle simplifié inspiré des relations de coupe, avec une variabilité simulée ; ils ne constituent pas un simulateur industriel validé. L'algorithme est celui de l'application réelle, un logiciel de bureau Python/Tkinter adossé à MySQL."
     />
 );
 
