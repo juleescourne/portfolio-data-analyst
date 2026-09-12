@@ -181,4 +181,5 @@ class HousingModel {
     }
 }
 
-export default new HousingModel();
+const housingModel = new HousingModel();
+export default housingModel;

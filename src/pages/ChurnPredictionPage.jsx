@@ -18,6 +18,9 @@ const ChurnPredictionPage = ({ onBack }) => {
 
     const [churnProbability, setChurnProbability] = useState(null);
     const [modelLoaded, setModelLoaded] = useState(false);
+    const [modelError, setModelError] = useState('');
+    const [threshold, setThreshold] = useState(0.5);
+    const [predicting, setPredicting] = useState(false);
     const sessionRef = useRef(null);
 
     const { getShapForInputs, isLoading: shapLoading, error: shapError } = useShapValues();
@@ -30,6 +33,8 @@ const ChurnPredictionPage = ({ onBack }) => {
     }, []);
 
     const loadONNXModel = async () => {
+        setModelError('');
+        setModelLoaded(false);
         try {
             // Charger depuis jsDelivr CDN
             const modelUrl = getDataUrl('xgb_churn_model.onnx');
@@ -38,6 +43,7 @@ const ChurnPredictionPage = ({ onBack }) => {
             setModelLoaded(true);
         } catch (error) {
             console.error('Erreur lors du chargement du modèle:', error);
+            setModelError('Le modèle ne peut pas être chargé. Vérifiez la connexion puis réessayez.');
             setModelLoaded(false);
         }
     };
@@ -94,6 +100,7 @@ const ChurnPredictionPage = ({ onBack }) => {
             };
         } catch (error) {
             console.error('Erreur de prédiction:', error);
+            setModelError('La prédiction a échoué. Réessayez le chargement du modèle.');
             return {
                 prediction: 0,
                 probabilities: null
@@ -102,20 +109,15 @@ const ChurnPredictionPage = ({ onBack }) => {
     };
 
     useEffect(() => {
-        const updatePrediction = async () => {
-            const features = calculateFeatures(userInputs);
-
-            let result = { prediction: 0, probabilities: null };
-            if (modelLoaded && sessionRef.current) {
-                result = await predictWithONNX(features);
-            }
-
-            setTimeout(() => {
-                setChurnProbability(result.probabilities);
-            }, 400);
-        };
-
-        updatePrediction();
+        let active = true;
+        setChurnProbability(null);
+        if (!modelLoaded || !sessionRef.current) return undefined;
+        setPredicting(true);
+        const timer = setTimeout(async () => {
+            const result = await predictWithONNX(calculateFeatures(userInputs));
+            if (active) { setChurnProbability(result.probabilities); setPredicting(false); }
+        }, 200);
+        return () => { active = false; clearTimeout(timer); };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userInputs, modelLoaded]);
 
@@ -135,7 +137,7 @@ const ChurnPredictionPage = ({ onBack }) => {
             value: totalAbs > 0 ? Math.round((Math.abs(shap.shap_value) / totalAbs) * 100) : 0,
             impact: shap.shap_value > 0 ? 'negative' : 'positive',
             shap_value: shap.shap_value
-        }));
+        })).sort((a, b) => Math.abs(b.shap_value) - Math.abs(a.shap_value));
     };
 
     const featureContributions = getFeatureContributions();
@@ -183,6 +185,12 @@ const ChurnPredictionPage = ({ onBack }) => {
                         </div>
                     </div>
 
+                    <section className="bg-accent-soft border border-line rounded-lg p-5 space-y-3">
+                        <h2 className="font-display text-2xl font-semibold">Décider qui examiner, puis mesurer le coût des erreurs</h2>
+                        <p>La démo classe des profils clients fictifs. Une alerte sert à prioriser une analyse ; elle ne démontre ni un départ certain ni l’efficacité d’une campagne de rétention.</p>
+                        <details><summary className="cursor-pointer font-semibold">Lire les performances historiques</summary><p className="mt-2">Recall ≈ 90 % : environ 9 départs sur 10 sont détectés au seuil exploré. Précision ≈ 36 % : sur 100 alertes, environ 36 correspondent à un départ observé dans l’échantillon évalué. Ces chiffres ne sont pas recalculés sur le profil affiché. ROC-AUC 0,866 mesure le classement global, pas la calibration des probabilités.</p><p>Pour démontrer un impact métier : choisir le seuil sur validation, évaluer sur un test indépendant, puis mesurer le coût de contact et les départs réellement évités avec un groupe témoin.</p></details>
+                    </section>
+
                     {/* 2. RÉSULTATS GLOBAUX - Ligne de blocs KPI */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div className="bg-surface rounded-lg p-4 sm:p-6 border border-line"><div className="font-mono tabular text-2xl sm:text-3xl font-semibold text-ink mb-2">≈90%</div><div className="text-sm text-muted">Recall churn</div></div>
@@ -202,6 +210,13 @@ const ChurnPredictionPage = ({ onBack }) => {
                             Ajustez les paramètres client pour voir la prédiction en temps réel et les facteurs d'influence (SHAP)
                         </p>
 
+                        <div className="flex flex-wrap gap-3 mb-6">
+                            <span className="text-muted">Profils fictifs à comparer :</span>
+                            {[['Référence', {age:35,gender:'Homme',geography:'France',num_of_products:1,balance:50000,is_active_member:1}], ['Inactif', {age:35,gender:'Homme',geography:'France',num_of_products:1,balance:50000,is_active_member:0}], ['Deux produits', {age:35,gender:'Homme',geography:'France',num_of_products:2,balance:50000,is_active_member:1}]].map(([name, inputs]) => <button key={name} className="border border-line rounded px-3 py-2 hover:bg-accent-soft" onClick={() => setUserInputs(inputs)}>{name}</button>)}
+                        </div>
+                        <p className="text-sm text-muted mb-5">Ces scénarios changent un facteur à la fois. La différence est une réaction du modèle, pas l’effet causal d’une action. Les variables de genre et de pays demanderaient un audit d’équité avant un usage réel.</p>
+                        {modelError && <div role="alert" className="bg-signal-soft text-signal rounded p-4 mb-5">{modelError} <button className="underline" onClick={loadONNXModel}>Réessayer</button></div>}
+                        {!modelLoaded && !modelError && <p role="status" className="text-accent mb-4">Chargement du modèle…</p>}
                         <div className="grid md:grid-cols-2 gap-6">
                             {/* Inputs */}
                             <div className="space-y-4">
@@ -212,6 +227,7 @@ const ChurnPredictionPage = ({ onBack }) => {
                                     </label>
                                     <input
                                         type="range"
+                                        aria-label="Âge du client"
                                         min="18"
                                         max="100"
                                         value={userInputs.age}
@@ -227,6 +243,7 @@ const ChurnPredictionPage = ({ onBack }) => {
                                         {['Homme', 'Femme'].map(genre => (
                                             <button
                                                 key={genre}
+                                                aria-pressed={userInputs.gender === genre}
                                                 onClick={() => handleInputChange('gender', genre)}
                                                 className={`p-3 rounded-lg border transition ${userInputs.gender === genre
                                                     ? 'bg-accent-soft border-accent text-accent'
@@ -246,6 +263,7 @@ const ChurnPredictionPage = ({ onBack }) => {
                                         {['France', 'Allemagne', 'Espagne'].map(country => (
                                             <button
                                                 key={country}
+                                                aria-pressed={userInputs.geography === country}
                                                 onClick={() => handleInputChange('geography', country)}
                                                 className={`p-3 rounded-lg border transition ${userInputs.geography === country
                                                     ? 'bg-accent-soft border-accent text-accent'
@@ -265,6 +283,7 @@ const ChurnPredictionPage = ({ onBack }) => {
                                         {[1, 2, 3, 4].map(num => (
                                             <button
                                                 key={num}
+                                                aria-pressed={userInputs.num_of_products === num}
                                                 onClick={() => handleInputChange('num_of_products', num)}
                                                 className={`p-3 rounded-lg border transition font-bold ${userInputs.num_of_products === num
                                                     ? 'bg-accent-soft border-accent text-accent'
@@ -284,6 +303,7 @@ const ChurnPredictionPage = ({ onBack }) => {
                                     </label>
                                     <input
                                         type="range"
+                                        aria-label="Épargne du client"
                                         min="0"
                                         max="251000"
                                         step="1000"
@@ -320,7 +340,8 @@ const ChurnPredictionPage = ({ onBack }) => {
                             </div>
 
                             {/* Résultats */}
-                            <div className="space-y-4">
+                            <div className="space-y-4" aria-live="polite">
+                                {predicting && !modelError && <p role="status">Calcul de la prédiction…</p>}
                                 {/* Probabilité de Churn */}
                                 {churnProbability && (
                                     <div className="bg-raised rounded-lg p-4 sm:p-6 border border-line">
@@ -331,7 +352,10 @@ const ChurnPredictionPage = ({ onBack }) => {
                                                 }`}>
                                                 {(churnProbability.churn * 100).toFixed(1)}%
                                             </div>
-                                            <div className="text-sm text-muted">Risque de départ</div>
+                                            <div className="text-sm text-muted">Score de probabilité du modèle · calibration non vérifiée ici</div>
+                                            <label className="block text-left mt-5 text-sm">Seuil d’alerte exploratoire : {Math.round(threshold*100)} %<input className="w-full accent-accent" type="range" min="0.05" max="0.95" step="0.05" value={threshold} onChange={e=>setThreshold(Number(e.target.value))}/></label>
+                                            <p className="text-base font-semibold mt-2">{churnProbability.churn >= threshold ? 'Alerte : profil à examiner' : 'Profil sous le seuil choisi'}</p>
+                                            <p className="text-sm text-muted">Modifier le seuil change la décision, pas le score. Les KPI historiques ci-dessus ne décrivent pas ce nouveau seuil.</p>
                                         </div>
                                         <div className="w-full h-4 bg-line rounded-full overflow-hidden">
                                             <div
