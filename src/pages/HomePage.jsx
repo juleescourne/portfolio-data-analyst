@@ -31,7 +31,6 @@ const Section = ({ id, eyebrow, title, lead, children, tone = 'paper' }) => (
 );
 
 const HomePage = ({ onShowProject }) => {
-    const demoProjects = projects.filter((p) => p.demo);
     const hasFormation = formation.some((f) => f.school);
 
     // Tous les projets n'ont pas de démo : « voir la preuve » fait donc défiler
@@ -130,10 +129,10 @@ const HomePage = ({ onShowProject }) => {
                 id="projects"
                 eyebrow="Travaux"
                 title="Projets sélectionnés"
-                lead="Six projets choisis pour couvrir la chaîne complète : modélisation et SQL, ingénierie de données, restitution BI, et machine learning là où il apporte quelque chose de mesurable."
+                lead="Trois projets pour vérifier mes compétences en SQL, préparation des données et aide à la décision. Code et démonstrations sont accessibles depuis chaque fiche."
             >
                 <div className="space-y-6">
-                    {projects.map((project) => (
+                    {projects.slice(0, 3).map((project) => (
                         <div key={project.id} id={`project-${project.id}`} className="scroll-mt-24">
                             <ProjectCard
                                 project={project}
@@ -144,40 +143,63 @@ const HomePage = ({ onShowProject }) => {
                 </div>
             </Section>
 
-            {/* ------------------------------------------------------------- Démos */}
-            <Section
-                id="demos"
-                eyebrow="À essayer"
-                title="Démonstrations exécutables"
-                lead="Cinq projets sont manipulables directement, sans rien installer. Les modèles s'exécutent dans votre navigateur."
-                tone="surface"
-            >
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {demoProjects.map((project) => (
-                        <button
-                            key={project.id}
-                            type="button"
-                            onClick={() => onShowProject(project.demoRoute)}
-                            className="text-left bg-paper border border-line rounded-lg p-5 hover:border-accent transition group"
-                        >
-                            <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-accent mb-2">
-                                {project.role}
+            {/* ---------------------------------------------------------- Parcours */}
+            <Section id="experience" eyebrow="Expérience" title="Parcours">
+                <ol className="space-y-0 border-l border-line ml-1">
+                    {experiences.map((experience) => (
+                        <li key={`${experience.company}-${experience.period}`} className="relative pl-7 pb-9 last:pb-0">
+                            <span
+                                className="absolute left-0 top-1.5 w-2.5 h-2.5 -translate-x-1/2 rounded-full bg-accent"
+                                aria-hidden="true"
+                            />
+                            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
+                                <h3 className="font-semibold text-ink text-lg">{experience.role}</h3>
+                                {experience.contract && (
+                                    <span className="font-mono text-[11px] uppercase tracking-wider text-accent bg-accent-soft px-2 py-0.5 rounded">
+                                        {experience.contract}
+                                    </span>
+                                )}
+                            </div>
+                            <p className="text-ink-2 mb-1.5">
+                                {experience.company}
+                                <span className="font-mono text-sm text-muted ml-3">{experience.period}</span>
                             </p>
-                            <h3 className="font-display text-lg font-semibold text-ink mb-2 leading-snug">
-                                {project.title}
-                            </h3>
-                            <p className="text-sm text-muted leading-relaxed mb-4">
-                                {project.highlights[0]}
-                            </p>
-                            <span className="inline-flex items-center gap-1.5 text-sm font-medium text-accent">
-                                {project.demoLabel}
-                                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                            </span>
-                        </button>
+                            <p className="text-muted text-[15px] leading-relaxed max-w-prose">{experience.details}</p>
+                        </li>
+                    ))}
+                </ol>
+
+                {hasFormation && (
+                    <div className="mt-12 pt-9 border-t border-line">
+                        <h3 className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-5">
+                            Formation
+                        </h3>
+                        {formation.filter((f) => f.school).map((entry) => (
+                            <div key={entry.degree} className="flex gap-3.5">
+                                <GraduationCap className="w-5 h-5 text-accent shrink-0 mt-0.5" aria-hidden="true" />
+                                <div>
+                                    <p className="font-semibold text-ink">{entry.degree}</p>
+                                    <p className="text-ink-2">
+                                        {entry.school}
+                                        {entry.year && <span className="font-mono text-sm text-muted ml-3">{entry.year}</span>}
+                                    </p>
+                                    {entry.details && <p className="text-muted text-sm mt-1">{entry.details}</p>}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </Section>
+
+            <Section id="more-projects" eyebrow="Pour approfondir" title="Autres projets Data">
+                <div className="space-y-6">
+                    {projects.slice(3).map((project) => (
+                        <div key={project.id} id={`project-${project.id}`} className="scroll-mt-24">
+                            <ProjectCard project={project} onDemoClick={() => onShowProject(project.demoRoute)} />
+                        </div>
                     ))}
                 </div>
             </Section>
-
             {/* --------------------------------------------------- Projet annexe */}
             <Section id="side" eyebrow="Hors Data" title="Un algorithme dont je suis content">
                 <article className="bg-surface border border-line rounded-lg overflow-hidden grid md:grid-cols-[minmax(0,1fr)_minmax(0,420px)]">
@@ -228,54 +250,6 @@ const HomePage = ({ onShowProject }) => {
                         />
                     </div>
                 </article>
-            </Section>
-
-            {/* ---------------------------------------------------------- Parcours */}
-            <Section id="experience" eyebrow="Expérience" title="Parcours">
-                <ol className="space-y-0 border-l border-line ml-1">
-                    {experiences.map((experience) => (
-                        <li key={`${experience.company}-${experience.period}`} className="relative pl-7 pb-9 last:pb-0">
-                            <span
-                                className="absolute left-0 top-1.5 w-2.5 h-2.5 -translate-x-1/2 rounded-full bg-accent"
-                                aria-hidden="true"
-                            />
-                            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
-                                <h3 className="font-semibold text-ink text-lg">{experience.role}</h3>
-                                {experience.contract && (
-                                    <span className="font-mono text-[11px] uppercase tracking-wider text-accent bg-accent-soft px-2 py-0.5 rounded">
-                                        {experience.contract}
-                                    </span>
-                                )}
-                            </div>
-                            <p className="text-ink-2 mb-1.5">
-                                {experience.company}
-                                <span className="font-mono text-sm text-muted ml-3">{experience.period}</span>
-                            </p>
-                            <p className="text-muted text-[15px] leading-relaxed max-w-prose">{experience.details}</p>
-                        </li>
-                    ))}
-                </ol>
-
-                {hasFormation && (
-                    <div className="mt-12 pt-9 border-t border-line">
-                        <h3 className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-5">
-                            Formation
-                        </h3>
-                        {formation.filter((f) => f.school).map((entry) => (
-                            <div key={entry.degree} className="flex gap-3.5">
-                                <GraduationCap className="w-5 h-5 text-accent shrink-0 mt-0.5" aria-hidden="true" />
-                                <div>
-                                    <p className="font-semibold text-ink">{entry.degree}</p>
-                                    <p className="text-ink-2">
-                                        {entry.school}
-                                        {entry.year && <span className="font-mono text-sm text-muted ml-3">{entry.year}</span>}
-                                    </p>
-                                    {entry.details && <p className="text-muted text-sm mt-1">{entry.details}</p>}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                )}
             </Section>
 
             {/* ------------------------------------------------------ Compétences */}

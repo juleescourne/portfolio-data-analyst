@@ -32,7 +32,6 @@ test('la disponibilité et la localisation sont visibles', () => {
 
 test('les six projets sont présentés avec leur lien vers le code', () => {
     render(<App />);
-    const section = document.getElementById('projects');
 
     projects.forEach((project) => {
         const card = document.getElementById(`project-${project.id}`);
@@ -40,8 +39,10 @@ test('les six projets sont présentés avec leur lien vers le code', () => {
         expect(within(card).getByRole('heading', { name: project.title })).toBeInTheDocument();
     });
 
-    const codeLinks = within(section).getAllByRole('link', { name: /code source/i });
-    expect(codeLinks).toHaveLength(projects.length);
+    projects.forEach(project => {
+        const card = document.getElementById(`project-${project.id}`);
+        expect(within(card).getByRole('link', { name: /code source/i })).toHaveAttribute('href', project.github);
+    });
 });
 
 test('chaque projet annoncé comme démo expose un bouton de démo', () => {

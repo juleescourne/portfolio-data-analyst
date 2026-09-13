@@ -1,0 +1,80 @@
+{
+  "source_sha256": "3996cd1fa372e0db0cd9c0ebac35bbd4e8e3c65fb942bb010c826e7b1eeef0a0",
+  "rows": 10000,
+  "split": {
+    "train": 6000,
+    "validation": 2000,
+    "test": 2000,
+    "seed": 42
+  },
+  "features": [
+    "CreditScore",
+    "Geography",
+    "Gender",
+    "Age",
+    "Tenure",
+    "Balance",
+    "NumOfProducts",
+    "HasCrCard",
+    "IsActiveMember",
+    "EstimatedSalary"
+  ],
+  "ignored_columns": [
+    "RowNumber",
+    "CustomerId",
+    "Surname"
+  ],
+  "validation_average_precision": {
+    "logistic_regression": 0.4630210725431227,
+    "xgboost": 0.6888011151017568
+  },
+  "selected_model": "xgboost",
+  "threshold_rule": "Highest validation threshold achieving recall >= 0.85",
+  "test_prevalence": 0.2035,
+  "test": {
+    "logistic_regression": {
+      "roc_auc": 0.7752081819878429,
+      "average_precision": 0.48062014544678683,
+      "precision": 0.6030534351145038,
+      "recall": 0.1941031941031941,
+      "threshold": 0.5,
+      "confusion_matrix": [
+        [
+          1541,
+          52
+        ],
+        [
+          328,
+          79
+        ]
+      ]
+    },
+    "xgboost": {
+      "roc_auc": 0.8685881567237499,
+      "average_precision": 0.716056302012707,
+      "precision": 0.4051222351571595,
+      "recall": 0.855036855036855,
+      "threshold": 0.13809432089328766,
+      "confusion_matrix": [
+        [
+          1082,
+          511
+        ],
+        [
+          59,
+          348
+        ]
+      ]
+    }
+  },
+  "versions": {
+    "sklearn": "1.8.0",
+    "xgboost": "3.4.1"
+  },
+  "limitations": [
+    "Random split; no temporal validation or deployment claim.",
+    "Detected churn is not prevented churn; no campaign measured.",
+    "Browser ONNX demo is a separate historical model.",
+    "Previously explored data; this partition is not an external cohort."
+  ]
+}

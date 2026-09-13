@@ -35,20 +35,20 @@ liste large de technologies :
 - Routes en `#` qui fonctionnent sur GitHub Pages et respectent les boutons précédent/suivant du navigateur
 - Démos lourdes chargées à la demande, pour garder la page d'accueil légère
 - Métadonnées SEO et réseaux sociaux, dont une image de partage OpenGraph
-- Intégration continue GitHub Actions : six tests puis un build de production
+- Intégration continue GitHub Actions : tests puis un build de production
 
 ## Génération du CV
 
-Le PDF proposé en haut de page est composé en HTML et rendu par Chromium : l'écran et
-l'impression partagent ainsi une source unique.
+Le CV et le parcours affiché partagent `src/data/career.json` : expériences, contrats,
+dates et diplôme. Après une modification de cette source, régénérer le PDF :
 
 ```bash
-npm install --no-save playwright && npx playwright install chromium
-node scripts/build-cv.js --preview
+python3 -m pip install -r scripts/requirements-cv.txt
+node scripts/build-cv.js
 ```
 
-Sortie : `public/cv-jules-courne.pdf`. Trois champs en tête du script restent à compléter —
-nom de l'école, année de diplôme, et type de contrat pour chaque expérience.
+Le wrapper appelle le générateur ReportLab `scripts/build-cv.py`, sans navigateur.
+Sortie : `public/cv-jules-courne.pdf`. Vérifier visuellement la page après toute modification.
 
 ## Précisions importantes sur les démonstrations
 
@@ -70,9 +70,10 @@ et non comme des affirmations causales ou des promesses de chiffre d'affaires.
 
 ### Seuil de résiliation client
 
-Le projet explore le seuil de classification sur un échantillon d'évaluation. Une
-expérimentation rigoureuse choisirait ce seuil sur des données de validation ou par
-validation croisée, en gardant un jeu de test final intact.
+Le script de référence choisit le modèle et le seuil sur validation, puis évalue le test.
+Les rapports JSON sont copiés dans `src/data/` pour afficher les résultats sur les pages ML.
+La démo ONNX conserve son entraînement historique et ses limites, explicitement séparés.
+Aucune efficacité de campagne de rétention n’a été mesurée.
 
 ### Contributions SHAP
 
@@ -153,7 +154,7 @@ public/
 ## Auteur
 
 **Jules Courné**  
-Data Analyst & Data Engineer — Rouen, France
+Data Analyst / BI junior — Rouen, France
 
 - GitHub : https://github.com/juleescourne
 - LinkedIn : https://www.linkedin.com/in/jules-courn%C3%A9/

@@ -3,7 +3,6 @@ import { ArrowLeft, Menu, X } from 'lucide-react';
 
 const LINKS = [
     ['Projets', '#projects'],
-    ['Démos', '#demos'],
     ['Parcours', '#experience'],
     ['Compétences', '#skills'],
     ['Contact', '#contact'],

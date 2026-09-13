@@ -1,0 +1,114 @@
+{
+  "profile": {
+    "name": "Jules Courné",
+    "title": "Data Analyst / BI junior",
+    "eyebrow": "Ingénieur diplômé de Polytech Tours · Rouen, Normandie",
+    "tagline": "SQL · Python · Power BI · Qualité des données · ETL",
+    "pitch": "Je prépare des données fiables, construis des indicateurs et développe des traitements Python pour faciliter l’analyse et la décision.",
+    "availability": "Disponible immédiatement",
+    "mobility": "Rouen et agglomération · ouvert à la Normandie et à Paris un jour par semaine",
+    "seeking": "Recherche un CDI en Data Analyst ou BI ; également ouvert aux missions Data Engineering Python/SQL.",
+    "email": "jules.courne@gmail.com",
+    "phone": "07.60.06.65.26",
+    "phoneHref": "tel:+33760066526",
+    "location": "Rouen, Normandie",
+    "github": "https://github.com/juleescourne",
+    "linkedin": "https://www.linkedin.com/in/jules-courn%C3%A9/",
+    "cv": "cv-jules-courne.pdf",
+    "portfolio": "https://juleescourne.github.io/portfolio-data-analyst/"
+  },
+  "experiences": [
+    {
+      "company": "SOLUTEC",
+      "role": "Formations internes en ESN",
+      "period": "Sept. 2025 - janv. 2026",
+      "contract": "CDI",
+      "details": "Période d’intercontrat consacrée à des formations internes en Git, Docker et IA agentique.",
+      "bullets": [
+        "Formations internes en Git, Docker et IA agentique pendant une période d’intercontrat."
+      ]
+    },
+    {
+      "company": "SOLUTEC",
+      "role": "Data Analyst & Data Engineer",
+      "period": "Avril - août 2024",
+      "contract": "Stage de fin d’études",
+      "details": "Cadrage des besoins métier, architecture de données, PostgreSQL, conteneurisation Docker, travail en méthodologie Agile.",
+      "bullets": [
+        "Cadrage des besoins métier et conception de l’architecture de données.",
+        "PostgreSQL, conteneurisation Docker, méthodologie Agile."
+      ]
+    },
+    {
+      "company": "Mécatek / CMS",
+      "role": "Data Scientist - projet de fin d’études",
+      "period": "2023 - 2024",
+      "contract": "Projet de fin d’études",
+      "details": "Analyse statistique multivariée sur plus de 100 000 observations industrielles, modélisation prédictive et tableaux de bord de pilotage.",
+      "bullets": [
+        "Analyse statistique multivariée sur plus de 100 000 observations industrielles.",
+        "Modélisation prédictive et tableaux de bord de pilotage."
+      ]
+    },
+    {
+      "company": "LIFAT - université de Tours",
+      "role": "Data Scientist R&D - traitement du langage",
+      "period": "Mai - sept. 2023",
+      "contract": "Stage",
+      "details": "Chaîne NLP de vérification de faits : transcription, extraction d’entités nommées et recherche de similarité sur un corpus volumineux.",
+      "bullets": [
+        "Chaîne NLP de vérification de faits : transcription, extraction d’entités nommées et recherche de similarité."
+      ]
+    }
+  ],
+  "formation": [
+    {
+      "degree": "Ingénieur système d’informations & data",
+      "school": "Polytech Tours",
+      "year": "2024",
+      "details": "Diplôme obtenu en 2024."
+    }
+  ],
+  "cvProjects": [
+    {
+      "name": "Goodreads Analytics ETL",
+      "stack": "Python · SQL · Power BI",
+      "text": "Entrepôt en étoile : 6 dimensions, mises à jour incrémentales et tests de bout en bout avec annulation sur échec.",
+      "url": "https://github.com/juleescourne/goodreads-analytics-etl"
+    },
+    {
+      "name": "Hospital SQL Analytics",
+      "stack": "MySQL · KPI · Qualité",
+      "text": "7 160 passages synthétiques : fonctions fenêtres, cohortes, contrôles qualité et couverture assureur pondérée.",
+      "url": "https://github.com/juleescourne/hospital-sql-analytics"
+    },
+    {
+      "name": "Aide à la décision en usinage",
+      "stack": "Python · MySQL · ACP",
+      "text": "Base de 12 entités et recherche d’essais similaires ; projet avec le département Génie mécanique de l’université de Tours.",
+      "url": "https://github.com/juleescourne/cutting-tool-recommender"
+    }
+  ],
+  "cvSkills": [
+    [
+      "Analyse & BI",
+      "SQL analytique, KPI, Power BI, visualisation Plotly et Matplotlib"
+    ],
+    [
+      "Données & Python",
+      "pandas, ETL, modélisation relationnelle et dimensionnelle, qualité des données"
+    ],
+    [
+      "Ingénierie",
+      "MySQL, SQLite, PostgreSQL, Git, Docker, pytest, GitHub Actions"
+    ],
+    [
+      "ML appliqué",
+      "scikit-learn, XGBoost, ACP, interprétation et évaluation de modèles"
+    ],
+    [
+      "Langues",
+      "Français : langue maternelle · Anglais : B2"
+    ]
+  ]
+}
