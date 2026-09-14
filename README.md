@@ -62,6 +62,14 @@ dollars. Le dépôt du projet contient la méthodologie de modélisation réelle
 d'évaluation rapportées. Cette distinction évite de faire passer une visualisation normalisée
 pour une estimation monétaire fiable.
 
+### Captures Power BI
+
+Le fichier PBIX/PBIP historique n’a pas été conservé. Les images disponibles
+illustrent la restitution ; elles ne permettent pas de vérifier les mesures,
+les relations ou l’actualisation. Le laboratoire interactif utilise des données
+synthétiques distinctes. Les propositions de reconstruction dans `bi/` du dépôt
+Goodreads ne sont pas les mesures originales et restent à valider dans Desktop.
+
 ### Recommandations Goodreads
 
 Le jeu de données Goodreads décrit un catalogue, des notes et des signaux d'engagement. Le
