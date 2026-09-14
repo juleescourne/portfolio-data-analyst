@@ -1,3 +1,4 @@
+import evaluation from '../data/churn-evaluation.json';
 // pages/ChurnPredictionPage.jsx - STRUCTURE STANDARDISÉE
 import { useState, useEffect, useRef } from 'react';
 import { Github, Loader, Code, Activity, BarChart2 } from 'lucide-react';
@@ -185,8 +186,16 @@ const ChurnPredictionPage = ({ onBack }) => {
                         </div>
                     </div>
 
+                    <section className="bg-surface border border-line rounded-lg p-5 space-y-3">
+                        <h2 className="font-display text-2xl font-semibold">Évaluation reproductible de référence</h2>
+                        <p>10 variables connues avant la résiliation ; séparation train / validation / test (6 000 / 2 000 / 2 000). Modèle choisi sur validation, puis seuil fixé pour atteindre au moins 85 % de rappel sur validation.</p>
+                        <p>Sur le test : ROC-AUC {evaluation.test.xgboost.roc_auc.toFixed(3)}, average precision {evaluation.test.xgboost.average_precision.toFixed(3)} (baseline logistique : {evaluation.test.logistic_regression.average_precision.toFixed(3)}), rappel {(100 * evaluation.test.xgboost.recall).toFixed(1)} % et précision {(100 * evaluation.test.xgboost.precision).toFixed(1)} %.</p>
+                        <p>{evaluation.test.xgboost.confusion_matrix[1][1]} départs détectés, {evaluation.test.xgboost.confusion_matrix[0][1]} fausses alertes et {evaluation.test.xgboost.confusion_matrix[1][0]} départs manqués : un rappel élevé implique ici beaucoup de contacts inutiles. Aucun départ évité n’a été mesuré.</p>
+                        <p>Le rapport et le script sont dans le dépôt. Cette partition aléatoire n’est pas une validation temporelle ni une cohorte externe. La démo ONNX et ses métriques historiques ci-dessous correspondent à un autre entraînement.</p>
+                    </section>
+
                     <section className="bg-accent-soft border border-line rounded-lg p-5 space-y-3">
-                        <h2 className="font-display text-2xl font-semibold">Décider qui examiner, puis mesurer le coût des erreurs</h2>
+                        <h2 className="font-display text-2xl font-semibold">Démo historique — explorer le coût des erreurs</h2>
                         <p>La démo classe des profils clients fictifs. Une alerte sert à prioriser une analyse ; elle ne démontre ni un départ certain ni l’efficacité d’une campagne de rétention.</p>
                         <details><summary className="cursor-pointer font-semibold">Lire les performances historiques</summary><p className="mt-2">Recall ≈ 90 % : environ 9 départs sur 10 sont détectés au seuil exploré. Précision ≈ 36 % : sur 100 alertes, environ 36 correspondent à un départ observé dans l’échantillon évalué. Ces chiffres ne sont pas recalculés sur le profil affiché. ROC-AUC 0,866 mesure le classement global, pas la calibration des probabilités.</p><p>Pour démontrer un impact métier : choisir le seuil sur validation, évaluer sur un test indépendant, puis mesurer le coût de contact et les départs réellement évités avec un groupe témoin.</p></details>
                     </section>

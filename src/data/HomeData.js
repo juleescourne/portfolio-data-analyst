@@ -1,41 +1,13 @@
-// ---------------------------------------------------------------------------
-// Contenu du portfolio.
-//
-// À COMPLÉTER par Jules — trois champs que je ne pouvais pas inventer :
-//   1. formation[].school et formation[].year  : nom de l'école et année de diplôme.
-//      C'est un critère de tri primaire pour un premier CDI. La section ne
-//      s'affiche pas tant que `school` est vide.
-//   2. experiences[].contract : « Stage », « Alternance », « CDD »… Un recruteur
-//      qui ne sait pas lit une zone d'ombre.
-//   3. experiences[].period   : préciser les mois, pas seulement l'année.
-// ---------------------------------------------------------------------------
+import career from './career.json';
 
-export const profile = {
-    name: 'Jules Courné',
-    title: 'Data Analyst & Data Engineer',
-    eyebrow: 'Ingénieur Data — Rouen, Normandie',
-    tagline: 'SQL · Python · ETL · Modélisation dimensionnelle · Power BI',
-    pitch:
-        "Je construis des chaînes de données fiables et des analyses sur lesquelles on peut décider — " +
-        "de l'ingestion au tableau de bord.",
-    availability: 'Disponible immédiatement',
-    mobility: 'Rouen et agglomération · ouvert à la Normandie et à Paris un jour par semaine',
-    seeking: 'Recherche un premier CDI en Data Analyst, BI ou Data Engineering.',
-    email: 'jules.courne@gmail.com',
-    phone: '07.60.06.65.26',
-    phoneHref: 'tel:+33760066526',
-    location: 'Rouen, Normandie',
-    github: 'https://github.com/juleescourne',
-    linkedin: 'https://www.linkedin.com/in/jules-courn%C3%A9/',
-    cv: 'cv-jules-courne.pdf',
-};
+export const { profile, experiences, formation } = career;
 
 // Chiffres vérifiables, pas des adjectifs. Chacun est contrôlable dans le dépôt cité.
 export const proofPoints = [
-    { value: '278', label: 'tests automatisés', context: 'pipeline ETL Goodreads' },
-    { value: '7 160', label: 'passages analysés en SQL', context: 'étude hospitalière' },
+    { value: 'ETL', label: 'testé de bout en bout', context: 'pipeline ETL Goodreads' },
+    { value: '7 160', label: 'passages synthétiques', context: 'étude hospitalière' },
     { value: '12', label: 'entités modélisées', context: 'base d’usinage MySQL' },
-    { value: '3', label: 'démos exécutables', context: 'dans le navigateur' },
+    { value: '5', label: 'démos exécutables', context: 'dans le navigateur' },
 ];
 
 export const projects = [
@@ -53,10 +25,10 @@ export const projects = [
         demoRoute: 'goodreads',
         demoLabel: 'Voir les tableaux de bord',
         highlights: [
-            '278 tests automatisés, exécutés en intégration continue',
+            'Tests automatisés : rechargement, mise à jour et annulation sur échec ACP',
             'Schéma en étoile : 6 dimensions, table de pont pour la relation N-N',
             'Chargement incrémental par UPSERT, recalcul ACP conditionnel',
-            'Exécutable en une minute grâce à un générateur de données',
+            'Générateur synthétique et test de la chaîne complète, ACP comprise',
         ],
     },
     {
@@ -74,7 +46,7 @@ export const projects = [
             'ROW_NUMBER, DENSE_RANK, NTILE, LAG/LEAD, cumuls et moyennes mobiles',
             '18 contrôles qualité, dont un que nulle clé étrangère ne peut faire',
             'Taux de couverture pondéré, et non moyenne de ratios',
-            'Générateur de données : exécutable en 3 minutes avec Docker',
+            'Générateur synthétique, contrôles qualité et résultats MySQL vérifiés',
         ],
     },
     {
@@ -103,8 +75,8 @@ export const projects = [
         title: 'Prédiction de churn bancaire',
         role: 'Machine Learning appliqué',
         description:
-            'Classification orientée rétention, dont le résultat principal est la détection ' +
-            "d'une variable en fuite corrélée à 1,00 avec la cible — sans quoi le modèle prédisait le passé.",
+            'Classification de la résiliation : comparaison à une baseline logistique, ' +
+            'choix du seuil sur validation et mesure des fausses alertes sur test.',
         image: 'churn.webp',
         tags: ['Python', 'XGBoost', 'SHAP', 'ONNX', 'Feature Engineering'],
         github: 'https://github.com/juleescourne/customer-churn-prediction',
@@ -112,9 +84,9 @@ export const projects = [
         demoRoute: 'churn',
         demoLabel: 'Tester le modèle',
         highlights: [
-            'Fuite de données détectée et retirée : toutes les métriques en sont abaissées',
-            'ROC-AUC 0,866 — la seule métrique indépendante du seuil',
-            'Seuil arbitré par le coût relatif d’un départ manqué',
+            'Dix variables brutes ; identifiants et variables suspectes exclus',
+            'Évaluation reproductible : baseline, validation du seuil et test séparé',
+            'Seuil choisi selon un objectif de rappel sur validation',
             'Inférence ONNX dans le navigateur, contributions SHAP à l’appui',
         ],
     },
@@ -133,7 +105,7 @@ export const projects = [
         demoLabel: 'Explorer la carte',
         highlights: [
             'Score gravitaire : Σ (population / distance^α), pas une simple distance',
-            'R² CV 0,8317 et R² holdout 0,8338 — un écart de 0,002',
+            'Évaluation séparée par blocs géographiques sur les données brutes',
             'Compromis nombre de variables / performance mesuré explicitement',
             'Biais de sélection et autocorrélation spatiale documentés',
         ],
@@ -234,45 +206,6 @@ export const sideProject = {
     proof: 'Les trois propriétés se vérifient en une commande : python scripts/verify_lane_rotation.py',
 };
 
-export const experiences = [
-    {
-        company: 'SOLUTEC',
-        role: 'Data Analyst & Data Engineer',
-        period: '2024',
-        contract: '', // À COMPLÉTER : Stage / Alternance / CDD, et la durée
-        details:
-            'Cadrage des besoins métier, architecture de données, PostgreSQL, conteneurisation Docker, ' +
-            'travail en méthodologie Agile.',
-    },
-    {
-        company: 'Mécatek / CMS',
-        role: 'Data Scientist — projet de fin d’études',
-        period: '2023 – 2024',
-        contract: '',
-        details:
-            'Analyse statistique multivariée sur plus de 100 000 observations industrielles, ' +
-            'modélisation prédictive et tableaux de bord de pilotage.',
-    },
-    {
-        company: 'LIFAT — laboratoire d’informatique, université de Tours',
-        role: 'Data Scientist R&D — traitement du langage',
-        period: '2023',
-        contract: '',
-        details:
-            'Chaîne NLP de vérification de faits : transcription, extraction d’entités nommées et ' +
-            'recherche de similarité sur un corpus volumineux.',
-    },
-];
-
-export const formation = [
-    {
-        degree: 'Diplôme d’ingénieur — Systèmes d’Information et Data',
-        school: '', // À COMPLÉTER : nom de l'école
-        year: '',   // À COMPLÉTER : année d'obtention
-        details: '',
-    },
-];
-
 export const about = [
     {
         icon: 'database',
@@ -285,14 +218,14 @@ export const about = [
         icon: 'workflow',
         title: 'Des chaînes reproductibles',
         text:
-            'Un traitement qui ne tourne que sur ma machine ne vaut rien. Mes projets s’exécutent après ' +
-            'un clone, avec des données de démonstration et des tests.',
+            'Les dépôts documentent les prérequis et commandes de lancement. Les projets ETL et SQL proposent ' +
+            'des données synthétiques ; les études ML indiquent la source à télécharger.',
     },
     {
         icon: 'chart',
         title: 'Et surtout, ce que ça ne dit pas',
         text:
-            'Chaque projet documente ses limites. Sur le churn, le résultat dont je suis le plus ' +
-            'satisfait est d’avoir retiré une variable qui donnait 99 % de justesse et zéro valeur.',
+            'Chaque projet documente ses limites. Pour le churn, je distingue les départs détectés ' +
+            'des départs évités : seule une campagne mesurée permettrait de démontrer la rétention.',
     },
 ];
