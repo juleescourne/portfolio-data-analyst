@@ -75,8 +75,8 @@ export const projects = [
         title: 'Prédiction de churn bancaire',
         role: 'Machine Learning appliqué',
         description:
-            'Classification orientée rétention, dont le résultat principal est la détection ' +
-            "d'une variable en fuite corrélée à 1,00 avec la cible — sans quoi le modèle prédisait le passé.",
+            'Classification de la résiliation : comparaison à une baseline logistique, ' +
+            'choix du seuil sur validation et mesure des fausses alertes sur test.',
         image: 'churn.webp',
         tags: ['Python', 'XGBoost', 'SHAP', 'ONNX', 'Feature Engineering'],
         github: 'https://github.com/juleescourne/customer-churn-prediction',
@@ -84,7 +84,7 @@ export const projects = [
         demoRoute: 'churn',
         demoLabel: 'Tester le modèle',
         highlights: [
-            'Fuite de données détectée et retirée : toutes les métriques en sont abaissées',
+            'Dix variables brutes ; identifiants et variables suspectes exclus',
             'Évaluation reproductible : baseline, validation du seuil et test séparé',
             'Seuil choisi selon un objectif de rappel sur validation',
             'Inférence ONNX dans le navigateur, contributions SHAP à l’appui',
@@ -225,7 +225,7 @@ export const about = [
         icon: 'chart',
         title: 'Et surtout, ce que ça ne dit pas',
         text:
-            'Chaque projet documente ses limites. Sur le churn, le résultat dont je suis le plus ' +
-            'satisfait est d’avoir retiré une variable qui donnait 99 % de justesse et zéro valeur.',
+            'Chaque projet documente ses limites. Pour le churn, je distingue les départs détectés ' +
+            'des départs évités : seule une campagne mesurée permettrait de démontrer la rétention.',
     },
 ];
