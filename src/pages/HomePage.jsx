@@ -7,7 +7,7 @@ import ProjectCard from '../components/ProjectCard';
 import { getImageUrl } from '../utils/assetsConfig';
 import {
     profile, proofPoints, projects, skills, otherSkills,
-    experiences, formation, about, sideProject,
+    experiences, formation, certifications, about, sideProject,
 } from '../data/HomeData';
 
 const ABOUT_ICONS = { database: Database, workflow: Workflow, chart: BarChart3 };
@@ -185,7 +185,7 @@ const HomePage = ({ onShowProject }) => {
                 {hasFormation && (
                     <div className="mt-12 pt-9 border-t border-line">
                         <h3 className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-5">
-                            Formation
+                            Formation et certification
                         </h3>
                         {formation.filter((f) => f.school).map((entry) => (
                             <div key={entry.degree} className="flex gap-3.5">
@@ -197,6 +197,18 @@ const HomePage = ({ onShowProject }) => {
                                         {entry.year && <span className="font-mono text-sm text-muted ml-3">{entry.year}</span>}
                                     </p>
                                     {entry.details && <p className="text-muted text-sm mt-1">{entry.details}</p>}
+                                </div>
+                            </div>
+                        ))}
+                        {certifications.map((certification) => (
+                            <div key={`${certification.issuer}-${certification.name}`} className="mt-6 flex gap-3.5">
+                                <GraduationCap className="w-5 h-5 text-accent shrink-0 mt-0.5" aria-hidden="true" />
+                                <div>
+                                    <p className="font-semibold text-ink">{certification.name}</p>
+                                    <p className="text-ink-2">
+                                        {certification.issuer}
+                                        <span className="font-mono text-sm text-muted ml-3">{certification.date}</span>
+                                    </p>
                                 </div>
                             </div>
                         ))}

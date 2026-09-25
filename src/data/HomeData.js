@@ -1,6 +1,6 @@
 import career from './career.json';
 
-export const { profile, experiences, formation } = career;
+export const { profile, experiences, formation, certifications } = career;
 
 // Chiffres vérifiables, pas des adjectifs. Chacun est contrôlable dans le dépôt cité.
 export const proofPoints = [
@@ -16,7 +16,7 @@ export const projects = [
         title: 'Goodreads Analytics ETL',
         role: 'Data Engineering',
         description:
-            'Pipeline ETL Python transformant un catalogue de livres en entrepôt analytique en étoile : ' +
+            'Projet personnel réalisé pendant mon intercontrat chez SOLUTEC. Pipeline ETL Python transformant un catalogue de livres en entrepôt analytique en étoile : ' +
             'nettoyage, validation Pydantic, chargement incrémental et enrichissement ACP.',
         image: 'goodreads.webp',
         tags: ['Python', 'SQL', 'ETL', 'SQLite', 'Star Schema', 'Power BI', 'Pytest'],

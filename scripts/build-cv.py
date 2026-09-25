@@ -40,21 +40,26 @@ story = [p(e(profile['name']), 'name'), p(e(profile['title']), 'title')]
 story += [p(' · '.join([e(profile['location']), link('mailto:'+profile['email'], profile['email']), link(profile['phoneHref'], profile['phone'])]), 'small')]
 story += [p(' · '.join([link(profile['portfolio'], 'Portfolio et démonstrations'), link(profile['github'], 'GitHub'), link(profile['linkedin'], 'LinkedIn')]), 'small'), Spacer(1, 7)]
 story += [p(e(profile['pitch'])), p('Disponible immédiatement · Recherche un CDI Data Analyst / BI.', 'small')]
+story.append(p(e(profile['mobility']), 'small'))
 story.append(p('EXPÉRIENCE', 'section'))
 for exp in career['experiences']:
+    if exp['contract'] == 'Projet de fin d’études':
+        continue  # Academic work is detailed once in the projects section.
     role = exp['role'].replace(' - projet de fin d’études', '')
     header = Table([[p(f'<b>{e(role)}</b>'), p(e(exp['period']), 'date')]], colWidths=[333, 160], hAlign='LEFT')
     header.setStyle(TableStyle([('VALIGN', (0,0), (-1,-1), 'TOP'), ('LEFTPADDING',(0,0),(-1,-1),0), ('RIGHTPADDING',(0,0),(-1,-1),0), ('TOPPADDING',(0,0),(-1,-1),0), ('BOTTOMPADDING',(0,0),(-1,-1),0)]))
     entry = [header, p(e(exp['company'])+' · '+e(exp['contract']), 'small')]
     if exp.get('cvContext'):
         entry.append(p(e(exp['cvContext'])))
-    entry += [p('• '+e(item)) for item in exp['bullets']]
+    entry += [p('- '+e(item)) for item in exp['bullets']]
     if exp.get('scopeNote'):
         entry.append(p(e(exp['scopeNote']), 'small'))
     story.append(KeepTogether(entry+[Spacer(1,6)]))
-story.append(p('FORMATION', 'section'))
+story.append(p('FORMATION ET CERTIFICATION', 'section'))
 f = career['formation'][0]
-story.append(p(f'<b>{e(f["school"])} · {e(f["year"])}</b> — {e(f["degree"])}'))
+story.append(p(f'<b>{e(f["school"])} · {e(f["year"])}</b> - {e(f["degree"])}'))
+for certification in career.get('certifications', []):
+    story.append(p(f'<b>{e(certification["name"])}</b> - {e(certification["issuer"])} · {e(certification["date"])}'))
 story.append(p('PROJETS DATA · CODE ET DÉMONSTRATIONS ACCESSIBLES', 'section'))
 for project in career['cvProjects']:
     story.append(KeepTogether([p('<b>'+link(project['url'], project['name'])+'</b> · '+e(project['stack'])), p(e(project['text'])), Spacer(1,5)]))

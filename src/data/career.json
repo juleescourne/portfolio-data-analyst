@@ -20,12 +20,14 @@
   "experiences": [
     {
       "company": "SOLUTEC",
-      "role": "Formations internes en ESN",
+      "role": "Montée en compétences Data Analyst - intercontrat",
       "period": "Sept. 2025 - janv. 2026",
       "contract": "CDI",
-      "details": "Période d’intercontrat consacrée à des formations internes en Git, Docker et IA agentique.",
+      "details": "Période d’intercontrat sans mission client, avec montée en compétences en analyse de données à travers Goodreads Analytics ETL, un projet personnel : préparation Python/pandas, entrepôt SQLite en étoile, analyses SQL et restitution Power BI.",
+      "cvContext": "Intercontrat sans mission client ; montée en compétences SQL, Python et Power BI.",
       "bullets": [
-        "Formations internes en Git, Docker et IA agentique pendant une période d’intercontrat."
+        "Goodreads, projet personnel : nettoyage des données en Python/pandas et entrepôt SQLite en étoile.",
+        "Analyse SQL des notes et du volume d’évaluations ; restitution Power BI, avec captures sur le portfolio."
       ]
     },
     {
@@ -65,36 +67,46 @@
       "role": "Data Scientist - projet de fin d’études",
       "period": "2023 - 2024",
       "contract": "Projet de fin d’études",
-      "details": "Analyse statistique multivariée sur plus de 100 000 observations industrielles, modélisation prédictive et tableaux de bord de pilotage.",
+      "details": "Projet académique de fin d’études avec le département Génie mécanique de l’Université de Tours : analyse de données d’essais d’usinage, modélisation MySQL et aide au choix d’outils coupants par analyse en composantes principales.",
       "bullets": [
-        "Analyse statistique multivariée sur plus de 100 000 observations industrielles.",
-        "Modélisation prédictive et tableaux de bord de pilotage."
+        "Modélisation MySQL à 12 entités pour organiser les données d’essais d’usinage.",
+        "Analyse multivariée, ACP et recherche d’essais similaires pour comparer des configurations d’outils."
       ]
     },
     {
       "company": "LIFAT - université de Tours",
       "role": "Data Scientist R&D - traitement du langage",
       "period": "Mai - sept. 2023",
-      "contract": "Stage",
-      "details": "Chaîne NLP de vérification de faits : transcription, extraction d’entités nommées et recherche de similarité sur un corpus volumineux.",
+      "contract": "Stage de 4e année",
+      "details": "Préparation et exploitation de données multimédias pour un projet de fact-checking politique, dans le contexte d’un corpus télévisuel de plus de 5 millions d’enregistrements. Structuration Python/XML, validation et déduplication ; transcription, extraction d’entités nommées et rapprochement de sources. Automatisation des traitements avec gestion des erreurs, journalisation et multiprocessing.",
+      "cvContext": "Fact-checking politique sur un corpus télévisuel de plus de 5 millions d’enregistrements.",
       "bullets": [
-        "Chaîne NLP de vérification de faits : transcription, extraction d’entités nommées et recherche de similarité."
+        "Préparation et contrôle qualité de données XML, audio et texte en Python : validation et déduplication.",
+        "Pipeline NLP : transcription, extraction d’entités et rapprochement de sources ; automatisation et multiprocessing."
       ]
     }
   ],
   "formation": [
     {
-      "degree": "Ingénieur système d’informations & data",
+      "degree": "Diplôme d’ingénieur - Systèmes d’information & Data",
       "school": "Polytech Tours",
       "year": "2024",
       "details": "Diplôme obtenu en 2024."
+    }
+  ],
+  "certifications": [
+    {
+      "name": "SQL (Advanced)",
+      "issuer": "HackerRank",
+      "date": "Janvier 2026",
+      "credentialId": "9BA9EC1AO84F"
     }
   ],
   "cvProjects": [
     {
       "name": "Goodreads Analytics ETL",
       "stack": "Python · SQL · Power BI",
-      "text": "Entrepôt en étoile : 6 dimensions, mises à jour incrémentales et tests de bout en bout avec annulation sur échec.",
+      "text": "Projet personnel : 6 dimensions, qualité des données et captures Power BI. Version actuelle : tests de bout en bout et annulation sur échec.",
       "url": "https://github.com/juleescourne/goodreads-analytics-etl"
     },
     {
@@ -106,7 +118,7 @@
     {
       "name": "Aide à la décision en usinage",
       "stack": "Python · MySQL · ACP",
-      "text": "Base de 12 entités et recherche d’essais similaires ; projet avec le département Génie mécanique de l’université de Tours.",
+      "text": "Projet de fin d’études Mécatek / CMS, Polytech Tours (2023-2024) : base de 12 entités, ACP et recherche d’essais similaires.",
       "url": "https://github.com/juleescourne/cutting-tool-recommender"
     }
   ],
