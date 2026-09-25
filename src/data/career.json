@@ -33,11 +33,32 @@
       "role": "Data Analyst & Data Engineer",
       "period": "Avril - août 2024",
       "contract": "Stage de fin d’études",
-      "details": "Cadrage des besoins métier, architecture de données, PostgreSQL, conteneurisation Docker, travail en méthodologie Agile.",
+      "details": "Conception d’une application multiplateforme de gestion des notes de frais des collaborateurs internes de SOLUTEC, à partir d’un échantillon réel et des besoins utilisateurs.",
+      "cvContext": "Application interne de gestion des notes de frais, conçue à partir d’un échantillon réel.",
       "bullets": [
-        "Cadrage des besoins métier et conception de l’architecture de données.",
-        "PostgreSQL, conteneurisation Docker, méthodologie Agile."
-      ]
+        "Contrôle des valeurs manquantes et des montants atypiques, avec confirmation demandée à l’utilisateur.",
+        "Analyse des dépenses au regard des plafonds par collaborateur ; page de synthèse par collaborateur, mois et année.",
+        "Recueil des besoins, modélisation UML et création de la base PostgreSQL ; intégration backend et conteneurisation Docker."
+      ],
+      "analysisHighlights": [
+        {
+          "title": "Qualité et cohérence des données",
+          "text": "Repérage des champs manquants, comme le nom de l’hôtel, et des montants atypiques, comme un repas à 1 000 €. Demande de confirmation ou de complément à l’utilisateur pour vérifier la dépense."
+        },
+        {
+          "title": "Suivi des limites de dépenses",
+          "text": "Comparaison des dépenses aux limites définies pour chaque collaborateur afin d’identifier les dépassements à examiner."
+        },
+        {
+          "title": "Restitution et agrégations",
+          "text": "Conception d’une page d’agrégation des dépenses par collaborateur, mois et année pour consulter les totaux et suivre leur évolution."
+        },
+        {
+          "title": "Du besoin métier à la base de données",
+          "text": "Recueil des besoins, choix des technologies, modélisation UML et création de la base PostgreSQL ; conteneurisation Docker et intégration avec le backend."
+        }
+      ],
+      "scopeNote": "Le projet prévoyait l’extraction OCR des justificatifs ; cette brique était hors de mon périmètre."
     },
     {
       "company": "Mécatek / CMS",

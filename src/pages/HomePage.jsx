@@ -165,6 +165,19 @@ const HomePage = ({ onShowProject }) => {
                                 <span className="font-mono text-sm text-muted ml-3">{experience.period}</span>
                             </p>
                             <p className="text-muted text-[15px] leading-relaxed max-w-prose">{experience.details}</p>
+                            {experience.analysisHighlights && (
+                                <dl className="mt-5 grid sm:grid-cols-2 gap-4 max-w-4xl">
+                                    {experience.analysisHighlights.map((highlight) => (
+                                        <div key={highlight.title} className="rounded-lg border border-line bg-surface p-4 sm:p-5">
+                                            <dt className="font-semibold text-ink mb-2">{highlight.title}</dt>
+                                            <dd className="text-sm text-muted leading-relaxed">{highlight.text}</dd>
+                                        </div>
+                                    ))}
+                                </dl>
+                            )}
+                            {experience.scopeNote && (
+                                <p className="mt-4 text-sm text-muted leading-relaxed max-w-prose">{experience.scopeNote}</p>
+                            )}
                         </li>
                     ))}
                 </ol>

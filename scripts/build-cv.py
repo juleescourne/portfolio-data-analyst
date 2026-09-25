@@ -11,7 +11,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, KeepTogether
 
 ROOT = Path(__file__).resolve().parents[1]
-career = json.loads((ROOT / 'src/data/career.json').read_text())
+career = json.loads((ROOT / 'src/data/career.json').read_text(encoding='utf-8'))
 profile = career['profile']
 for key in ['school', 'degree', 'year']:
     if not career['formation'][0].get(key):
@@ -46,7 +46,11 @@ for exp in career['experiences']:
     header = Table([[p(f'<b>{e(role)}</b>'), p(e(exp['period']), 'date')]], colWidths=[333, 160], hAlign='LEFT')
     header.setStyle(TableStyle([('VALIGN', (0,0), (-1,-1), 'TOP'), ('LEFTPADDING',(0,0),(-1,-1),0), ('RIGHTPADDING',(0,0),(-1,-1),0), ('TOPPADDING',(0,0),(-1,-1),0), ('BOTTOMPADDING',(0,0),(-1,-1),0)]))
     entry = [header, p(e(exp['company'])+' · '+e(exp['contract']), 'small')]
+    if exp.get('cvContext'):
+        entry.append(p(e(exp['cvContext'])))
     entry += [p('• '+e(item)) for item in exp['bullets']]
+    if exp.get('scopeNote'):
+        entry.append(p(e(exp['scopeNote']), 'small'))
     story.append(KeepTogether(entry+[Spacer(1,6)]))
 story.append(p('FORMATION', 'section'))
 f = career['formation'][0]
