@@ -1,160 +1,93 @@
 # Jules Courné — Portfolio Data
 
-Portfolio personnel développé avec React et Tailwind CSS, qui présente une sélection de
-projets **Data Analytics, Data Engineering, BI et Machine Learning appliqué**.
+Portfolio de **Data Analyst / BI junior**, développé avec React et Tailwind CSS.
 
-**Site en ligne :** https://juleescourne.github.io/portfolio-data-analyst/
+**[Voir le portfolio](https://juleescourne.github.io/portfolio-data-analyst/)**
 
-## Positionnement
+## Projets organisés par thème
 
-Le portfolio est volontairement centré sur un profil Data cohérent plutôt que sur une
-liste large de technologies :
+L’accueil regroupe huit projets dans trois rubriques. Des liens permettent d’aller directement au thème choisi ; toutes les fiches restent accessibles sur la page.
 
-- **Analyse de données & BI** — SQL, qualité des données, conception de KPI, Power BI, restitution analytique
-- **Data Engineering** — Python, ETL/ELT, bases relationnelles, modélisation dimensionnelle, validation et automatisation
-- **Machine Learning appliqué** — XGBoost, feature engineering, classification/régression, évaluation de modèles
-
-## Projets présentés
-
-| Projet | Axe | Dépôt |
+| Thème | Projet | Dépôt |
 | --- | --- | --- |
-| Goodreads Analytics ETL | ETL, schéma en étoile, chargement incrémental, tests, BI | [goodreads-analytics-etl](https://github.com/juleescourne/goodreads-analytics-etl) |
-| Hospital SQL Analytics | MySQL, CTE, fonctions de fenêtrage, qualité des données | [hospital-sql-analytics](https://github.com/juleescourne/hospital-sql-analytics) |
-| Aide au choix d'outil coupant | Données industrielles, MySQL, SQLAlchemy, ACP, Plotly | [cutting-tool-recommender](https://github.com/juleescourne/cutting-tool-recommender) |
-| Prédiction de résiliation client | Classification, XGBoost, réglage du seuil, SHAP | [customer-churn-prediction](https://github.com/juleescourne/customer-churn-prediction) |
-| Prix de l'immobilier californien | Régression, variables géographiques, XGBoost | [california-housing-price-prediction](https://github.com/juleescourne/california-housing-price-prediction) |
+| Analyses métier & Power BI | Assurance auto — comprendre les sinistres | [assurance-auto-analytics](https://github.com/juleescourne/assurance-auto-analytics) |
+| Analyses métier & Power BI | Goodreads — du catalogue à la sélection | [goodreads-analytics-etl](https://github.com/juleescourne/goodreads-analytics-etl) |
+| Analyses métier & Power BI | Hospital SQL Analytics | [hospital-sql-analytics](https://github.com/juleescourne/hospital-sql-analytics) |
+| Modélisation & aide à la décision | Aide à la décision en usinage | [cutting-tool-recommender](https://github.com/juleescourne/cutting-tool-recommender) |
+| Modélisation & aide à la décision | Résiliation client | [customer-churn-prediction](https://github.com/juleescourne/customer-churn-prediction) |
+| Modélisation & aide à la décision | California Housing | [california-housing-price-prediction](https://github.com/juleescourne/california-housing-price-prediction) |
+| Applications & visualisation | QVTi — enquêtes qualité de vie au travail | [qvt-analysis](https://github.com/juleescourne/qvt-analysis) |
+| Applications & visualisation | BMX Competition Manager | [bmx-competition-manager](https://github.com/juleescourne/bmx-competition-manager) |
 
-## Ce que fait le portfolio
+Les cartes Assurance et Goodreads ouvrent des **études de cas** : question métier, résultats, démarche, graphique issu du notebook, livrables et limites. Les nombres sont issus des analyses publiées dans leurs dépôts. Le visuel de la carte assurance résume la comparaison de fréquence entre R24 et le portefeuille.
 
-- Page d'accueil orientée recruteur : disponibilité, mobilité, CV téléchargeable dès l'en-tête
-- Bandeau de chiffres vérifiables, chacun traçable jusqu'à un dépôt
-- Compétences reliées au projet qui les démontre — rien n'est listé sans preuve
-- Cinq démonstrations exécutables : inférence ONNX sur la résiliation, carte de scénarios
-  californiens, tableaux de bord Goodreads, et deux applications embarquées (ACP outil
-  coupant, explorateur d'enquête QVTi)
-- Routes en `#` qui fonctionnent sur GitHub Pages et respectent les boutons précédent/suivant du navigateur
-- Démos lourdes chargées à la demande, pour garder la page d'accueil légère
-- Métadonnées SEO et réseaux sociaux, dont une image de partage OpenGraph
-- Intégration continue GitHub Actions : tests puis un build de production
+Les compétences de l’accueil renvoient aux projets qui les illustrent. Le parcours, la disponibilité, les contacts et le CV restent accessibles depuis la navigation.
 
-## Génération du CV
+## Études de cas et démonstrations
 
-Le CV et le parcours affiché partagent `src/data/career.json` : expériences, contrats,
-dates et diplôme. Après une modification de cette source, régénérer le PDF :
+- **Assurance** : 678 013 contrats, distinction volume / fréquence, rapprochement des montants et suivi de la qualité. Le rapport Power BI comporte trois pages ; son actualisation, ses mesures DAX et son rendu Desktop restent à confirmer.
+- **Goodreads** : étude Kaggle sur 1 850 032 fiches conservées et une sélection de 20 fiches en français à vérifier. Les 33 mesures DAX ont été rapprochées de Pandas dans six contextes. Le rendu du rapport reste à contrôler dans Desktop.
+- **Laboratoire Goodreads** : démo synthétique historique, ouverte à la demande à la fin de l’étude. Ses données, ses genres et son score régularisé sont distincts de l’étude Kaggle actuelle. Son générateur est lié à un commit historique du dépôt.
+- **Résiliation client** : inférence ONNX et contributions SHAP dans le navigateur. Le dépôt choisit modèle et seuil sur validation puis évalue sur test ; cette évaluation est distinguée du modèle historique de la démo. Aucune efficacité de campagne de rétention n’a été mesurée.
+- **California Housing** : score de scénario relatif, sans prédiction calibrée en dollars. Le dépôt documente l’évaluation du modèle sur les données de 1990.
+- **Usinage et QVTi** : applications interactives embarquées ; les pages précisent leur périmètre et les données utilisées.
 
-```bash
-python3 -m pip install -r scripts/requirements-cv.txt
-node scripts/build-cv.js
-```
+Les projets PBIP se téléchargent depuis leurs dépôts et s’ouvrent dans Power BI Desktop. Les graphiques des deux études de cas proviennent des notebooks ; ils ne sont pas des captures Power BI.
 
-Le wrapper appelle le générateur ReportLab `scripts/build-cv.py`, sans navigateur.
-Sortie : `public/cv-jules-courne.pdf`. Vérifier visuellement la page après toute modification.
-
-## Précisions importantes sur les démonstrations
-
-Ces réserves sont volontairement affichées : une démo de navigateur est une simplification,
-et la présenter comme un résultat de production serait trompeur.
-
-### Démonstration California Housing
-
-La visualisation affiche un **score de scénario relatif**, pas une prédiction calibrée en
-dollars. Le dépôt du projet contient la méthodologie de modélisation réelle et les métriques
-d'évaluation rapportées. Cette distinction évite de faire passer une visualisation normalisée
-pour une estimation monétaire fiable.
-
-### Recommandations Goodreads
-
-Le jeu de données Goodreads décrit un catalogue, des notes et des signaux d'engagement. Le
-portfolio présente donc les recommandations stratégiques comme des **hypothèses à tester**,
-et non comme des affirmations causales ou des promesses de chiffre d'affaires.
-
-### Seuil de résiliation client
-
-Le script de référence choisit le modèle et le seuil sur validation, puis évalue le test.
-Les rapports JSON sont copiés dans `src/data/` pour afficher les résultats sur les pages ML.
-La démo ONNX conserve son entraînement historique et ses limites, explicitement séparés.
-Aucune efficacité de campagne de rétention n’a été mesurée.
+Le laboratoire Goodreads, la démo churn, la carte Housing, l’outil d’usinage et QVTi constituent les cinq démonstrations interactives. Les fonctionnalités lourdes sont chargées à la demande.
 
 ### Contributions SHAP
 
-Le panneau d'explication lit des valeurs SHAP pré-calculées hors ligne sur les 21 216
-scénarios que les curseurs de la démo peuvent produire, SHAP ne pouvant pas s'exécuter dans
-le navigateur. Le panneau affiche la **part de chaque variable dans la contribution absolue
-totale** — les valeurs SHAP sont exprimées en log-odds, les afficher telles quelles suivies
-d'un signe pourcent serait faux. Les entrées sont arrondies au point de grille le plus proche.
-Le script d'export se trouve dans le dépôt churn, à `scripts/export_demo_artifacts.py`.
+Les valeurs SHAP sont pré-calculées hors ligne sur les 21 216 scénarios de la démo. Le panneau affiche la part de chaque variable dans la contribution absolue totale, et non une variation de probabilité. Les entrées sont arrondies au point de grille le plus proche. Le script d’export se trouve dans le dépôt churn : `scripts/export_demo_artifacts.py`.
 
-## Stack technique
+## Modifier le contenu
 
-- React
-- Tailwind CSS
-- Lucide React
-- Plotly
-- ONNX Runtime Web
-- GitHub Pages
+| Fichier | Contenu |
+| --- | --- |
+| `src/data/HomeData.js` | Thèmes, fiches, chiffres de l’accueil et compétences |
+| `src/data/CaseStudies.js` | Résultats, sources et limites des études Assurance et Goodreads |
+| `src/data/career.json` | Parcours, contacts et contenu du CV |
+| `src/components/CaseStudyPage.jsx` | Présentation commune des études de cas |
+| `src/pages/HomePage.jsx` | Accueil et navigation entre les thèmes |
+| `public/images/` | Images locales et figures extraites des notebooks |
 
-Les images sont servies par le site lui-même, depuis `public/images/` — les tableaux de bord
-sont des exports WebP plafonnés à 1600 px (moins de 500 Ko pour l'ensemble, contre 14,4 Mo de
-PNG auparavant). Seuls les fichiers de modèle destinés au navigateur restent sur la branche
-`assets` via jsDelivr, où leur taille justifie un hébergement externe.
+Les routes en `#` fonctionnent sur GitHub Pages, avec précédent/suivant du navigateur. Les études sont accessibles directement via `#/assurance` et `#/goodreads`.
 
-## Développement local
+## Générer le CV
+
+Le CV utilise `src/data/career.json`. Après une modification de ses données :
 
 ```bash
-npm install
+python -m pip install -r scripts/requirements-cv.txt
+python scripts/build-cv.py
+```
+
+Sortie : `public/cv-jules-courne.pdf`. Contrôler le rendu et le nombre de pages avant publication.
+
+## Développement et vérification
+
+```bash
+npm ci
 npm start
 ```
 
-L'application est alors disponible sur `http://localhost:3000`.
-
-## Tests
+L’application est disponible sur `http://localhost:3000`.
 
 ```bash
 npm test -- --watchAll=false
-```
-
-## Build de production
-
-```bash
 npm run build
 ```
 
-## Déploiement sur GitHub Pages
+Vérifier également sur ordinateur et mobile les thèmes, les liens vers les études, le retour au portfolio et le chargement des figures. Les tests React couvrent l’accueil et les interactions des démonstrations.
 
-Le dépôt contient `.github/workflows/deploy-pages.yml`. Une fois GitHub Pages configuré sur
-**GitHub Actions**, chaque push sur `main` lance les tests, construit l'application React et
-déploie automatiquement l'artefact `build/`.
+## Déploiement
 
-L'ancienne commande `npm run deploy` peut toujours publier une branche `gh-pages`, mais elle
-devient inutile dès que Pages est configuré sur GitHub Actions.
+Chaque push sur `main` lance `.github/workflows/deploy-pages.yml` : tests, build React puis déploiement GitHub Pages. Le workflow des pull requests effectue les contrôles avant intégration.
 
-Le champ `homepage` de `package.json` pointe vers :
-
-```text
-https://juleescourne.github.io/portfolio-data-analyst/
-```
-
-## Structure du dépôt
-
-```text
-src/
-├── components/       Composants d'interface réutilisables
-├── data/             Textes du portfolio et métadonnées des projets
-├── hooks/            Logique du modèle navigateur et de SHAP
-├── pages/            Page d'accueil et pages projet
-└── utils/            Configuration partagée des ressources et d'ONNX
-
-public/
-├── index.html        Métadonnées SEO et réseaux sociaux
-├── manifest.json
-├── robots.txt
-└── sitemap.xml
-```
+Les images sont servies depuis le site. Les fichiers volumineux des modèles navigateur restent sur la branche `assets`, via jsDelivr. Aucun dataset d’analyse ni cache Power BI n’est embarqué dans le portfolio.
 
 ## Auteur
 
-**Jules Courné**  
-Data Analyst / BI junior — Rouen, France
+**Jules Courné — Data Analyst / BI junior, Rouen**
 
-- GitHub : https://github.com/juleescourne
-- LinkedIn : https://www.linkedin.com/in/jules-courn%C3%A9/
+[GitHub](https://github.com/juleescourne) · [LinkedIn](https://www.linkedin.com/in/jules-courn%C3%A9/)

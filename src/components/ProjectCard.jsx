@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Github, ArrowRight, Check } from 'lucide-react';
 import { getImageUrl } from '../utils/assetsConfig';
 
-const ProjectCard = ({ project, onDemoClick }) => {
+const ProjectCard = ({ project, onDemoClick, headingAs: Heading = 'h3' }) => {
     const [imageFailed, setImageFailed] = useState(false);
 
     return (
@@ -19,11 +19,11 @@ const ProjectCard = ({ project, onDemoClick }) => {
                     ) : (
                         <img
                             src={getImageUrl(project.image)}
-                            alt={`Aperçu — ${project.title}`}
+                            alt={project.imageAlt || `Aperçu — ${project.title}`}
                             loading="lazy"
                             decoding="async"
                             onError={() => setImageFailed(true)}
-                            className="absolute inset-0 w-full h-full object-cover"
+                            className={`absolute inset-0 w-full h-full ${project.imageFit === 'contain' ? 'object-contain p-4' : 'object-cover'}`}
                         />
                     )}
                 </div>
@@ -33,9 +33,9 @@ const ProjectCard = ({ project, onDemoClick }) => {
                     <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-accent mb-2">
                         {project.role}
                     </p>
-                    <h3 className="font-display text-2xl font-semibold text-ink mb-2.5 leading-tight">
+                    <Heading className="font-display text-2xl font-semibold text-ink mb-2.5 leading-tight">
                         {project.title}
-                    </h3>
+                    </Heading>
                     <p className="text-ink-2 text-[15px] leading-relaxed mb-5 max-w-prose">
                         {project.description}
                     </p>
@@ -61,6 +61,11 @@ const ProjectCard = ({ project, onDemoClick }) => {
                     </div>
 
                     <div className="flex flex-wrap gap-3">
+                        {project.documentation && (
+                            <a href={project.documentation} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white px-4 py-2.5 rounded-md text-sm font-medium transition">
+                                Lire la spécification <ArrowRight className="w-4 h-4" />
+                            </a>
+                        )}
                         {project.demo && (
                             <button
                                 type="button"

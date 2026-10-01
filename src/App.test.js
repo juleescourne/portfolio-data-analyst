@@ -30,7 +30,7 @@ test('la disponibilité et la localisation sont visibles', () => {
     expect(screen.getByText(profile.mobility)).toBeInTheDocument();
 });
 
-test('les six projets sont présentés avec leur lien vers le code', () => {
+test('tous les projets sont présentés avec leur lien vers le code', () => {
     render(<App />);
 
     projects.forEach((project) => {

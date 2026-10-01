@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+  <title id="title">Assurance auto : volume et fréquence</title>
+  <desc id="desc">R24 concentre 25,49 % des sinistres. Sa fréquence est de 8,96 pour 100 années assurées, contre 10,07 pour le portefeuille.</desc>
+  <rect width="640" height="480" fill="#e2eeed"/>
+  <g font-family="Arial, sans-serif" fill="#141a19">
+    <text x="55" y="68" font-size="16" letter-spacing="2" fill="#0d5e63">ASSURANCE AUTOMOBILE</text>
+    <text x="55" y="120" font-size="35" font-weight="700">Volume ≠ fréquence</text>
+    <text x="55" y="169" font-size="19">R24 : 25,49 % des sinistres déclarés</text>
+    <text x="55" y="242" font-size="17">Fréquence pour 100 années assurées</text>
+    <text x="55" y="287" font-size="18">R24</text>
+    <rect x="190" y="265" width="267" height="32" rx="4" fill="#0d5e63"/>
+    <text x="472" y="288" font-size="23" font-weight="700">8,96</text>
+    <text x="55" y="343" font-size="18">Portefeuille</text>
+    <rect x="190" y="321" width="300" height="32" rx="4" fill="#626d6a"/>
+    <text x="505" y="344" font-size="23" font-weight="700">10,07</text>
+    <path d="M55 397H585" stroke="#b7ccca"/>
+    <text x="55" y="437" font-size="15" fill="#3b4644">freMTPL2 · analyse descriptive de 678 013 contrats</text>
+  </g>
+</svg>

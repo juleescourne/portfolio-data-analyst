@@ -4,10 +4,9 @@ import {
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import ProjectCard from '../components/ProjectCard';
-import { getImageUrl } from '../utils/assetsConfig';
 import {
-    profile, proofPoints, projects, skills, otherSkills,
-    experiences, formation, certifications, about, sideProject,
+    profile, proofPoints, projects, projectThemes, skills, otherSkills,
+    experiences, formation, certifications, about,
 } from '../data/HomeData';
 
 const ABOUT_ICONS = { database: Database, workflow: Workflow, chart: BarChart3 };
@@ -34,7 +33,7 @@ const HomePage = ({ onShowProject }) => {
     const hasFormation = formation.some((f) => f.school);
 
     // Tous les projets n'ont pas de démo : « voir la preuve » fait donc défiler
-    // jusqu'à la fiche, ce qui fonctionne pour les six.
+    // jusqu’à la fiche correspondante.
     const scrollToProject = (id) => {
         const card = document.getElementById(`project-${id}`);
         if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -128,17 +127,33 @@ const HomePage = ({ onShowProject }) => {
             <Section
                 id="projects"
                 eyebrow="Travaux"
-                title="Projets sélectionnés"
-                lead="Trois projets pour vérifier mes compétences en SQL, préparation des données et aide à la décision. Code et démonstrations sont accessibles depuis chaque fiche."
+                title="Mes projets, par thème"
+                lead="Des études métier, des modèles et des applications. Chaque fiche présente la question traitée, le travail réalisé et les livrables consultables."
             >
-                <div className="space-y-6">
-                    {projects.slice(0, 3).map((project) => (
-                        <div key={project.id} id={`project-${project.id}`} className="scroll-mt-24">
-                            <ProjectCard
-                                project={project}
-                                onDemoClick={() => project.demoRoute && onShowProject(project.demoRoute)}
-                            />
-                        </div>
+                <nav aria-label="Thèmes des projets" className="grid md:grid-cols-3 gap-3 mb-12">
+                    {projectThemes.map((theme, index) => (
+                        <a key={theme.id} href={`#theme-${theme.id}`} className="group bg-surface border border-line hover:border-accent rounded-lg p-5 transition">
+                            <span className="font-mono text-xs text-accent block mb-3">0{index + 1} · {projects.filter(project => project.theme === theme.id).length} projets</span>
+                            <span className="font-semibold text-ink group-hover:text-accent">{theme.title} <span aria-hidden="true">↓</span></span>
+                        </a>
+                    ))}
+                </nav>
+                <div className="space-y-16">
+                    {projectThemes.map((theme, index) => (
+                        <section key={theme.id} id={`theme-${theme.id}`} aria-labelledby={`title-${theme.id}`} className="scroll-mt-24">
+                            <div className="border-t border-line pt-7 mb-6">
+                                <p className="font-mono text-xs text-accent mb-2">0{index + 1}</p>
+                                <h3 id={`title-${theme.id}`} className="font-display text-2xl sm:text-3xl font-semibold text-ink mb-2">{theme.title}</h3>
+                                <p className="text-muted max-w-prose leading-relaxed">{theme.description}</p>
+                            </div>
+                            <div className="space-y-6">
+                                {projects.filter(project => project.theme === theme.id).map(project => (
+                                    <div key={project.id} id={`project-${project.id}`} className="scroll-mt-24">
+                                        <ProjectCard project={project} headingAs="h4" onDemoClick={() => onShowProject(project.demoRoute)} />
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
                     ))}
                 </div>
             </Section>
@@ -214,67 +229,6 @@ const HomePage = ({ onShowProject }) => {
                         ))}
                     </div>
                 )}
-            </Section>
-
-            <Section id="more-projects" eyebrow="Pour approfondir" title="Autres projets Data">
-                <div className="space-y-6">
-                    {projects.slice(3).map((project) => (
-                        <div key={project.id} id={`project-${project.id}`} className="scroll-mt-24">
-                            <ProjectCard project={project} onDemoClick={() => onShowProject(project.demoRoute)} />
-                        </div>
-                    ))}
-                </div>
-            </Section>
-            {/* --------------------------------------------------- Projet annexe */}
-            <Section id="side" eyebrow="Hors Data" title="Un algorithme dont je suis content">
-                <article className="bg-surface border border-line rounded-lg overflow-hidden grid md:grid-cols-[minmax(0,1fr)_minmax(0,420px)]">
-                    <div className="p-6 sm:p-8 order-2 md:order-1">
-                        <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-accent mb-2">
-                            {sideProject.role}
-                        </p>
-                        <h3 className="font-display text-2xl font-semibold text-ink mb-3 leading-tight">
-                            {sideProject.title}
-                        </h3>
-                        <p className="text-ink-2 text-[15px] leading-relaxed mb-4 max-w-prose">
-                            {sideProject.description}
-                        </p>
-                        <p className="text-muted text-[15px] leading-relaxed mb-4 max-w-prose">
-                            {sideProject.hook}
-                        </p>
-                        <p className="font-mono text-xs text-muted bg-raised border border-line-soft rounded px-3 py-2 mb-6 break-words">
-                            {sideProject.proof}
-                        </p>
-                        <div className="flex flex-wrap gap-3">
-                            <a
-                                href={sideProject.documentation}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white px-4 py-2.5 rounded-md text-sm font-medium transition"
-                            >
-                                Lire la spécification
-                                <ArrowRight className="w-4 h-4" />
-                            </a>
-                            <a
-                                href={sideProject.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 border border-line hover:border-accent hover:text-accent text-ink-2 px-4 py-2.5 rounded-md text-sm font-medium transition"
-                            >
-                                <Github className="w-4 h-4" />
-                                Code source
-                            </a>
-                        </div>
-                    </div>
-                    <div className="bg-raised border-b md:border-b-0 md:border-l border-line-soft flex items-center justify-center p-5 order-1 md:order-2">
-                        <img
-                            src={getImageUrl(sideProject.image)}
-                            alt={sideProject.imageAlt}
-                            loading="lazy"
-                            decoding="async"
-                            className="w-full h-auto rounded"
-                        />
-                    </div>
-                </article>
             </Section>
 
             {/* ------------------------------------------------------ Compétences */}
