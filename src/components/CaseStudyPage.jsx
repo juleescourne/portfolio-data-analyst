@@ -8,7 +8,7 @@ const ExternalLink = ({ href, children }) => (
     </a>
 );
 
-export default function CaseStudyPage({ study, onBack, children }) {
+export default function CaseStudyPage({ study, onBack, introduction, children }) {
     return (
         <div className="min-h-screen bg-paper text-ink">
             <Navbar title={study.title} showBackButton onBackClick={onBack} />
@@ -25,6 +25,7 @@ export default function CaseStudyPage({ study, onBack, children }) {
                         <Github size={18} />Consulter le projet sur GitHub
                     </a>
                 </header>
+                {introduction}
                 <dl className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     {study.metrics.map(([value, label]) => (
                         <div key={label} className="bg-surface border border-line rounded-lg p-5 flex flex-col">
@@ -73,7 +74,7 @@ export default function CaseStudyPage({ study, onBack, children }) {
                             <div key={title}><h3 className="font-semibold mb-2">{title}</h3><p className="text-sm text-muted leading-relaxed">{text}</p></div>
                         ))}
                     </div>
-                    <p className="text-sm text-ink-2 leading-relaxed border-t border-line pt-5 mb-5"><strong>État des vérifications au 1er octobre 2026.</strong> {study.reportStatus}</p>
+                    <p className="text-sm text-ink-2 leading-relaxed border-t border-line pt-5 mb-5"><strong>État des vérifications au {study.reportCheckedAt || '1er octobre 2026'}.</strong> {study.reportStatus}</p>
                     <ExternalLink href={study.reportPath}>Fichiers du rapport et guide d’ouverture</ExternalLink>
                 </section>
                 <section className="grid md:grid-cols-2 gap-8">

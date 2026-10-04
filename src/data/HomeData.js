@@ -44,12 +44,12 @@ export const projects = [
         github: 'https://github.com/juleescourne/assurance-auto-analytics',
         demo: true,
         demoRoute: 'assurance',
-        demoLabel: 'Lire l’étude de cas',
+        demoLabel: 'Découvrir l’étude et la démo',
         highlights: [
             'Fréquence rapportée à l’exposition, distincte du volume de sinistres',
             '26,76 % des contrats sinistrés sans montant retrouvé : limite explicitée',
             'Trois notebooks exécutés et décisions de qualité documentées',
-            'Rapport Power BI : portefeuille, segments, qualité et limites',
+            'Cinq pages Power BI : portefeuille, B12, R24, R11 et qualité',
         ],
     },
     {

@@ -25,7 +25,7 @@ Les compétences de l’accueil renvoient aux projets qui les illustrent. Le par
 
 ## Études de cas et démonstrations
 
-- **Assurance** : 678 013 contrats, distinction volume / fréquence, rapprochement des montants et suivi de la qualité. Le rapport Power BI comporte trois pages ; son actualisation, ses mesures DAX et son rendu Desktop restent à confirmer.
+- **Assurance** : 678 013 contrats, distinction volume / fréquence, rapprochement des montants et suivi de la qualité. Le rapport Power BI comporte cinq pages : vue d’ensemble, B12 / véhicules de 0 an, R24, R11 et qualité. La page de démo est prête à accueillir une vidéo de 8 à 9 minutes ; elle affiche « Vidéo à venir » tant que la source n’est pas renseignée. Le guide du dépôt conserve des vérifications à effectuer dans Desktop.
 - **Goodreads** : étude Kaggle sur 1 850 032 fiches conservées et une sélection de 20 fiches en français à vérifier. Les 33 mesures DAX ont été rapprochées de Pandas dans six contextes. Le rendu du rapport reste à contrôler dans Desktop.
 - **Laboratoire Goodreads** : démo synthétique historique, ouverte à la demande à la fin de l’étude. Ses données, ses genres et son score régularisé sont distincts de l’étude Kaggle actuelle. Son générateur est lié à un commit historique du dépôt.
 - **Résiliation client** : inférence ONNX et contributions SHAP dans le navigateur. Le dépôt choisit modèle et seuil sur validation puis évalue sur test ; cette évaluation est distinguée du modèle historique de la démo. Aucune efficacité de campagne de rétention n’a été mesurée.
@@ -46,12 +46,34 @@ Les valeurs SHAP sont pré-calculées hors ligne sur les 21 216 scénarios de la
 | --- | --- |
 | `src/data/HomeData.js` | Thèmes, fiches, chiffres de l’accueil et compétences |
 | `src/data/CaseStudies.js` | Résultats, sources et limites des études Assurance et Goodreads |
+| `src/data/AssuranceDemo.js` | Source de la vidéo Assurance et parcours de la démo |
+| `src/components/AssuranceDemo.jsx` | Emplacement vidéo, lecteur et présentation des cinq étapes |
 | `src/data/career.json` | Parcours, contacts et contenu du CV |
 | `src/components/CaseStudyPage.jsx` | Présentation commune des études de cas |
 | `src/pages/HomePage.jsx` | Accueil et navigation entre les thèmes |
 | `public/images/` | Images locales et figures extraites des notebooks |
 
 Les routes en `#` fonctionnent sur GitHub Pages, avec précédent/suivant du navigateur. Les études sont accessibles directement via `#/assurance` et `#/goodreads`.
+
+### Ajouter la vidéo Assurance
+
+La démo se trouve en haut de `#/assurance`, avant les indicateurs de l’étude. Le texte suit le script révisé le 4 octobre 2026 : question métier, volumes et fréquence, B12, R24, R11, qualité et suites. Le choix de ne pas détailler les 18–24 ans dans la vidéo est expliqué, avec un lien vers leur analyse dans le notebook.
+
+Dans `src/data/AssuranceDemo.js`, renseigner `assuranceVideo` selon l’hébergement choisi :
+
+```js
+// MP4 local (à placer dans public/videos/) ou URL HTTPS du fichier.
+{ type: 'file', src: '/videos/assurance-demo.mp4', captionsSrc: '', poster: '' }
+
+// Ou vidéo YouTube : renseigner uniquement son identifiant de 11 caractères.
+{ type: 'youtube', src: 'IDENTIFIANT_VIDEO', captionsSrc: '', poster: '' }
+```
+
+Pour un MP4 local, le préfixe GitHub Pages est ajouté automatiquement : ne pas le répéter dans `src`. `captionsSrc` peut pointer vers des sous-titres français au format WebVTT et `poster` vers une capture réelle du rapport. Pour un fichier volumineux, privilégier YouTube ou un hébergement vidéo externe.
+
+Sans source, aucun lecteur vide n’est affiché. Avec une source valide, le lecteur remplace l’annonce et un lien permet d’ouvrir la vidéo séparément. YouTube est chargé au clic. Il n’y a pas de lecture automatique ni de minutage de chapitres inventé : vérifier les durées après le montage avant d’ajouter des repères temporels.
+
+Avant publication, contrôler le son, les sous-titres et la lecture sur mobile. La présence d’une vidéo ne valide pas automatiquement les mesures DAX : mettre à jour l’état des vérifications seulement après les contrôles réels dans Desktop.
 
 ## Générer le CV
 
