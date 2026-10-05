@@ -60,7 +60,9 @@ export const projects = [
         description:
             'Comment préparer une sélection de livres en français dans un catalogue imparfait ? ' +
             'Contrôle de 1,85 million de fiches, analyse des notes et proposition de 20 fiches à vérifier pour une librairie fictive.',
-        image: 'goodreads.webp',
+        image: 'goodreads-logo.svg',
+        imageFit: 'contain',
+        imageAlt: 'Logo Goodreads sur fond clair',
         tags: ['Python', 'Pandas', 'Qualité des données', 'Power BI', 'DAX'],
         github: 'https://github.com/juleescourne/goodreads-analytics-etl',
         demo: true,
