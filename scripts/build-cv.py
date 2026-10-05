@@ -6,8 +6,6 @@ from reportlab.lib import colors
 from reportlab.lib.enums import TA_RIGHT
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.pagesizes import A4
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, KeepTogether
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -16,13 +14,8 @@ profile = career['profile']
 for key in ['school', 'degree', 'year']:
     if not career['formation'][0].get(key):
         raise ValueError(f'Missing formation.{key}')
-font_dir = Path('/usr/share/fonts/truetype/dejavu')
+# Keep the published CV typography stable on every build machine.
 regular, bold = 'Helvetica', 'Helvetica-Bold'
-if (font_dir / 'DejaVuSans.ttf').exists():
-    pdfmetrics.registerFont(TTFont('CVSans', str(font_dir / 'DejaVuSans.ttf')))
-    pdfmetrics.registerFont(TTFont('CVSansBold', str(font_dir / 'DejaVuSans-Bold.ttf')))
-    pdfmetrics.registerFontFamily('CVSans', normal='CVSans', bold='CVSansBold')
-    regular, bold = 'CVSans', 'CVSansBold'
 ink, teal, muted = [colors.HexColor(v) for v in ['#182C30', '#0D666A', '#4B5A60']]
 styles = {
     'name': ParagraphStyle('name', fontName=bold, fontSize=23, leading=27, textColor=ink),

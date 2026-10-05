@@ -104,6 +104,12 @@
   ],
   "cvProjects": [
     {
+      "name": "Assurance auto — analyse des sinistres",
+      "stack": "Python · Power BI · DAX",
+      "text": "678 013 contrats : contrôle des jointures, fréquence rapportée à l’exposition, investigation des segments et restitution en cinq pages Power BI.",
+      "url": "https://github.com/juleescourne/assurance-auto-analytics"
+    },
+    {
       "name": "Goodreads — analyse du catalogue",
       "stack": "Python · Pandas · Power BI",
       "text": "1,85 million de fiches : contrôle qualité, sélection de 20 fiches en français à vérifier, notebooks exécutés et rapport Power BI.",
