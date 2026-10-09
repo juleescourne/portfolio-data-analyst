@@ -120,3 +120,15 @@ python scripts/build-goodreads-images.py /chemin/vers/demo_portfolio/Goodreads.p
 ```
 
 Le script conserve le PDF fourni, produit six WebP (lecture et zoom) et enregistre son empreinte dans `public/documents/goodreads-source.json`. Il ne retouche pas les graphiques. Adapter les commentaires dans `src/data/GoodreadsGuide.js` et la date affichée dans `GoodreadsGuide.jsx` et `GoodreadsPage.jsx`. Les deux projets partagent le composant `DashboardGuide.jsx` ; vérifier aussi le parcours Assurance après une modification de ce composant.
+
+## Actualiser Hospital SQL Analytics
+
+La route `#/hospital` présente trois analyses des résultats MySQL : activité, couverture et qualité. Les changements de lecture et le choix du payeur utilisent les agrégats publiés ; le navigateur ne lance pas de requête SQL.
+
+Après `bash scripts/run_demo.sh` dans le dépôt Hospital, lancer :
+
+```bash
+python3 scripts/sync-hospital.py /chemin/vers/hospital-sql-analytics
+```
+
+Le script copie le JSON et quatre CSV agrégés, sans données individuelles. Vérifier les commentaires de `HospitalPage.jsx`, les chiffres du CV, puis lancer les tests et le build. Les résultats actuels portent sur 7 794 passages entièrement synthétiques.

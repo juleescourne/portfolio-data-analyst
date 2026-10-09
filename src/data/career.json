@@ -118,7 +118,7 @@
     {
       "name": "Hospital SQL Analytics",
       "stack": "MySQL · KPI · Qualité",
-      "text": "7 160 passages synthétiques : fonctions fenêtres, cohortes, contrôles qualité et couverture assureur pondérée.",
+      "text": "7 794 passages synthétiques : fonctions fenêtres, contrôles qualité, couverture pondérée et tests des indicateurs ; résultats consultables dans le portfolio.",
       "url": "https://github.com/juleescourne/hospital-sql-analytics"
     },
     {

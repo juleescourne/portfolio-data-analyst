@@ -6,7 +6,7 @@ export const { profile, experiences, formation, certifications } = career;
 export const proofPoints = [
     { value: '678 013', label: 'contrats étudiés', context: 'assurance automobile' },
     { value: '1,85 M', label: 'fiches de livres contrôlées', context: 'catalogue Goodreads' },
-    { value: '7 160', label: 'passages synthétiques', context: 'étude hospitalière SQL' },
+    { value: '7 794', label: 'passages synthétiques', context: 'étude hospitalière SQL' },
     { value: '12', label: 'entités modélisées', context: 'base d’usinage MySQL' },
 ];
 
@@ -86,12 +86,14 @@ export const projects = [
         image: 'health.webp',
         tags: ['SQL', 'MySQL', 'Window Functions', 'CTE', 'Data Quality', 'Cohortes'],
         github: 'https://github.com/juleescourne/hospital-sql-analytics',
-        demo: false,
+        demo: true,
+        demoRoute: 'hospital',
+        demoLabel: 'Explorer les résultats SQL',
         highlights: [
             'ROW_NUMBER, DENSE_RANK, NTILE, LAG/LEAD, cumuls et moyennes mobiles',
-            '18 contrôles qualité, dont un que nulle clé étrangère ne peut faire',
+            'Contrôles qualité et tests des indicateurs sur des cas connus',
             'Taux de couverture pondéré, et non moyenne de ratios',
-            'Générateur synthétique, contrôles qualité et résultats MySQL vérifiés',
+            '7 794 passages synthétiques : résultats, CSV et requêtes consultables',
         ],
     },
     {
