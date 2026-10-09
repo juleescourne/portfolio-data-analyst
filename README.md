@@ -105,7 +105,7 @@ Les images sont servies depuis le site. Les fichiers volumineux des modèles nav
 
 **Jules Courné — Data Analyst / BI junior, Rouen**
 
-[GitHub](https://github.com/juleescourne) · [LinkedIn](https://www.linkedin.com/in/jules-courn%C3%A9/)
+[GitHub](https://github.com/juleescourne) · [LinkedIn](https://www.linkedin.com/in/jules-courn%C3%A9-430a79230/)
 
 
 ## Actualiser Goodreads

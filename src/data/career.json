@@ -13,7 +13,7 @@
     "phoneHref": "tel:+33760066526",
     "location": "Rouen, Normandie",
     "github": "https://github.com/juleescourne",
-    "linkedin": "https://www.linkedin.com/in/jules-courn%C3%A9/",
+    "linkedin": "https://www.linkedin.com/in/jules-courn%C3%A9-430a79230/",
     "cv": "cv-jules-courne.pdf",
     "portfolio": "https://juleescourne.github.io/portfolio-data-analyst/"
   },
@@ -106,13 +106,13 @@
     {
       "name": "Assurance auto — analyse des sinistres",
       "stack": "Python · Power BI · DAX",
-      "text": "678 013 contrats : contrôle des jointures, fréquence rapportée à l’exposition, investigation des segments et restitution en cinq pages Power BI.",
+      "text": "678 013 contrats : contrôle des jointures, fréquence rapportée à l’exposition et quatre priorités d’investigation ; cinq dashboards Power BI commentés.",
       "url": "https://github.com/juleescourne/assurance-auto-analytics"
     },
     {
-      "name": "Goodreads — analyse du catalogue",
+      "name": "Goodreads — du catalogue à la sélection",
       "stack": "Python · Pandas · Power BI",
-      "text": "1,85 million de fiches : contrôle qualité, sélection de 20 fiches en français à vérifier, notebooks exécutés et rapport Power BI.",
+      "text": "1,85 million de fiches : contrôle qualité, six scénarios comparés et 20 propositions en français, avec un plafond de deux par auteur. Trois dashboards Power BI.",
       "url": "https://github.com/juleescourne/goodreads-analytics-etl"
     },
     {
