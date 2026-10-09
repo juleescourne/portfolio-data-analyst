@@ -46,7 +46,7 @@ test('la page expose un seul titre principal, ses livrables et le retour', () =>
     try {
         const { container } = render(<GoodreadsPage onBack={onBack} />);
         expect(container.querySelectorAll('h1')).toHaveLength(1);
-        expect(screen.getByRole('link', { name: 'Lire la synthèse PDF' })).toHaveAttribute('href', '/portfolio-data-analyst/documents/goodreads-synthese.pdf');
+        expect(screen.getByRole('link', { name: 'Synthèse analytique · PDF 4 pages' })).toHaveAttribute('href', '/portfolio-data-analyst/documents/goodreads-synthese.pdf');
         expect(screen.getByRole('link', { name: 'Les six listes · CSV' })).toHaveAttribute('href', '/portfolio-data-analyst/documents/goodreads-listes_scenarios.csv');
         fireEvent.click(screen.getByRole('button', { name: 'Retour au portfolio' }));
         expect(onBack).toHaveBeenCalledTimes(1);

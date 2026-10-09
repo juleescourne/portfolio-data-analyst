@@ -67,7 +67,7 @@ export const projects = [
         github: 'https://github.com/juleescourne/goodreads-analytics-etl',
         demo: true,
         demoRoute: 'goodreads',
-        demoLabel: 'Comparer les sélections',
+        demoLabel: 'Parcourir les dashboards',
         highlights: [
             '86,40 % de langues absentes : périmètre et biais documentés',
             '3 002 fiches candidates en français, puis contrôle des éditions',

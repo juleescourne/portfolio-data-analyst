@@ -19,21 +19,21 @@ L’accueil regroupe huit projets dans trois rubriques. Des liens permettent d�
 | Applications & visualisation | QVTi — enquêtes qualité de vie au travail | [qvt-analysis](https://github.com/juleescourne/qvt-analysis) |
 | Applications & visualisation | BMX Competition Manager | [bmx-competition-manager](https://github.com/juleescourne/bmx-competition-manager) |
 
-Les cartes Assurance et Goodreads ouvrent des **études de cas** : question métier, résultats, démarche, livrables et limites. Assurance présente les cinq pages du rapport Power BI ; Goodreads présente les six sélections réelles, leurs mouvements et les figures de synthèse. Les nombres sont issus des analyses publiées dans leurs dépôts. Le visuel de la carte assurance résume la comparaison de fréquence entre R24 et le portefeuille.
+Les cartes Assurance et Goodreads ouvrent des **études de cas** : question métier, résultats, démarche, livrables et limites. Assurance présente les cinq pages du rapport Power BI ; Goodreads présente les trois pages de son rapport Power BI, avec une lecture guidée du catalogue, de la sélection et de la qualité. Les nombres sont issus des analyses publiées dans leurs dépôts. Le visuel de la carte assurance résume la comparaison de fréquence entre R24 et le portefeuille.
 
 Les compétences de l’accueil renvoient aux projets qui les illustrent. Le parcours, la disponibilité, les contacts et le CV restent accessibles depuis la navigation.
 
 ## Études de cas et démonstrations
 
 - **Assurance** : parcours guidé en cinq étapes, captures réelles des dashboards, zoom, constats, interprétations et suites proposées. Le PDF complet, les notebooks et le projet Power BI sont accessibles sans compte depuis l’étude. Les tests statistiques sont clairement présentés comme des suites à réaliser.
-- **Goodreads** : comparaison de six listes recalculées sur les données Kaggle, avec deux règles éditoriales, trois seuils, titres entrants/sortants et référence explicite. Une synthèse PDF et les CSV sont téléchargeables. La nouvelle version Power BI reste à vérifier dans Desktop.
+- **Goodreads** : trois captures intégrales du PDF Power BI fourni, avec onglets, zoom, constats, interprétation et suites proposées. Les tableaux défilants sont complétés par les CSV des 20 propositions, des six listes et de leurs mouvements. Le rapport PDF et la synthèse Python sont distingués.
 - **Résiliation client** : inférence ONNX et contributions SHAP dans le navigateur. Le dépôt choisit modèle et seuil sur validation puis évalue sur test ; cette évaluation est distinguée du modèle historique de la démo. Aucune efficacité de campagne de rétention n’a été mesurée.
 - **California Housing** : score de scénario relatif, sans prédiction calibrée en dollars. Le dépôt documente l’évaluation du modèle sur les données de 1990.
 - **Usinage et QVTi** : applications interactives embarquées ; les pages précisent leur périmètre et les données utilisées.
 
 Les projets PBIP se téléchargent depuis leurs dépôts et s’ouvrent dans Power BI Desktop. Les graphiques des deux études de cas proviennent des notebooks ; ils ne sont pas des captures Power BI.
 
-Le comparateur Goodreads sur données réelles, la démo churn, la carte Housing, l’outil d’usinage et QVTi constituent les cinq démonstrations interactives. Les fonctionnalités lourdes sont chargées à la demande.
+Les parcours Assurance et Goodreads proposent navigation et zoom sur les captures. La démo churn, la carte Housing, l’outil d’usinage et QVTi conservent leurs interactions propres. Les fonctionnalités lourdes sont chargées à la demande.
 
 ### Contributions SHAP
 
@@ -111,3 +111,12 @@ Les images sont servies depuis le site. Les fichiers volumineux des modèles nav
 ## Actualiser Goodreads
 
 Après réexécution des notebooks et de scripts/preparer_livrables.py dans le dépôt Goodreads, lancer python scripts/sync-goodreads.py /chemin/du/depot/goodreads. Le script copie les petites listes, le PDF et les figures calculées, ainsi que le JSON des six scénarios. Vérifier ensuite les commentaires de GoodreadsPage.jsx, puis exécuter les tests et le build. Le parcours ne charge pas les 1,85 million de fiches et ne simule pas de résultat commercial.
+
+Pour actualiser les captures Power BI (trois pages dans l’ordre catalogue, sélection, qualité) :
+
+```bash
+python -m pip install -r scripts/requirements-assurance-images.txt
+python scripts/build-goodreads-images.py /chemin/vers/demo_portfolio/Goodreads.pdf --date 2026-10-09
+```
+
+Le script conserve le PDF fourni, produit six WebP (lecture et zoom) et enregistre son empreinte dans `public/documents/goodreads-source.json`. Il ne retouche pas les graphiques. Adapter les commentaires dans `src/data/GoodreadsGuide.js` et la date affichée dans `GoodreadsGuide.jsx` et `GoodreadsPage.jsx`. Les deux projets partagent le composant `DashboardGuide.jsx` ; vérifier aussi le parcours Assurance après une modification de ce composant.
