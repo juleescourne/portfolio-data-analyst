@@ -44,7 +44,7 @@ export const projects = [
         github: 'https://github.com/juleescourne/assurance-auto-analytics',
         demo: true,
         demoRoute: 'assurance',
-        demoLabel: 'Découvrir l’étude et la démo',
+        demoLabel: 'Parcourir les dashboards',
         highlights: [
             'Fréquence rapportée à l’exposition, distincte du volume de sinistres',
             '26,76 % des contrats sinistrés sans montant retrouvé : limite explicitée',

@@ -13,8 +13,8 @@ export const getDataUrl = (filename) =>
 /**
  * Les images sont en revanche servies par le site lui-même. Deux raisons :
  * - un CDN externe filtré par un réseau d'entreprise vidait la page de tous ses visuels ;
- * - les captures pèsent désormais moins de 500 Ko au total (WebP 1600 px) et n'ont donc
- *   plus besoin d'être déportées.
+ * - les captures sont compressées en WebP ; leurs versions détaillées ne sont
+ *   chargées qu’à l’ouverture du zoom.
  */
 export const getImageUrl = (filename) =>
   `${process.env.PUBLIC_URL}/images/${filename}`;

@@ -50,10 +50,10 @@ export const assuranceStudy = {
         ['Qualité et limites', 'Suivre les montants manquants, les orphelins et l’influence des gros sinistres.'],
     ],
     reportPath: `${assuranceRepo}/tree/main/powerbi`,
-    reportCheckedAt: '2 octobre 2026',
-    reportStatus: 'Les notebooks et les exports ont été exécutés et contrôlés. Les fichiers du rapport, les références et les interactions déclarées ont été vérifiés. Le guide du dépôt conserve une vérification à effectuer dans Power BI Desktop pour l’actualisation, les mesures DAX et le rendu.',
+    reportCheckedAt: '9 octobre 2026',
+    reportStatus: 'Les cinq pages du PDF fourni le 9 octobre 2026 sont consultables dans le parcours guidé. Cet export atteste du rendu présenté ; il ne remplace pas les contrôles d’actualisation et des mesures dans Power BI Desktop.',
     limits: 'Analyse descriptive : sans primes, frais ni dates exploitables, je ne conclus ni sur la rentabilité, ni sur une évolution mensuelle, ni sur une causalité. La fréquence est un nombre de sinistres pour 100 années assurées, pas un pourcentage de contrats.',
-    recommendation: 'Vérifier les périodes et les montants de B12, examiner les sinistres du sous-groupe R24 et approfondir le profil densité / bonus-malus repéré en R11. Les montants inconnus restent manquants et les six contrats orphelins sont suivis à part. Aucune recommandation tarifaire n’est tirée de ces seules données.',
+    recommendation: 'Fiabiliser les données et leur rapprochement, puis vérifier les périodes et les montants de B12, examiner les sinistres du sous-groupe R24 et approfondir le profil densité / bonus-malus repéré en R11. Les montants inconnus restent manquants et les six contrats orphelins sont suivis à part. Aucune recommandation tarifaire n’est tirée de ces seules données.',
     resources: [
         ['Cadrage', `${assuranceRepo}/blob/main/docs/Cadrage.md`],
         ['Contrôles qualité', `${assuranceRepo}/blob/main/docs/Qualité.md`],
