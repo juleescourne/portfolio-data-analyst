@@ -67,12 +67,12 @@ export const projects = [
         github: 'https://github.com/juleescourne/goodreads-analytics-etl',
         demo: true,
         demoRoute: 'goodreads',
-        demoLabel: 'Lire l’étude de cas',
+        demoLabel: 'Comparer les sélections',
         highlights: [
             '86,40 % de langues absentes : périmètre et biais documentés',
             '3 002 fiches candidates en français, puis contrôle des éditions',
-            'Sensibilité de la sélection aux seuils de notes et de volume',
-            'Trois notebooks, trois pages Power BI et mesures DAX contrôlées',
+            'Six listes recalculées : titres entrants, sortants et diversité',
+            'Trois notebooks réexécutés et dix tests ciblés sur les règles',
         ],
     },
     {

@@ -85,11 +85,11 @@ export const goodreadsStudy = {
         },
         {
             title: 'Construire une liste de travail explicable',
-            text: 'Le catalogue compte 16 327 fiches explicitement en français. Les critères retiennent 3 002 candidates, puis 2 716 groupes titre/auteur. Les 20 fiches proposées demandent encore une vérification des éditions, des séries et de la disponibilité.',
+            text: 'Le catalogue compte 16 327 fiches explicitement en français. Les critères retiennent 3 002 candidates, puis 2 716 groupes titre/auteur. La variante plafonnée à deux fiches par libellé auteur passe de 12 à 16 auteurs, avec quatre remplacements. Les éditions, séries et disponibilités restent à vérifier.',
         },
         {
             title: 'Mesurer la sensibilité des choix',
-            text: 'À note au moins égale à 4, passer de 100 à 500 notations réduit les candidats de 3 002 à 2 409. Cinq fiches de la première liste de 20 seraient concernées. Les seuils sont des choix de travail, pas une sélection optimale démontrée.',
+            text: 'À note au moins égale à 4, passer de 100 à 500 notations réduit les candidats de 3 002 à 2 409. Les listes recalculées remplacent cinq fiches sur vingt et permettent de consulter leurs remplaçantes. Les seuils sont des choix de travail, pas une sélection optimale démontrée.',
         },
     ],
     steps: [
@@ -110,7 +110,8 @@ export const goodreadsStudy = {
         ['Qualité des données', 'Défauts du catalogue filtré et bilan fixe de l’import.'],
     ],
     reportPath: `${goodreadsRepo}/tree/main/powerbi`,
-    reportStatus: 'Les trois tables ont été actualisées dans le moteur de Power BI Desktop. Les 33 mesures DAX ont été comparées à Pandas dans six contextes : 198 comparaisons concordantes. Le rendu et les interactions des pages restent à vérifier manuellement dans Desktop.',
+    reportCheckedAt: '9 octobre 2026',
+    reportStatus: 'Évolution du 9 octobre : cinq tables, 34 mesures, six listes recalculées. Les trois notebooks et les contrôles des exports passent, ainsi que dix tests ciblés. Les vérifications historiques du moteur DAX concernent la version précédente ; cette évolution reste à actualiser et à vérifier dans Desktop.',
     limits: 'Photographie de 2020 : ni ventes, ni stock, ni prix, ni historique daté des notations, ni genres dans les fichiers étudiés. Les éditions ne sont pas additionnées pour annoncer des lecteurs uniques. Les résultats ne décrivent pas le marché actuel du livre.',
     recommendation: 'Faire relire les 20 fiches, vérifier la disponibilité dans le catalogue commercial, puis tester une petite mise en avant avec des indicateurs d’usage et de diversité. Aucun gain de ventes n’est revendiqué.',
     resources: [

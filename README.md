@@ -19,22 +19,21 @@ L’accueil regroupe huit projets dans trois rubriques. Des liens permettent d�
 | Applications & visualisation | QVTi — enquêtes qualité de vie au travail | [qvt-analysis](https://github.com/juleescourne/qvt-analysis) |
 | Applications & visualisation | BMX Competition Manager | [bmx-competition-manager](https://github.com/juleescourne/bmx-competition-manager) |
 
-Les cartes Assurance et Goodreads ouvrent des **études de cas** : question métier, résultats, démarche, livrables et limites. Assurance présente les cinq pages du rapport Power BI ; Goodreads conserve un graphique issu du notebook. Les nombres sont issus des analyses publiées dans leurs dépôts. Le visuel de la carte assurance résume la comparaison de fréquence entre R24 et le portefeuille.
+Les cartes Assurance et Goodreads ouvrent des **études de cas** : question métier, résultats, démarche, livrables et limites. Assurance présente les cinq pages du rapport Power BI ; Goodreads présente les six sélections réelles, leurs mouvements et les figures de synthèse. Les nombres sont issus des analyses publiées dans leurs dépôts. Le visuel de la carte assurance résume la comparaison de fréquence entre R24 et le portefeuille.
 
 Les compétences de l’accueil renvoient aux projets qui les illustrent. Le parcours, la disponibilité, les contacts et le CV restent accessibles depuis la navigation.
 
 ## Études de cas et démonstrations
 
 - **Assurance** : parcours guidé en cinq étapes, captures réelles des dashboards, zoom, constats, interprétations et suites proposées. Le PDF complet, les notebooks et le projet Power BI sont accessibles sans compte depuis l’étude. Les tests statistiques sont clairement présentés comme des suites à réaliser.
-- **Goodreads** : étude Kaggle sur 1 850 032 fiches conservées et une sélection de 20 fiches en français à vérifier. Les 33 mesures DAX ont été rapprochées de Pandas dans six contextes. Le rendu du rapport reste à contrôler dans Desktop.
-- **Laboratoire Goodreads** : démo synthétique historique, ouverte à la demande à la fin de l’étude. Ses données, ses genres et son score régularisé sont distincts de l’étude Kaggle actuelle. Son générateur est lié à un commit historique du dépôt.
+- **Goodreads** : comparaison de six listes recalculées sur les données Kaggle, avec deux règles éditoriales, trois seuils, titres entrants/sortants et référence explicite. Une synthèse PDF et les CSV sont téléchargeables. La nouvelle version Power BI reste à vérifier dans Desktop.
 - **Résiliation client** : inférence ONNX et contributions SHAP dans le navigateur. Le dépôt choisit modèle et seuil sur validation puis évalue sur test ; cette évaluation est distinguée du modèle historique de la démo. Aucune efficacité de campagne de rétention n’a été mesurée.
 - **California Housing** : score de scénario relatif, sans prédiction calibrée en dollars. Le dépôt documente l’évaluation du modèle sur les données de 1990.
 - **Usinage et QVTi** : applications interactives embarquées ; les pages précisent leur périmètre et les données utilisées.
 
 Les projets PBIP se téléchargent depuis leurs dépôts et s’ouvrent dans Power BI Desktop. Les graphiques des deux études de cas proviennent des notebooks ; ils ne sont pas des captures Power BI.
 
-Le laboratoire Goodreads, la démo churn, la carte Housing, l’outil d’usinage et QVTi constituent les cinq démonstrations interactives. Les fonctionnalités lourdes sont chargées à la demande.
+Le comparateur Goodreads sur données réelles, la démo churn, la carte Housing, l’outil d’usinage et QVTi constituent les cinq démonstrations interactives. Les fonctionnalités lourdes sont chargées à la demande.
 
 ### Contributions SHAP
 
@@ -107,3 +106,8 @@ Les images sont servies depuis le site. Les fichiers volumineux des modèles nav
 **Jules Courné — Data Analyst / BI junior, Rouen**
 
 [GitHub](https://github.com/juleescourne) · [LinkedIn](https://www.linkedin.com/in/jules-courn%C3%A9/)
+
+
+## Actualiser Goodreads
+
+Après réexécution des notebooks et de scripts/preparer_livrables.py dans le dépôt Goodreads, lancer python scripts/sync-goodreads.py /chemin/du/depot/goodreads. Le script copie les petites listes, le PDF et les figures calculées, ainsi que le JSON des six scénarios. Vérifier ensuite les commentaires de GoodreadsPage.jsx, puis exécuter les tests et le build. Le parcours ne charge pas les 1,85 million de fiches et ne simule pas de résultat commercial.

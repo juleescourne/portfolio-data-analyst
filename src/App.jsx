@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import HomePage from './pages/HomePage';
 
-const DashboardPage = lazy(() => import('./pages/DashboardPage'));
+const GoodreadsPage = lazy(() => import('./pages/GoodreadsPage'));
 const AssurancePage = lazy(() => import('./pages/AssurancePage'));
 const HousingProjectPage = lazy(() => import('./pages/HousingProjectPage'));
 const ChurnPredictionPage = lazy(() => import('./pages/ChurnPredictionPage'));
@@ -41,7 +41,7 @@ const App = () => {
       case 'assurance':
         return <AssurancePage onBack={() => navigate('home')} />;
       case 'goodreads':
-        return <DashboardPage onBack={() => navigate('home')} />;
+        return <GoodreadsPage onBack={() => navigate('home')} />;
       case 'housing':
         return <HousingProjectPage onBack={() => navigate('home')} />;
       case 'churn':
