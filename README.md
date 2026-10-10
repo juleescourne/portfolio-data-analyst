@@ -131,4 +131,4 @@ Après `bash scripts/run_demo.sh` dans le dépôt Hospital, lancer :
 python3 scripts/sync-hospital.py /chemin/vers/hospital-sql-analytics
 ```
 
-Le script copie le JSON et quatre CSV agrégés, sans données individuelles. Vérifier les commentaires de `HospitalPage.jsx`, les chiffres du CV, puis lancer les tests et le build. Les résultats actuels portent sur 7 794 passages entièrement synthétiques.
+Le script copie le JSON et sept CSV agrégés, sans données individuelles. Vérifier les commentaires de `HospitalPage.jsx`, les chiffres du CV, puis lancer les tests et le build. Les résultats portent sur les CSV publics Maven / SyntheticMass : 974 patients, 27 891 passages et 47 701 actes, données synthétiques issues de Synthea. La démo distingue moyennes, médianes, durées extrêmes et incohérences après décès.

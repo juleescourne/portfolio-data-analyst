@@ -6,7 +6,7 @@ export const { profile, experiences, formation, certifications } = career;
 export const proofPoints = [
     { value: '678 013', label: 'contrats étudiés', context: 'assurance automobile' },
     { value: '1,85 M', label: 'fiches de livres contrôlées', context: 'catalogue Goodreads' },
-    { value: '7 794', label: 'passages synthétiques', context: 'étude hospitalière SQL' },
+    { value: '27 891', label: 'passages analysés', context: 'jeu public Maven · SQL' },
     { value: '12', label: 'entités modélisées', context: 'base d’usinage MySQL' },
 ];
 
@@ -81,8 +81,8 @@ export const projects = [
         title: 'Hospital SQL Analytics',
         role: 'Data Analyst / BI',
         description:
-            'Étude analytique SQL sur données hospitalières : contrôles qualité, parcours patients, ' +
-            'retours à 30 jours et couverture assureur — avec les limites méthodologiques explicitées.',
+            'Analyse SQL du jeu public Maven / SyntheticMass : activité, couverture des montants, ' +
+            'contrôles qualité et sensibilité aux durées extrêmes.',
         image: 'health.webp',
         tags: ['SQL', 'MySQL', 'Window Functions', 'CTE', 'Data Quality', 'Cohortes'],
         github: 'https://github.com/juleescourne/hospital-sql-analytics',
@@ -91,9 +91,9 @@ export const projects = [
         demoLabel: 'Explorer les résultats SQL',
         highlights: [
             'ROW_NUMBER, DENSE_RANK, NTILE, LAG/LEAD, cumuls et moyennes mobiles',
-            'Contrôles qualité et tests des indicateurs sur des cas connus',
+            '57 passages après décès signalés ; sensibilité des durées et tests SQL',
             'Taux de couverture pondéré, et non moyenne de ratios',
-            '7 794 passages synthétiques : résultats, CSV et requêtes consultables',
+            '27 891 passages du jeu public Maven : résultats, CSV et requêtes consultables',
         ],
     },
     {

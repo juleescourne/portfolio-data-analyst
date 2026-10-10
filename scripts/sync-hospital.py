@@ -13,6 +13,6 @@ data = json.loads((source / 'portfolio.json').read_text())
 assert len(data['activity']) == 6
 assert sum(r['encounter_count'] for r in data['activity']) == data['overview']['encounters']
 shutil.copyfile(source / 'portfolio.json', root / 'src/data/hospital-results.json')
-for name in ['activity', 'coverage', 'quality', 'overview']:
+for name in ['activity', 'coverage', 'quality', 'overview', 'annual', 'sensitivity', 'financial_sensitivity']:
     shutil.copyfile(source / (name + '.csv'), root / 'public/documents' / ('hospital-' + name + '.csv'))
-print('Résultats MySQL et quatre CSV agrégés synchronisés.')
+print('Résultats MySQL et sept CSV agrégés synchronisés.')

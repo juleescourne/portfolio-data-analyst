@@ -118,7 +118,7 @@
     {
       "name": "Hospital SQL Analytics",
       "stack": "MySQL · KPI · Qualité",
-      "text": "7 794 passages synthétiques : fonctions fenêtres, contrôles qualité, couverture pondérée et tests des indicateurs ; résultats consultables dans le portfolio.",
+      "text": "Jeu public Maven / SyntheticMass : 27 891 passages ; SQL analytique, couverture pondérée, contrôles qualité et analyse de sensibilité des durées extrêmes. Démo et résultats vérifiables.",
       "url": "https://github.com/juleescourne/hospital-sql-analytics"
     },
     {
