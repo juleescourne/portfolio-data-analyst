@@ -65,6 +65,7 @@ const HomePage = ({ onShowProject }) => {
                             <Circle className="w-2.5 h-2.5 fill-current" aria-hidden="true" />
                             {profile.availability}
                         </span>
+                        <span className="text-muted">{profile.contractPreference}</span>
                         <span className="text-muted">{profile.mobility}</span>
                     </div>
 

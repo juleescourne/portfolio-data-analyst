@@ -32,7 +32,7 @@ def link(url, label): return f'<link href="{e(url)}" color="#0D666A">{e(label)}<
 story = [p(e(profile['name']), 'name'), p(e(profile['title']), 'title')]
 story += [p(' · '.join([e(profile['location']), link('mailto:'+profile['email'], profile['email']), link(profile['phoneHref'], profile['phone'])]), 'small')]
 story += [p(' · '.join([link(profile['portfolio'], 'Portfolio et démonstrations'), link(profile['github'], 'GitHub'), link(profile['linkedin'], 'LinkedIn')]), 'small'), Spacer(1, 7)]
-story += [p(e(profile['pitch'])), p('Disponible immédiatement · Recherche un CDI Data Analyst / BI.', 'small')]
+story += [p(e(profile['pitch'])), p(e(profile['availability'])+' · '+e(profile['contractPreference']), 'small')]
 story.append(p(e(profile['mobility']), 'small'))
 story.append(p('EXPÉRIENCE', 'section'))
 for exp in career['experiences']:
